@@ -1,0 +1,24 @@
+[[maven:Default]]
+== Maven
+
+Dieses Kapitel beschreibt Regeln, die sich auf den Umgang mit Apache Maven beziehen.
+
+=== Konzepte
+
+[[maven:MainArtifact]]
+.Alle durch Maven erzeugten Artefakte, die nicht Tests oder reine POM-Projekte darstellen, werden mit dem Label `Main` versehen.
+[source,cypher,role=concept]
+----
+MATCH
+  (:Maven:Project)-[:CREATES]->(mainArtifact:Artifact)
+WHERE NOT
+  mainArtifact.type in [
+    "test-jar",
+    "pom"
+  ]
+SET
+  mainArtifact:Main
+RETURN
+  mainArtifact as MainArtifact
+----
+

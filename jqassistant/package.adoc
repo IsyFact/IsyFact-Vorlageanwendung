@@ -1,0 +1,33 @@
+[[package:Default]]
+[role=group,includesConstraints="package:AllJavaTypesMustBeLocatedInRootPackage"]
+== Packages
+
+=== Konzepte
+
+[[package:Root]]
+.Das Wurzel-Package einer Applikation wird mit `Root` markiert.
+[source,cypher,role=concept,requiresConcepts="maven:MainArtifact",requiresParameters="String rootPackage"]
+----
+MATCH
+  (:Main:Artifact)-[:CONTAINS]->(rootPackage:Package)
+WHERE
+  rootPackage.fqn = {rootPackage}
+SET
+  rootPackage:Root
+RETURN
+  rootPackage as RootPackage
+----
+
+=== Constraints
+
+[[package:AllJavaTypesMustBeLocatedInRootPackage]]
+.Alle Java-Typen eines Projekts müssen innerhalb des Wurzel-Packages liegen.
+[source,cypher,role=constraint,requiresConcepts="maven:MainArtifact",requiresParameters="String rootPackage"]
+----
+MATCH
+  (:Main:Artifact)-[:CONTAINS]->(type:Type)
+WHERE NOT
+  type.fqn starts with {rootPackage}
+RETURN
+  type as InvaildTyp
+----
