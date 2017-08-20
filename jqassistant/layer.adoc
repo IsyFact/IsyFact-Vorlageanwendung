@@ -34,7 +34,6 @@ CREATE UNIQUE
   (gui)-[g4:DEFINES_DEPENDENCY]->(sicherheit),
   (core)-[c1:DEFINES_DEPENDENCY]->(persistence),
   (core)-[c2:DEFINES_DEPENDENCY]->(common),
-  (sicherheit)-[s1:DEFINES_DEPENDENCY]->(gui),
   (batch)-[b1:DEFINES_DEPENDENCY]->(core),
   (batch)-[b2:DEFINES_DEPENDENCY]->(common)
 RETURN
