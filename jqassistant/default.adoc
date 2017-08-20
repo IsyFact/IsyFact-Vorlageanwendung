@@ -1,9 +1,10 @@
 = Architektur- und Designregeln
 
 [[default]]
-[role=group,includesGroups="package:Default"]
+[role=group,includesGroups="package:Default,layer:Default"]
 == Standardregeln
 
-include::package.adoc[]
 include::maven.adoc[]
+include::package.adoc[]
+include::layer.adoc[]
 
