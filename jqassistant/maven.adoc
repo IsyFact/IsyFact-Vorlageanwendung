@@ -1,10 +1,10 @@
 [[maven:Default]]
 == Maven
 
-Dieses Kapitel beschreibt Regeln, die sich auf den Umgang mit Apache Maven beziehen.
+Dieser Abschnitt beschreibt Regeln, die sich auf den Umgang mit Apache Maven beziehen.
 
 [[maven:MainArtifact]]
-.Alle durch Maven erzeugten Artefakte, die nicht Tests oder reine POM-Projekte darstellen, werden mit dem Label `Main` versehen.
+.Alle durch Maven erzeugten Artefakte, die nicht Tests oder reine POMs repräsentieren, werden mit `Main` gekennzeichnet.
 [source,cypher,role=concept]
 ----
 MATCH

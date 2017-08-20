@@ -1,8 +1,18 @@
-= Architektur- und Designregeln
+:numbered:
+:sectnumlevels: 5
+:toclevels: 2
+
+= IsyFact Architektur- und Design-Regeln
 
 [[default]]
 [role=group,includesGroups="package:Default,layer:Default"]
-== Standardregeln
+== Einführung
+
+Dieses Dokument beschreibt Konzepte und Constraints der Anwendung.
+Diese werden durch http://jqassistant.org[jQAssistant] während des Build-Prozesses verifiziert.
+
+TIP: GraphML-Reports können mit http://www.yworks.com/en/products/yfiles/yed/[yEd] angezeigt werden.
+Nach dem Öffnen der Datei sollte eine Layout angewendet werden, z.B. menu:Layout[Hierarchical].
 
 include::maven.adoc[]
 include::package.adoc[]
