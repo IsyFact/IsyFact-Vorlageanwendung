@@ -3,8 +3,6 @@
 
 Dieses Kapitel beschreibt Regeln, die sich auf den Umgang mit Apache Maven beziehen.
 
-=== Konzepte und Constraints
-
 [[maven:MainArtifact]]
 .Alle durch Maven erzeugten Artefakte, die nicht Tests oder reine POM-Projekte darstellen, werden mit dem Label `Main` versehen.
 [source,cypher,role=concept]

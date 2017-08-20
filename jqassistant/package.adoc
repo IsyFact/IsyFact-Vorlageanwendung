@@ -2,8 +2,6 @@
 [role=group,includesConstraints="package:AllJavaTypesMustBeLocatedInRootPackage"]
 == Packages
 
-=== Konzepte und Constraints
-
 [[package:Root]]
 .Das Wurzel-Package einer Applikation wird mit `Root` markiert.
 [source,cypher,role=concept,requiresConcepts="maven:MainArtifact",requiresParameters="String rootPackage"]

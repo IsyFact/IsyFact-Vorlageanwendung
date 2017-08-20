@@ -1,0 +1,20 @@
+[[layer-core:Default]]
+[role=group,includesConstraints="layer-core:IncomingDependencyMustUseInterface"]
+=== Core
+
+Dieser Abschnitt beschreibt Regeln, die sich auf den "core"-Layer beziehen.
+
+[[layer-core:IncomingDependencyMustUseInterface]]
+.Wird eine Funktionalität des Core-Layers aus einem anderen Layer heraus verwendet, dann muss dies über ein Interface geschehen.
+[source,cypher,role=constraint,requiresConcepts="layer-general:DefinedLayer",severity=MINOR]
+----
+MATCH
+  (layer:Layer)-[:CONTAINS*]->(type:Type),
+  (core:Layer{name:"core"})-[:CONTAINS*]->(coreType:Type),
+  (type)-[:DEPENDS_ON]->(coreType)
+WHERE
+  layer <> core
+  and not coreType:Interface
+RETURN
+  layer.name as Layer, type.fqn as Dependent, coreType.fqn as CoreDependency
+----

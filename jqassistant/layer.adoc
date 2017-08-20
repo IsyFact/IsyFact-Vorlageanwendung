@@ -1,91 +1,10 @@
 [[layer:Default]]
-[role=group,includesConstraints="layer:UndefinedDependencies,layer:UnusedDependencies"]
+[role=group,includesGroups="layer-general:Default,layer-core:Default"]
 == Layer
 
-=== Konzepte und Constraints
+Dieser Abschnitt beschreibt Regeln, die sich auf die Layer-Struktur der Anwendung beziehen.
 
-[[layer:DefinedLayer]]
-.Das Wurzel-Package enthält Packages, die Layer der Anwendung definieren.
-[source,cypher,role=concept,requiresConcepts="package:Root"]
-----
-MATCH
-  (:Root:Package)-[:CONTAINS]->(layer:Package)
-SET
-  layer:Layer
-RETURN
-  layer.name as LayerName, layer as LayerPackage
-----
+include::layer-general.adoc[]
+include::layer-core.adoc[]
 
-[[layer:DefinedDependencies]]
-.Zwischen den Layern der Anwendung sind erlaubte Beziehungen definiert.
-[source,cypher,role=concept,requiresConcepts="layer:DefinedLayer",reportType="graphml"]
-----
-MATCH
-  (gui:Layer{name:"gui"}),
-  (core:Layer{name:"core"}),
-  (persistence:Layer{name:"persistence"}),
-  (sicherheit:Layer{name:"sicherheit"}),
-  (batch:Layer{name:"batch"}),
-  (common:Layer{name:"common"})
-CREATE UNIQUE
-  (gui)-[g1:DEFINES_DEPENDENCY]->(core),
-  (gui)-[g2:DEFINES_DEPENDENCY]->(persistence),
-  (gui)-[g3:DEFINES_DEPENDENCY]->(common),
-  (gui)-[g4:DEFINES_DEPENDENCY]->(sicherheit),
-  (core)-[c1:DEFINES_DEPENDENCY]->(persistence),
-  (core)-[c2:DEFINES_DEPENDENCY]->(common),
-  (batch)-[b1:DEFINES_DEPENDENCY]->(core),
-  (batch)-[b2:DEFINES_DEPENDENCY]->(common)
-RETURN
-  *
-----
 
-[[layer:Dependencies]]
-.Zwei Layer besitzen eine Abhängigkeit, wenn sie Java-Typen in beliebigen Sub-Packages besitzen, die voneinander abhängig sind.
-[source,cypher,role=concept,requiresConcepts="layer:DefinedLayer",reportType="graphml"]
-----
-MATCH
-  (layer1:Layer)-[:CONTAINS*]->(type1:Type),
-  (layer2:Layer)-[:CONTAINS*]->(type2:Type),
-  (type1)-[d:DEPENDS_ON]->(type2)
-WHERE
-  layer1 <> layer2
-WITH
-  layer1, layer2, count(d) as weight
-MERGE
-  (layer1)-[d:DEPENDS_ON]->(layer2)
-SET
-  d.weight = weight
-RETURN
-  layer1 as Layer1, d as Dependency, layer2 as Layer2
-----
-
-[[layer:UndefinedDependencies]]
-.Es dürfen keine undefinierten Abhängigkeiten zwischen Layern existieren.
-[source,cypher,role=constraint,requiresConcepts="layer:DefinedDependencies,layer:Dependencies"]
-----
-MATCH
-  (layer1:Layer)-[:DEPENDS_ON]->(layer2:Layer)
-WHERE NOT
-  (layer1)-[:DEFINES_DEPENDENCY]->(layer2)
-WITH
-  layer1, layer2
-MATCH
-  (layer1)-[:CONTAINS*]->(type1:Type),
-  (layer2)-[:CONTAINS*]->(type2:Type),
-  (type1)-[:DEPENDS_ON]->(type2)
-RETURN
-  layer1.name as Layer, type1 as Type, layer2.name as LayerDependency, type2 as TypeDependency
-----
-
-[[layer:UnusedDependencies]]
-.Es dürfen keine definierten, aber unbenutzten Abhängigkeiten zwischen Layern existieren.
-[source,cypher,role=constraint,requiresConcepts="layer:DefinedDependencies,layer:Dependencies",severity=MINOR]
-----
-MATCH
-  (layer1:Layer)-[:DEFINES_DEPENDENCY]->(layer2:Layer)
-WHERE NOT
-  (layer1)-[:DEPENDS_ON]->(layer2)
-RETURN
-  layer1.name as Layer1, layer2.name as Layer2
-----
