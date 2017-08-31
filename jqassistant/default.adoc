@@ -1,11 +1,12 @@
 :numbered:
 :sectnumlevels: 5
+:toc:
 :toclevels: 2
 
 = IsyFact Architektur- und Design-Regeln
 
 [[default]]
-[role=group,includesGroups="package:Default,layer:Default"]
+[role=group,includesGroups="package:Default,layer:Default,logging:Default"]
 == Einführung
 
 Dieses Dokument beschreibt Konzepte und Constraints der Anwendung.
@@ -17,4 +18,5 @@ Nach dem Öffnen der Datei sollte eine Layout angewendet werden, z.B. menu:Layou
 include::maven.adoc[]
 include::package.adoc[]
 include::layer.adoc[]
+include::logging.adoc[]
 

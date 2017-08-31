@@ -1,0 +1,104 @@
+[[logging:Default,includesConstraints="logging:IsyLoggerMustBeUsed","logging:IsyLoggerMustBeDeclaredAsConstant"]]
+== Logging
+
+Dieser Abschnitt beschreibt Regeln, die für das Logging in der Anwendung gelten.
+
+Für Logging wird grundsätzlich die Klasse `IsyLogger` verwendet, Instanzen werden über `IsyLoggerFactory.getLogger(...);` erzeugt:
+
+[source,java]
+----
+public class MyClass {
+
+  private static final IsyLogger LOGGER = IsyLoggerFactory.getLogger(MyClass.class);
+
+  public void myMethod() {
+     LOG.error("...");
+     LOG.warn("...");
+     LOG.info("...");
+     LOG.debug("...");
+  }
+
+}
+----
+
+[[logging:IsyLogger]]
+.Markiert den Logger vom Typ `de.bund.bva.isyfact.logging.IsyLogger` mit `Isy`.
+[source,cypher,role=concept,requiresConcepts="logging:Logger"]
+----
+MATCH
+  (isyLogger:Type)
+WHERE
+  isyLogger.fqn = "de.bund.bva.isyfact.logging.IsyLogger"
+SET
+  isyLogger:Isy:Logger
+RETURN
+  isyLogger as IsyLogger
+----
+
+Durch Abhängigkeiten zu Bibliotheken können im Klassenpfad andere Logging-Frameworks auffindbar sein:
+
+[[logging:CustomLogger]]
+.Markiert alle bekannten Logger-Implementierungen (JUL, Commons Logging, Log4j, SLF4j) mit `Logger`.
+[source,cypher,role=concept]
+----
+MATCH
+  (logger:Type)
+WHERE
+  logger.fqn in [
+    "java.util.logging.Logger",
+    "org.apache.commons.logging.Log",
+    "org.apache.log4j.Logger",
+    "org.slf4j.Logger"
+  ]
+SET
+  logger:Logger
+RETURN
+  logger as Logger
+----
+
+[[logging:IsyLoggerMustBeUsed]]
+.Für das Logging darf ausschliesslich `IsyLogger` verwendet werden.
+[source,cypher,role=constraint,requiresConcepts="logging:IsyLogger,logging:CustomLogger"]
+----
+MATCH
+  (type:Type)-[:DECLARES]->(method:Method)-[invokes:INVOKES]->(:Method)<-[:DECLARES]-(logger:Logger)
+WHERE NOT
+  logger:Isy
+RETURN
+  type as Type, method as Method, invokes.lineNumber as LineNumber, logger as InvalidLogger
+----
+
+[[logging:IsyLoggerMustBeInitializedStatically]]
+.Keine Methode mit Ausnahme des statischen Initialisierers `<clinit>` darf die `IsyLoggerFactory` direkt verwenden.
+[source,cypher,role=constraint]
+----
+MATCH
+  (isyLoggerFactory:Type)-[:DECLARES]->(getLogger:Method)
+WHERE
+  isyLoggerFactory.fqn = "de.bund.bva.isyfact.logging.IsyLoggerFactory"
+  and getLogger.signature="de.bund.bva.isyfact.logging.IsyLogger getLogger(java.lang.Class)"
+WITH
+  getLogger
+MATCH
+  (type:Type)-[:DECLARES]->(method:Method)-[:INVOKES]->(getLogger)
+WHERE
+  method.signature <> "void <clinit>()"
+RETURN
+  type as Type, method MethodInvokingIsyLoggerFactory
+----
+
+[[logging:IsyLoggerMustBeDeclaredAsConstant]]
+.Alle Felder, die einen Logger repräsentieren, müssen als "private static final" deklariert sein.
+[source,cypher,role=constraint,requiresConcepts="logging:Logger"]
+----
+MATCH
+  (type:Type)-[:DECLARES]->(field:Field)-[:OF_TYPE]->(logger:Logger)
+WHERE NOT (
+  field.visibility = "private"
+  and has(field.static) and field.static
+  and has(field.final) and field.final
+)
+RETURN
+  type as Type, field as InvalidDeclaration
+----
+
