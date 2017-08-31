@@ -1,4 +1,5 @@
-[[logging:Default,includesConstraints="logging:IsyLoggerMustBeUsed","logging:IsyLoggerMustBeDeclaredAsConstant"]]
+[[logging:Default]]
+[role=group,includesConstraints="logging:IsyLoggerMustBeUsed","logging:IsyLoggerMustBeDeclaredAsConstant"]]
 == Logging
 
 Dieser Abschnitt beschreibt Regeln, die für das Logging in der Anwendung gelten.
@@ -23,7 +24,7 @@ public class MyClass {
 
 [[logging:IsyLogger]]
 .Markiert den Logger vom Typ `de.bund.bva.isyfact.logging.IsyLogger` mit `Isy`.
-[source,cypher,role=concept,requiresConcepts="logging:Logger"]
+[source,cypher,role=concept]
 ----
 MATCH
   (isyLogger:Type)
@@ -39,7 +40,7 @@ Durch Abhängigkeiten zu Bibliotheken können im Klassenpfad andere Logging-Fram
 
 [[logging:CustomLogger]]
 .Markiert alle bekannten Logger-Implementierungen (JUL, Commons Logging, Log4j, SLF4j) mit `Logger`.
-[source,cypher,role=concept]
+[source,cypher,role=concept,severity=INFO]
 ----
 MATCH
   (logger:Type)
@@ -89,7 +90,7 @@ RETURN
 
 [[logging:IsyLoggerMustBeDeclaredAsConstant]]
 .Alle Felder, die einen Logger repräsentieren, müssen als "private static final" deklariert sein.
-[source,cypher,role=constraint,requiresConcepts="logging:Logger"]
+[source,cypher,role=constraint,requiresConcepts="logging:IsyLogger"]
 ----
 MATCH
   (type:Type)-[:DECLARES]->(field:Field)-[:OF_TYPE]->(logger:Logger)
