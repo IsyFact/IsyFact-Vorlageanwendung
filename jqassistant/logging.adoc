@@ -1,5 +1,5 @@
 [[logging:Default]]
-[role=group,includesConstraints="logging:IsyLoggerMustBeUsed","logging:IsyLoggerMustBeDeclaredAsConstant"]]
+[role=group,includesConstraints="logging:IsyLoggerMustBeUsed,logging:IsyLoggerMustBeDeclaredAsConstant,logging:IsyLoggerMustBeInitializedStatically"]]
 == Logging
 
 Dieser Abschnitt beschreibt Regeln, die für das Logging in der Anwendung gelten.
@@ -85,7 +85,7 @@ MATCH
 WHERE
   method.signature <> "void <clinit>()"
 RETURN
-  type as Type, method MethodInvokingIsyLoggerFactory
+  type as Type, method as MethodInvokingIsyLoggerFactory
 ----
 
 [[logging:IsyLoggerMustBeDeclaredAsConstant]]
