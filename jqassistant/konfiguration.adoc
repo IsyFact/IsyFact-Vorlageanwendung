@@ -1,0 +1,63 @@
+[[konfiguration:Default]]
+[role=group,includesConstraints="konfiguration:SpeichereKeineKonfigurationsParameter,konfiguration:BenutzeKeineInternenKlassen"]]
+== Konfiguration
+
+Dieser Abschnitt beschreibt Regeln für die Konfiguration einer Anwendung.
+
+Für die Abfrage von Konfigurationsparametern wird grundsätzlich das Interface `Konfiguration` verwendet, das über ein Spring Bean bereitgestellt wird.
+
+[source,java]
+----
+@Component
+public class MyClass {
+
+  private final Konfiguration konfiguration;
+
+  @Autowired
+  public MyClass(Konfiguration konfiguration) {
+     this.konfiguration = konfiguration;
+  }
+
+}
+----
+
+=== Konzepte
+[[konfiguration:IsyKonfiguration]]
+.Markiert die Konfiguration vom Typ `de.bund.bva.pliscommon.konfiguration.common.Konfiguration` mit `Konfiguration`.
+[source,cypher,role=concept]
+----
+MATCH
+  (type:Type)-[:DECLARES]->(konfiguration:Field)-[:OF_TYPE]->(fieldType:Type)
+WHERE
+  fieldType.fqn = "de.bund.bva.pliscommon.konfiguration.common.Konfiguration"
+SET
+  konfiguration:Konfiguration
+RETURN
+  type.fqn as Klasse, konfiguration.name as Feld
+----
+
+=== Regeln
+[[konfiguration:BenutzeKeineInternenKlassen]]
+.Es dürfen keine Klassen aus dem Package `de.bund.bva.pliscommon.konfiguration.common.impl.` verwendet werden.
+[source,cypher,role=constraint]
+----
+MATCH
+  (type:Type)-[*]->(fieldType:Type)
+WHERE
+  fieldType.fqn STARTS WITH "de.bund.bva.pliscommon.konfiguration.common.impl."
+RETURN
+  type.name as Klasse, fieldType.name as UngültigeReferenz, count(fieldType.name) as Anzahl
+----
+
+[[konfiguration:SpeichereKeineKonfigurationsParameter]]
+.Konfigurationswerte dürfen nicht in Feldern eines Objekts gespeichert werden.
+[source,cypher,role=constraint,requiresConcepts="konfiguration:IsyKonfiguration"]
+----
+MATCH
+  (type:Type)-[:DECLARES]->(field:Field)<-[writes:WRITES]-(:Method)-[invokes:INVOKES]->(:Method)<-[:DECLARES]-(konfType:Type)
+WHERE
+  konfType.fqn = "de.bund.bva.pliscommon.konfiguration.common.Konfiguration" AND
+  writes.lineNumber = invokes.lineNumber
+RETURN
+  type.name as Klasse, field.name as Feld, invokes.lineNumber as Zeile
+----

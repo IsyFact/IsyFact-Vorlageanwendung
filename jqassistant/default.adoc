@@ -6,7 +6,7 @@
 = IsyFact Architektur- und Design-Regeln
 
 [[default]]
-[role=group,includesGroups="package:Default,layer:Default,logging:Default"]
+[role=group,includesGroups="package:Default,layer:Default,logging:Default,konfiguration:Default"]
 == Einführung
 
 Dieses Dokument beschreibt Konzepte und Constraints der Anwendung.
@@ -19,4 +19,5 @@ include::maven.adoc[]
 include::package.adoc[]
 include::layer.adoc[]
 include::logging.adoc[]
+include::konfiguration.adoc[]
 
