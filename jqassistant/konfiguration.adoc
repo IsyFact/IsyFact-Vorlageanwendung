@@ -42,11 +42,11 @@ RETURN
 [source,cypher,role=constraint]
 ----
 MATCH
-  (type:Type)-[*]->(fieldType:Type)
+  (type:Type)-[:DEPENDS_ON]->(fieldType:Type)
 WHERE
   fieldType.fqn STARTS WITH "de.bund.bva.pliscommon.konfiguration.common.impl."
 RETURN
-  type.name as Klasse, fieldType.name as UngültigeReferenz, count(fieldType.name) as Anzahl
+  type.name as Klasse, fieldType.name as UngueltigeReferenz, count(fieldType.name) as Anzahl
 ----
 
 [[konfiguration:SpeichereKeineKonfigurationsParameter]]
@@ -54,9 +54,8 @@ RETURN
 [source,cypher,role=constraint,requiresConcepts="konfiguration:IsyKonfiguration"]
 ----
 MATCH
-  (type:Type)-[:DECLARES]->(field:Field)<-[writes:WRITES]-(:Method)-[invokes:INVOKES]->(:Method)<-[:DECLARES]-(konfType:Type)
+  (type:Type)-[:DECLARES]->(field:Field)<-[writes:WRITES]-(:Method)-[invokes:INVOKES]->(:Method)<-[:DECLARES]-(:Konfiguration:Type)
 WHERE
-  konfType.fqn = "de.bund.bva.pliscommon.konfiguration.common.Konfiguration" AND
   writes.lineNumber = invokes.lineNumber
 RETURN
   type.name as Klasse, field.name as Feld, invokes.lineNumber as Zeile
