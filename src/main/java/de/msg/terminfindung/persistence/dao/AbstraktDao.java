@@ -24,19 +24,8 @@ import de.bund.bva.pliscommon.persistence.dao.Dao;
 import de.msg.terminfindung.persistence.entity.AbstraktEntitaet;
 
 /**
- * Basis-Interface alle DAOs der Anwendung. Fügt gegenüber des Interfaces aus isy-persistence eine Methode zum
- * Aktualisieren der Entität hinzu und legt den Typ des Primärschlüssels auf {@link Long} fest.
+ * Basis-Interface alle DAOs der Anwendung. Legt den Typ des Primärschlüssels auf {@link Long} fest.
  *
  * @author Stefan Dellmuth, msg systems ag
  */
-public interface AbstraktDao<T extends AbstraktEntitaet> extends Dao<T, Long> {
-
-    /**
-     * Aktualisiert eine veränderte, zurvor persistierte Entität.
-     *
-     * @param entitaet Entität
-     * @return die aktualisierte Entität.
-     */
-    T aktualisiere(T entitaet);
-
-}
+public interface AbstraktDao<T extends AbstraktEntitaet> extends Dao<T, Long> { }

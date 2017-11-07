@@ -8,12 +8,11 @@ import javax.faces.convert.DateTimeConverter;
  * @author msg systems ag, Björn Saxe
  */
 public class DateConverter extends DateTimeConverter {
-	
-	// TODO: read from external properties file?
-	private static String formatString = "dd.MM.yyyy";
+
+	private static String format = "dd.MM.yyyy";
 	
 	public DateConverter()
 	{
-		setPattern(formatString);
+		setPattern(format);
 	}
 }

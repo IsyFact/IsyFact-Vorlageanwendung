@@ -20,14 +20,14 @@ package de.msg.terminfindung.core.verwaltung.impl;
  * #L%
  */
 
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
 import de.msg.terminfindung.persistence.dao.TerminfindungDao;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Diese Klasse implementiert den Anwendungsfall "Termine loeschen"
@@ -77,7 +77,6 @@ class AwfTermineLoeschen {
         if(deleted){
         	terminfindung.setUpdateDate(new Date());
         }
-        terminfindungDao.aktualisiere(terminfindung);
     }
 
 }
