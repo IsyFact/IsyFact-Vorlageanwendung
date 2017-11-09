@@ -34,6 +34,9 @@
                 <value>resources/nachrichten/fehler</value>
                 <value>resources/nachrichten/maskentexte</value>
                 <value>resources/nachrichten/titles</value>
+                <value>isy-task.resources.nachrichten.hinweise</value>
+                <value>isy-task.resources.nachrichten.ereignisse</value>
+                <value>isy-task.resources.nachrichten.fehler</value>
             </list>
         </property>
     </bean>

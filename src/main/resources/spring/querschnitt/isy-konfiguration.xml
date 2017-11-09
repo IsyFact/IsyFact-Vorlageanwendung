@@ -24,6 +24,7 @@
                 <value>/config/isy-webgui.properties</value>
                 <value>/config/terminfindung.properties</value>
                 <value>/config/jpa.properties</value>
+                <value>/config/tasks.properties</value>
             </list>
         </constructor-arg>
     </bean>
