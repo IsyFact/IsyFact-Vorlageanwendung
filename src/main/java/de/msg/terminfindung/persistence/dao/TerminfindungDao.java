@@ -20,7 +20,7 @@ package de.msg.terminfindung.persistence.dao;
  * #L%
  */
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import de.msg.terminfindung.persistence.entity.Terminfindung;
@@ -38,7 +38,7 @@ public interface TerminfindungDao extends AbstraktDao<Terminfindung> {
      * @param datum Stichtag
      * @return eine Liste mit den gefundenen Terminfindungen.
      */
-    List<Terminfindung> sucheVor(Date datum);
+    List<Terminfindung> sucheVor(LocalDate datum);
 
     /**
      * Gibt alle Terminfindungen zurück.

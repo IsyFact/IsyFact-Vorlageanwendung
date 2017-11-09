@@ -21,6 +21,12 @@ package de.msg.terminfindung.core;
  */
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
 import de.msg.terminfindung.common.konstanten.TestProfile;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
@@ -38,4 +44,15 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 @Profile(TestProfile.UNIT_TEST)
 public abstract class AbstraktCoreTest {
+
+    protected static final ZoneId zone = ZoneId.of("UTC");
+    protected static final LocalDate datum = LocalDate.of(1,1,1);
+    protected static final ZeitraumEntitaet MORGENS = new ZeitraumEntitaet(
+        ZonedDateTime.of(datum, LocalTime.of(9, 0), zone),
+        ZonedDateTime.of(datum, LocalTime.of(10, 0), zone),
+        true);
+    protected static final ZeitraumEntitaet ABENDS = new ZeitraumEntitaet(
+        ZonedDateTime.of(datum, LocalTime.of(18, 0), zone),
+        ZonedDateTime.of(datum, LocalTime.of(19, 0), zone),
+        true);
 }
