@@ -21,17 +21,19 @@ package de.msg.terminfindung.persistence.entity;
  */
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.OneToOne;
+
+import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
 
 
 /**
- * Entity implementation class for Entity: Zeitraum Stellt einen spezifischen Zeitraum fuer ein Datum (Tag) dar. Der
- * Zeitraum wird rein textuell beschrieben, z.B. "11:00-12:00" oder "abends"
+ * Entity implementation class for Entity: Zeitraum Stellt einen spezifischen Zeitraum fuer ein Datum (Tag) dar.
  *
  * @author msg systems ag, Maximilian Falter
  */
@@ -39,7 +41,8 @@ import java.util.Set;
 public class Zeitraum extends AbstraktEntitaet {
     private static final long serialVersionUID = 1L;
 
-    private String beschreibung;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private ZeitraumEntitaet zeitraum;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "zeitraum_id")
@@ -48,16 +51,16 @@ public class Zeitraum extends AbstraktEntitaet {
     public Zeitraum() {
     }
 
-    public Zeitraum(String beschreibung) {
-        this.beschreibung = beschreibung;
+    public Zeitraum(ZeitraumEntitaet zeitraumEntitaet) {
+        zeitraum = zeitraumEntitaet;
     }
 
-    public String getBeschreibung() {
-        return beschreibung;
+    public ZeitraumEntitaet getZeitraum() {
+        return zeitraum;
     }
 
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
+    public void setZeitraum(ZeitraumEntitaet zeitraum) {
+        this.zeitraum = zeitraum;
     }
 
     public Set<TeilnehmerZeitraum> getTeilnehmerZeitraeume() {

@@ -79,7 +79,6 @@ public class AccessManagerDummy implements AccessManager<AufrufKontextImpl, Auth
 
 	@Override
 	public Object erzeugeCacheSchluessel(AufrufKontextImpl aufrufkontext) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

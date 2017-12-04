@@ -20,10 +20,10 @@ package de.msg.terminfindung.persistence.dao;
  * #L%
  */
 
-import de.msg.terminfindung.persistence.entity.Terminfindung;
-
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+
+import de.msg.terminfindung.persistence.entity.Terminfindung;
 
 /**
  * DAO fuer den Zugriff auf die Entity Terminfindung
@@ -38,7 +38,7 @@ public interface TerminfindungDao extends AbstraktDao<Terminfindung> {
      * @param datum Stichtag
      * @return eine Liste mit den gefundenen Terminfindungen.
      */
-    List<Terminfindung> sucheVor(Date datum);
+    List<Terminfindung> sucheVor(LocalDate datum);
 
     /**
      * Gibt alle Terminfindungen zurück.
@@ -51,7 +51,7 @@ public interface TerminfindungDao extends AbstraktDao<Terminfindung> {
 	 * Sucht nach Terminfindung per UUID.
 	 * 
 	 * 
-	 * @param ref String, der UUID enthält.
+	 * @param uuid String, der UUID enthält.
 	 * @return Wenn vorhanden, Terminfindung mit der Referenz, sonst null. 
 	 */
 	Terminfindung sucheMitReferenz(String uuid);

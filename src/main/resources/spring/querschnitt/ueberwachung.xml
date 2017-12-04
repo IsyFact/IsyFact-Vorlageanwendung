@@ -83,6 +83,10 @@
                        value-ref="aktualisierenMonitor"/>
                 <entry key="de.bund.bva.isyfact.terminfindung:type=StatusMonitor,name=&quot;Status-Ueberwachung&quot;"
                        value-ref="watchdogMonitor"/>
+                <entry key="de.bund.bva.isyfact.taskRunner:type=TaskMonitor,name=&quot;KonfigurationUpdateTask&quot;"
+                       value-ref="konfigurationUpdateTask-monitor"/>
+                <entry key="de.bund.bva.isyfact.taskRunner:type=TaskMonitor,name=&quot;WatchdogTask&quot;"
+                       value-ref="watchdogTask-monitor"/>
             </map>
         </property>
     </bean>

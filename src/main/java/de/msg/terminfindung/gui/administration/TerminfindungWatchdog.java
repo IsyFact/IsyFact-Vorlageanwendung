@@ -20,12 +20,11 @@ package de.msg.terminfindung.gui.administration;
  * #L%
  */
 
+import javax.persistence.EntityManager;
+
 import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 import de.bund.bva.pliscommon.ueberwachung.admin.impl.WatchdogImpl;
 import org.springframework.beans.factory.InitializingBean;
-
-import javax.persistence.EntityManager;
-import java.util.concurrent.Callable;
 
 public class TerminfindungWatchdog extends WatchdogImpl implements InitializingBean {
 
@@ -40,13 +39,10 @@ public class TerminfindungWatchdog extends WatchdogImpl implements InitializingB
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        addPruefung("Datenbank", new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {            	
-                final String watchdogQuery = konfiguration.getAsString(CONF_ADMIN_WATCHDOG_VALIDATION_QUERY);
-                entityManager.createNativeQuery(watchdogQuery).getSingleResult();
-                return true;
-            }
+        addPruefung("Datenbank", () -> {
+            final String watchdogQuery = konfiguration.getAsString(CONF_ADMIN_WATCHDOG_VALIDATION_QUERY);
+            entityManager.createNativeQuery(watchdogQuery).getSingleResult();
+            return true;
         });
     }
 

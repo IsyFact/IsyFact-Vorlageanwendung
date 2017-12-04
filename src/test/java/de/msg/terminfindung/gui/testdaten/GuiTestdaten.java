@@ -20,12 +20,20 @@ package de.msg.terminfindung.gui.testdaten;
  * #L%
  */
 
-import de.msg.terminfindung.common.IdGenerator;
-import de.msg.terminfindung.gui.terminfindung.model.*;
-
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import de.bund.bva.isyfact.datetime.core.Zeitraum;
+import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
+import de.msg.terminfindung.common.IdGenerator;
+import de.msg.terminfindung.gui.terminfindung.model.OrganisatorModel;
+import de.msg.terminfindung.gui.terminfindung.model.PraeferenzModel;
+import de.msg.terminfindung.gui.terminfindung.model.TagModel;
+import de.msg.terminfindung.gui.terminfindung.model.TeilnehmerModel;
+import de.msg.terminfindung.gui.terminfindung.model.TeilnehmerZeitraumModel;
+import de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel;
+import de.msg.terminfindung.gui.terminfindung.model.ZeitraumModel;
 
 /**
  * Erstellt Testdaten für GUI-Tests, d.h. Tests des AWK-Wrappers und der Controller.
@@ -42,12 +50,16 @@ public class GuiTestdaten {
 
     private static final IdGenerator TEILNEHMER_ZEITRAUM_IDS = new IdGenerator(600L);
 
+    private static final Zeitraum MORGENS = Zeitraum.of(LocalTime.of(9, 0), LocalTime.of(10, 0));
+
+    private static final Zeitraum ABENDS = Zeitraum.of(LocalTime.of(17, 0), LocalTime.of(18, 0));
+
     public static TagModel erstelleTermin() {
         TagModel tagModel = new TagModel(TAG_IDS.nextId());
-        tagModel.setDatum(new Date());
+        tagModel.setDatum(DateTimeUtil.localDateNow());
 
-        ZeitraumModel zeitraumModel1 = new ZeitraumModel(ZEITRAUM_IDS.nextId(), "morgens");
-        ZeitraumModel zeitraumModel2 = new ZeitraumModel(ZEITRAUM_IDS.nextId(), "abends");
+        ZeitraumModel zeitraumModel1 = new ZeitraumModel(ZEITRAUM_IDS.nextId(), MORGENS);
+        ZeitraumModel zeitraumModel2 = new ZeitraumModel(ZEITRAUM_IDS.nextId(), ABENDS);
 
         tagModel.getZeitraeume().add(zeitraumModel1);
         tagModel.getZeitraeume().add(zeitraumModel2);
