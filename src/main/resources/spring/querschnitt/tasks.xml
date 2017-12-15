@@ -29,7 +29,7 @@
 
     <context:annotation-config/>
 
-    <import resource="classpath:isy-task/spring/isytask-noauth.xml"/>
+    <import resource="classpath:spring/isytask-noauth.xml"/>
     
     <bean id="konfigurationUpdateTask" class="de.msg.terminfindung.task.KonfigurationUpdateTask">
         <constructor-arg ref="konfiguration"/>
