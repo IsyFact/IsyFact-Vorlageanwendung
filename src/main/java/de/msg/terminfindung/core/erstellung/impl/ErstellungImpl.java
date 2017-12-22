@@ -20,13 +20,13 @@ package de.msg.terminfindung.core.erstellung.impl;
  * #L%
  */
 
+import java.util.List;
+
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.core.erstellung.Erstellung;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
-
-import java.util.List;
 
 /**
  * Implementiert die Schnittstelle {@link Erstellung}. Die Implementierung der einzelnen fachlichen Methoden geschieht
@@ -36,7 +36,7 @@ public class ErstellungImpl implements Erstellung {
 
     private final AwfTerminfindungErstellen awfTerminfindungErstellen;
 
-    public ErstellungImpl(TerminfindungDao terminfindungDao) {
+    public ErstellungImpl(TerminfindungRepository terminfindungDao) {
         awfTerminfindungErstellen = new AwfTerminfindungErstellen(terminfindungDao);
     }
 

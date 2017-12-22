@@ -26,7 +26,7 @@ import java.time.LocalDate;
 import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 
 /**
@@ -37,9 +37,9 @@ import de.msg.terminfindung.persistence.entity.Terminfindung;
 
 class AwfVergangeneTermineLoeschen {
 
-    private final TerminfindungDao terminfindungDao;
+    private final TerminfindungRepository terminfindungDao;
 
-    AwfVergangeneTermineLoeschen(TerminfindungDao terminfindungDao) {
+    AwfVergangeneTermineLoeschen(TerminfindungRepository terminfindungDao) {
         this.terminfindungDao = terminfindungDao;
     }
 
@@ -62,7 +62,7 @@ class AwfVergangeneTermineLoeschen {
 
         int anzahlGeloescht = 0;
         for (Terminfindung tf : terminfindungDao.sucheVor(stichtag)) {
-            terminfindungDao.loesche(tf);
+            terminfindungDao.delete(tf);
             anzahlGeloescht++;
         }
 

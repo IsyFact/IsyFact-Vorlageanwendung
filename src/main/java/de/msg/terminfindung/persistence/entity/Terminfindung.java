@@ -20,11 +20,19 @@ package de.msg.terminfindung.persistence.entity;
  * #L%
  */
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Entity implementation class for Entity: Terminfindung Haupt-Entitaet, von
@@ -32,9 +40,6 @@ import java.util.UUID;
  *
  * @author msg systems ag, Maximilian Falter
  */
-@NamedQueries({
-		@NamedQuery(name = "terminfindung.vor", query = "select tf from Terminfindung tf join tf.termine as t where tf.defZeitraum in elements(t.zeitraeume) and t.datum <= :datum"),
-		@NamedQuery(name = "terminfindung.ref", query = "select tf from Terminfindung tf where tf.idRef = :ref") })
 @Entity
 public class Terminfindung extends AbstraktEntitaet {
 	private static final long serialVersionUID = 1L;

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.core.datenpflege.Datenpflege;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 
 /**
  * Implementierung der Anwendungskomponente "Datenpflege" zur Pflege des Datenbestands.
@@ -15,7 +15,7 @@ public class DatenpflegeImpl implements Datenpflege {
 
     private final AwfVergangeneTermineLoeschen awfVergangeneTermineLoeschen;
 
-    public DatenpflegeImpl(TerminfindungDao terminfindungDao) {
+    public DatenpflegeImpl(TerminfindungRepository terminfindungDao) {
         awfVergangeneTermineLoeschen = new AwfVergangeneTermineLoeschen(terminfindungDao);
     }
 

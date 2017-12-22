@@ -1,19 +1,17 @@
 package de.msg.terminfindung.persistence;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
-import de.msg.terminfindung.persistence.dao.TeilnehmerDao;
-import de.msg.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
-import de.msg.terminfindung.persistence.dao.jpa.JpaTeilnehmerDao;
-import de.msg.terminfindung.persistence.dao.jpa.JpaTeilnehmerZeitraumDao;
-import de.msg.terminfindung.persistence.dao.jpa.JpaTerminfindungDao;
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.h2.jdbcx.JdbcDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.SharedEntityManagerBean;
@@ -23,10 +21,6 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
 /**
  * Konfiguriert Komponententests der Datenzugriffsschicht.
  *
@@ -34,6 +28,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "de.msg.terminfindung.persistence")
 public class TestPersistenceConfiguration {
 
     @Bean
@@ -93,27 +88,6 @@ public class TestPersistenceConfiguration {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
-    }
-
-    @Bean
-    public TerminfindungDao terminfindungDao(EntityManager entityManager) {
-        JpaTerminfindungDao dao = new JpaTerminfindungDao();
-        dao.setEntityManager(entityManager);
-        return dao;
-    }
-
-    @Bean
-    public TeilnehmerDao teilnehmerDao(EntityManager entityManager) {
-        JpaTeilnehmerDao dao = new JpaTeilnehmerDao();
-        dao.setEntityManager(entityManager);
-        return dao;
-    }
-
-    @Bean
-    public TeilnehmerZeitraumDao teilnehmerZeitraumDao(EntityManager entityManager) {
-        JpaTeilnehmerZeitraumDao dao = new JpaTeilnehmerZeitraumDao();
-        dao.setEntityManager(entityManager);
-        return dao;
     }
 
 }

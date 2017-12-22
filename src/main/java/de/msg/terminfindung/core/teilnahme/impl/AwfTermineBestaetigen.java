@@ -9,9 +9,9 @@ package de.msg.terminfindung.core.teilnahme.impl;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,9 +23,8 @@ package de.msg.terminfindung.core.teilnahme.impl;
 
 import java.util.Map;
 
-import de.msg.terminfindung.persistence.dao.TeilnehmerDao;
-import de.msg.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TeilnehmerRepository;
+import de.msg.terminfindung.persistence.TeilnehmerZeitraumRepository;
 import de.msg.terminfindung.persistence.entity.Praeferenz;
 import de.msg.terminfindung.persistence.entity.Teilnehmer;
 import de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum;
@@ -39,30 +38,31 @@ import de.msg.terminfindung.persistence.entity.Zeitraum;
  */
 class AwfTermineBestaetigen {
 
-    private final TerminfindungDao terminfindungDao;
-    private final TeilnehmerDao teilnehmerDao;
-    private final TeilnehmerZeitraumDao teilnehmerZeitraumDao;
+    private final TeilnehmerRepository teilnehmerDao;
 
-    AwfTermineBestaetigen(TerminfindungDao terminfindungDao, TeilnehmerDao teilnehmerDao, TeilnehmerZeitraumDao teilnehmerZeitraumDao) {
-        this.terminfindungDao = terminfindungDao;
+    private final TeilnehmerZeitraumRepository teilnehmerZeitraumDao;
+
+    AwfTermineBestaetigen(TeilnehmerRepository teilnehmerDao,
+        TeilnehmerZeitraumRepository teilnehmerZeitraumDao) {
         this.teilnehmerDao = teilnehmerDao;
         this.teilnehmerZeitraumDao = teilnehmerZeitraumDao;
     }
 
-    void bestaetigeTeilnahme(Terminfindung terminfindung, Teilnehmer teilnehmer, Map<Zeitraum, Praeferenz> terminwahl) {
+    void bestaetigeTeilnahme(Terminfindung terminfindung, Teilnehmer teilnehmer,
+        Map<Zeitraum, Praeferenz> terminwahl) {
 
         //TODO: Überprüfen, dass Zeiträume aus der Map auch zur Terminfindung gehören
 
         // Erzeuge den Datensatz für den Teilnehmer
         terminfindung.getTeilnehmer().add(teilnehmer);
-        teilnehmerDao.speichere(teilnehmer);
+        teilnehmerDao.save(teilnehmer);
 
         // Iteriere durch die übergebene Map und erzeuge fuer jedes Paar (Zeitraum/Preaferenzwerte) einen Datensatz
         terminwahl.forEach((zeitraum, praeferenz) -> {
             // Erzeuge die Praeferenzen (Teilnehmer Zeitraum)
             TeilnehmerZeitraum tz = new TeilnehmerZeitraum(teilnehmer, zeitraum, praeferenz);
 
-            teilnehmerZeitraumDao.speichere(tz);
+            teilnehmerZeitraumDao.save(tz);
 
             // Verbinde die erzeugte Praeferenz mit dem Zeitraum, den sie betrifft
             zeitraum.getTeilnehmerZeitraeume().add(tz);

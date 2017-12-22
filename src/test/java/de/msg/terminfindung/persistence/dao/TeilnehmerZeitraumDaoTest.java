@@ -24,6 +24,9 @@ package de.msg.terminfindung.persistence.dao;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
+import de.msg.terminfindung.persistence.TeilnehmerRepository;
+import de.msg.terminfindung.persistence.TeilnehmerZeitraumRepository;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Praeferenz;
 import de.msg.terminfindung.persistence.entity.Teilnehmer;
 import de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum;
@@ -44,31 +47,31 @@ public class TeilnehmerZeitraumDaoTest extends AbstraktDaoTest {
     private static final Long TEILNEHMER_ZEITRAUM_ID = 400L;
 
     @Autowired
-    private TeilnehmerDao teilnehmerDao;
+    private TeilnehmerRepository teilnehmerDao;
 
     @Autowired
-    private TerminfindungDao terminfindungDao;
+    private TerminfindungRepository terminfindungDao;
 
     @Autowired
-    private TeilnehmerZeitraumDao tzDao;
+    private TeilnehmerZeitraumRepository tzDao;
 
     @Test
     @DatabaseSetup("testTeilnehmerZeitraumDaoSetup.xml")
     @ExpectedDatabase(value = "testTeilnehmerZeitraumDaoSpeichern.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void testSpeichern() {
-        Teilnehmer teilnehmer = teilnehmerDao.sucheMitId(TEILNEHMER_NICHT_ZUGEORDNET);
+        Teilnehmer teilnehmer = teilnehmerDao.findOne(TEILNEHMER_NICHT_ZUGEORDNET);
 
         Zeitraum morgens = sucheZeitraum(ZEITRAUM_MORGENS);
         Zeitraum mittags = sucheZeitraum(ZEITRAUM_MITTAGS);
 
-        tzDao.speichere(new TeilnehmerZeitraum(teilnehmer, morgens, Praeferenz.JA));
-        tzDao.speichere(new TeilnehmerZeitraum(teilnehmer, mittags, Praeferenz.WENN_ES_SEIN_MUSS));
+        tzDao.save(new TeilnehmerZeitraum(teilnehmer, morgens, Praeferenz.JA));
+        tzDao.save(new TeilnehmerZeitraum(teilnehmer, mittags, Praeferenz.WENN_ES_SEIN_MUSS));
     }
 
     @Test
     @DatabaseSetup("testTeilnehmerZeitraumDaoSetup.xml")
     public void testSuchenMitId() {
-        TeilnehmerZeitraum teilnehmerZeitraum = tzDao.sucheMitId(TEILNEHMER_ZEITRAUM_ID);
+        TeilnehmerZeitraum teilnehmerZeitraum = tzDao.findOne(TEILNEHMER_ZEITRAUM_ID);
 
         assertNotNull(teilnehmerZeitraum);
         assertEquals(Long.valueOf(200L), teilnehmerZeitraum.getTeilnehmer().getId());
@@ -80,14 +83,14 @@ public class TeilnehmerZeitraumDaoTest extends AbstraktDaoTest {
     @DatabaseSetup("testTeilnehmerZeitraumDaoSetup.xml")
     @ExpectedDatabase(value = "testTeilnehmerZeitraumDaoLoeschen.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void testLoesche() {
-        TeilnehmerZeitraum teilnehmerZeitraum = tzDao.sucheMitId(TEILNEHMER_ZEITRAUM_ID);
-        tzDao.loesche(teilnehmerZeitraum);
+        TeilnehmerZeitraum teilnehmerZeitraum = tzDao.findOne(TEILNEHMER_ZEITRAUM_ID);
+        tzDao.delete(teilnehmerZeitraum);
 
-        assertNull(tzDao.sucheMitId(TEILNEHMER_ZEITRAUM_ID));
+        assertNull(tzDao.findOne(TEILNEHMER_ZEITRAUM_ID));
     }
 
     private Zeitraum sucheZeitraum(Long zeitraumId) {
-        for (Zeitraum zeitraum : terminfindungDao.sucheMitId(100L).getTermine().get(0).getZeitraeume()) {
+        for (Zeitraum zeitraum : terminfindungDao.findOne(100L).getTermine().get(0).getZeitraeume()) {
             if (zeitraum.getId().equals(zeitraumId)) {
                 return zeitraum;
             }

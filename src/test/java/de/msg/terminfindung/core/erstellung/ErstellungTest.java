@@ -28,7 +28,7 @@ import java.util.List;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.core.AbstraktCoreTest;
 import de.msg.terminfindung.core.erstellung.impl.ErstellungImpl;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
@@ -51,22 +51,22 @@ public class ErstellungTest extends AbstraktCoreTest {
 
     private static final Long TERMINFINDUNG_ID = 4711L;
 
-    private TerminfindungDao terminfindungDao;
+    private TerminfindungRepository terminfindungDao;
 
     private Terminfindung tf;
 
     @Before
     public void init() {
-        terminfindungDao = mock(TerminfindungDao.class);
+        terminfindungDao = mock(TerminfindungRepository.class);
 
         // Terminfindung-DAO-Mock konfigurieren
         doAnswer((Answer<Void>) invocation -> {
             tf = invocation.getArgumentAt(0, Terminfindung.class);
             tf.setId(TERMINFINDUNG_ID);
             return null;
-        }).when(terminfindungDao).speichere(any(Terminfindung.class));
+        }).when(terminfindungDao).save(any(Terminfindung.class));
 
-        doAnswer((Answer<Terminfindung>) invocation -> tf).when(terminfindungDao).sucheMitId(TERMINFINDUNG_ID);
+        doAnswer((Answer<Terminfindung>) invocation -> tf).when(terminfindungDao).findOne(TERMINFINDUNG_ID);
     }
 
     @Test(expected = TerminfindungBusinessException.class)
@@ -118,7 +118,7 @@ public class ErstellungTest extends AbstraktCoreTest {
         Long tfId = terminfindung.getId();
         assertNotNull(tfId);
 
-        terminfindung = terminfindungDao.sucheMitId(tfId);
+        terminfindung = terminfindungDao.findOne(tfId);
 
         assertNotNull(terminfindung.getTermine());
         assertEquals(2, terminfindung.getTermine().size());

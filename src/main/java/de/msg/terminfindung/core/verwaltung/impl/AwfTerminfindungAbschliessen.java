@@ -4,7 +4,6 @@ import java.util.Date;
 
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
@@ -35,12 +34,6 @@ import de.msg.terminfindung.persistence.entity.Zeitraum;
  * @author msg systems ag, Maximilian Falter
  */
 class AwfTerminfindungAbschliessen {
-
-    private final TerminfindungDao terminfindungDao;
-
-    AwfTerminfindungAbschliessen(TerminfindungDao terminfindungDao) {
-        this.terminfindungDao = terminfindungDao;
-    }
 
     /**
      * Setzt einen Termin aus der Menge der möglichen Termine als den Termin der Veranstaltung. Der Termin wird durch

@@ -27,7 +27,7 @@ import java.util.UUID;
 
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Organisator;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
@@ -40,9 +40,9 @@ import de.msg.terminfindung.persistence.entity.Terminfindung;
 
 class AwfTerminfindungErstellen {
 
-    private final TerminfindungDao dao;
+    private final TerminfindungRepository dao;
 
-    AwfTerminfindungErstellen(TerminfindungDao dao) {
+    AwfTerminfindungErstellen(TerminfindungRepository dao) {
         this.dao = dao;
     }
 
@@ -83,7 +83,7 @@ class AwfTerminfindungErstellen {
         terminfindung.setTermine(termine);
         terminfindung.setCreateDate(new Date());
         terminfindung.setIdRef(UUID.randomUUID().toString());
-        dao.speichere(terminfindung);
+        dao.save(terminfindung);
         return terminfindung;
 
     }

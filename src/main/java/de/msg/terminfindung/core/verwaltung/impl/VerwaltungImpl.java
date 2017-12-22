@@ -21,15 +21,15 @@ package de.msg.terminfindung.core.verwaltung.impl;
  */
 
 
+import java.util.List;
+import java.util.UUID;
+
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
 import de.msg.terminfindung.core.verwaltung.Verwaltung;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Interface der Anwendungskomponente "Erstellung" zur Erstellung von Terminfindungen
@@ -45,19 +45,19 @@ public class VerwaltungImpl implements Verwaltung {
     
     private final AwfAktualisiereTerminfindung awfAktualisiereTerminfindung;
 
-    private final TerminfindungDao terminfindungDao;
-    
-    
-    public VerwaltungImpl(TerminfindungDao terminfindungDao) {
-        awfTerminfindungAbschliessen = new AwfTerminfindungAbschliessen(terminfindungDao);
-        awfTermineLoeschen = new AwfTermineLoeschen(terminfindungDao);
-        awfAktualisiereTerminfindung = new AwfAktualisiereTerminfindung(terminfindungDao);
+    private final TerminfindungRepository terminfindungDao;
+
+
+    public VerwaltungImpl(TerminfindungRepository terminfindungDao) {
+        awfTerminfindungAbschliessen = new AwfTerminfindungAbschliessen();
+        awfTermineLoeschen = new AwfTermineLoeschen();
+        awfAktualisiereTerminfindung = new AwfAktualisiereTerminfindung();
         this.terminfindungDao = terminfindungDao;
     }
 
     @Override
     public Terminfindung leseTerminfindung(UUID terminfindung_ref) throws TerminfindungBusinessException {
-        Terminfindung tf = terminfindungDao.sucheMitReferenz(terminfindung_ref.toString());
+        Terminfindung tf = terminfindungDao.findByIdRef(terminfindung_ref.toString());
         if (tf == null) {
             throw new TerminfindungBusinessException(FehlerSchluessel.MSG_TERMINFINDUNG_NICHT_GEFUNDEN, terminfindung_ref.toString());
         }
@@ -65,8 +65,8 @@ public class VerwaltungImpl implements Verwaltung {
     }
     
 	@Override
-	public List<Terminfindung> leseAlleTerminfindungen() {
-		return terminfindungDao.findeAlle();
+    public Iterable<Terminfindung> leseAlleTerminfindungen() {
+        return terminfindungDao.findAll();
 	}
 
     @Override

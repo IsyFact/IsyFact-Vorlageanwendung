@@ -21,12 +21,12 @@ package de.msg.terminfindung.core.verwaltung;
  */
 
 
+import java.util.List;
+import java.util.UUID;
+
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
-
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Interface der Anwendungskomponente "Verwaltung" zur Verwaltung von Terminfindungen
@@ -41,9 +41,9 @@ public interface Verwaltung {
      * @param terminfindung_ref Referenz-ID der Terminfindung
      * @throws TerminfindungBusinessException wenn es keine Terminfindung mit dieser Referenz-ID gibt.
      */
-    Terminfindung leseTerminfindung(UUID terminfindung_ref) throws TerminfindungBusinessException; 
-    
-    List<Terminfindung> leseAlleTerminfindungen();
+    Terminfindung leseTerminfindung(UUID terminfindung_ref) throws TerminfindungBusinessException;
+
+    Iterable<Terminfindung> leseAlleTerminfindungen();
 
     void loescheZeitraeume(Terminfindung terminfindung, List<Zeitraum> zeitraumList);
 

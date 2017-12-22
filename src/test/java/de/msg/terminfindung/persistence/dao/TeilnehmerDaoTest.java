@@ -24,6 +24,7 @@ package de.msg.terminfindung.persistence.dao;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
+import de.msg.terminfindung.persistence.TeilnehmerRepository;
 import de.msg.terminfindung.persistence.entity.Teilnehmer;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,19 +36,19 @@ public class TeilnehmerDaoTest extends AbstraktDaoTest {
     private static final Long TEILNEHMER_ID = 200L;
 
     @Autowired
-    private TeilnehmerDao teilnehmerDao;
+    private TeilnehmerRepository teilnehmerDao;
 
     @Test
     @DatabaseSetup("testTeilnehmerDaoSetup.xml")
     @ExpectedDatabase(value = "testTeilnehmerDaoSpeichern.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void testSpeichern() {
-        teilnehmerDao.speichere(new Teilnehmer("Sepp"));
+        teilnehmerDao.save(new Teilnehmer("Sepp"));
     }
 
     @Test
     @DatabaseSetup("testTeilnehmerDaoSetup.xml")
     public void testSuchenMitId() {
-        Teilnehmer teilnehmer = teilnehmerDao.sucheMitId(TEILNEHMER_ID);
+        Teilnehmer teilnehmer = teilnehmerDao.findOne(TEILNEHMER_ID);
 
         assertNotNull(teilnehmer);
         assertEquals("Herbert", teilnehmer.getName());
@@ -57,10 +58,10 @@ public class TeilnehmerDaoTest extends AbstraktDaoTest {
     @DatabaseSetup("testTeilnehmerDaoSetup.xml")
     @ExpectedDatabase(value = "testTeilnehmerDaoLoeschen.xml", assertionMode = DatabaseAssertionMode.NON_STRICT_UNORDERED)
     public void testLoesche() {
-        Teilnehmer teilnehmer = teilnehmerDao.sucheMitId(TEILNEHMER_ID);
-        teilnehmerDao.loesche(teilnehmer);
+        Teilnehmer teilnehmer = teilnehmerDao.findOne(TEILNEHMER_ID);
+        teilnehmerDao.delete(teilnehmer);
 
-        assertNull(teilnehmerDao.sucheMitId(TEILNEHMER_ID));
+        assertNull(teilnehmerDao.findOne(TEILNEHMER_ID));
     }
 
 }

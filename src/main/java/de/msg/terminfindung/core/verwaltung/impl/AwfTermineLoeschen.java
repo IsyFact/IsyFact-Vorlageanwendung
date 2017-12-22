@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
@@ -35,12 +34,6 @@ import de.msg.terminfindung.persistence.entity.Zeitraum;
  * @author msg systems ag, Dirk Jäger
  */
 class AwfTermineLoeschen {
-
-    private final TerminfindungDao terminfindungDao;
-
-    AwfTermineLoeschen(TerminfindungDao terminfindungDao) {
-        this.terminfindungDao = terminfindungDao;
-    }
 
     /**
      * Löscht eine Liste von Zeiträumen aus einer Terminfindung. Die Methode prüft ob durch das Löschen leere Tage (ohne

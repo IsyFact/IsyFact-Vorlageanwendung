@@ -28,7 +28,7 @@ import java.util.UUID;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.core.AbstraktCoreTest;
 import de.msg.terminfindung.core.verwaltung.impl.VerwaltungImpl;
-import de.msg.terminfindung.persistence.dao.TerminfindungDao;
+import de.msg.terminfindung.persistence.TerminfindungRepository;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
@@ -47,11 +47,11 @@ public class VerwaltungTest extends AbstraktCoreTest {
 
     private static final UUID TERMINFINDUNG_REF = UUID.fromString("ddec6dd1-4e7e-4e7f-8343-962414a63835");
 
-    private TerminfindungDao terminfindungDao;
+    private TerminfindungRepository terminfindungDao;
 
     @Before
     public void init() {
-        terminfindungDao = mock(TerminfindungDao.class);
+        terminfindungDao = mock(TerminfindungRepository.class);
 
         // Terminfindung-DAO-Mock konfigurieren
         Terminfindung muster = new Terminfindung();
@@ -72,8 +72,8 @@ public class VerwaltungTest extends AbstraktCoreTest {
         alleTermine.add(muster);
         alleTermine.add(muster2);
 
-        when(terminfindungDao.sucheMitReferenz("ddec6dd1-4e7e-4e7f-8343-962414a63835")).thenReturn(muster);
-        when(terminfindungDao.findeAlle()).thenReturn(alleTermine);
+        when(terminfindungDao.findByIdRef("ddec6dd1-4e7e-4e7f-8343-962414a63835")).thenReturn(muster);
+        when(terminfindungDao.findAll()).thenReturn(alleTermine);
     }
 
     /**
@@ -104,8 +104,9 @@ public class VerwaltungTest extends AbstraktCoreTest {
     @Test
     public void testLeseAlleTerminfindungen() {
     	Verwaltung verwaltung = new VerwaltungImpl(terminfindungDao);
-    	
-    	List<Terminfindung> alleTerminfindungen = verwaltung.leseAlleTerminfindungen();
+
+        List<Terminfindung> alleTerminfindungen = new ArrayList<>();
+        verwaltung.leseAlleTerminfindungen().forEach(alleTerminfindungen::add);
     	
     	assertNotNull(alleTerminfindungen);
         assertEquals(2, alleTerminfindungen.size());
