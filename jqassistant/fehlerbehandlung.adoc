@@ -1,0 +1,36 @@
+[[fehlerbehandlung:Default]]
+[role=group,includesConstraints="fehlerbehandlung:ExceptionsErbenVonPlisException","fehlerbehandlung:ServiceExceptionErbtVonPlisToException"]
+
+== Fehlerbehandlung
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung der Fehlerbehandlung und Exceptions
+
+=== Regeln
+
+[[fehlerbehandlung:ExceptionsErbenVonPlisException]]
+.Werden in einer Anwendung Exceptions benötigt, so müssen zuerst vier eigene abstrakte Oberklassen für die Anwendungs-Exceptions abgeleitet werden.
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:EXTENDS*]->(super:Type),
+  (t)<-[:CONTAINS]-(:Package {name: "exception"})<-[:CONTAINS]-(:Layer {name: "common"})
+WHERE NOT
+  (super.fqn = "de.bund.bva.pliscommon.exception.PlisBusinessException" OR
+   super.fqn = "de.bund.bva.pliscommon.exception.PlisTechnicalException" OR
+   super.fqn = "de.bund.bva.pliscommon.exception.PlisTechnicalRuntimeException")
+RETURN
+  t AS ExceptionErbtNichtVonPlisException
+----
+
+[[fehlerbehandlung:ServiceExceptionErbtVonPlisToException]]
+.Für Exceptions an den Anwendungsschnittstellen gelten weitere Vorgaben: Sie erben immer von PlisBusinessToException oder PlisTechnicalToException und implementieren somit immer Serializable. Sie stellen die Felder Ausnahme-ID, UUID und Fehlernachricht zur Verfügung und erben nicht von internen Anwendungsexceptions..
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:EXTENDS*]->(:Type {fqn: "java.lang.Exception"}),
+  (t)<-[:CONTAINS*]-(:Layer {name: "service"})
+WHERE NOT
+  (t)-[:EXTENDS*]->(:Type {fqn: "de.bund.bva.pliscommon.exception.service.PlisToException"})
+RETURN
+  t AS ServiceExceptionErbtNichtVonPlisToException
+----

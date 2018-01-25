@@ -22,14 +22,14 @@ MATCH
   (gui:Layer{name:"gui"}),
   (core:Layer{name:"core"}),
   (persistence:Layer{name:"persistence"}),
-  (sicherheit:Layer{name:"sicherheit"}),
+  (service:Layer{name:"service"}),
   (batch:Layer{name:"batch"}),
   (common:Layer{name:"common"})
 CREATE UNIQUE
   (gui)-[g1:DEFINES_DEPENDENCY]->(core),
   (gui)-[g2:DEFINES_DEPENDENCY]->(persistence),
   (gui)-[g3:DEFINES_DEPENDENCY]->(common),
-  (gui)-[g4:DEFINES_DEPENDENCY]->(sicherheit),
+  (service)-[g4:DEFINES_DEPENDENCY]->(core),
   (core)-[c1:DEFINES_DEPENDENCY]->(persistence),
   (core)-[c2:DEFINES_DEPENDENCY]->(common),
   (batch)-[b1:DEFINES_DEPENDENCY]->(core),

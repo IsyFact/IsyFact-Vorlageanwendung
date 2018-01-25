@@ -6,7 +6,7 @@
 = IsyFact Architektur- und Design-Regeln
 
 [[default]]
-[role=group,includesGroups="package:Default,layer:Default,logging:Default,konfiguration:Default,persistence:Default,batch:Default,service:Default,core:Default,gui:Default"]
+[role=group,includesGroups="package:Default,layer:Default,logging:Default,konfiguration:Default,persistence:Default,batch:Default,service:Default,core:Default,gui:Default,datetime:Default,fehlerbehandlung:Default,ueberwachung:Default"]
 
 == Einführung
 
@@ -26,3 +26,6 @@ include::batch.adoc[]
 include::service.adoc[]
 include::logging.adoc[]
 include::konfiguration.adoc[]
+include::datetime.adoc[]
+include::fehlerbehandlung.adoc[]
+include::ueberwachung.adoc[]

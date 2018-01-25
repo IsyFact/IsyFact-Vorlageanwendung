@@ -1,0 +1,61 @@
+[[ueberwachung:Default]]
+[role=group,includesConcepts="ueberwachung:MBean",includesConstraints="ueberwachung:MBeanSuffix,ueberwachung:MBeanMitZugriffAufAWK,ueberwachung:MBeanPackageStruktur"]
+
+== Überwachung
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung von Überwachung.
+
+=== Konzepte
+
+[[ueberwachung:MBean]]
+.Markiert ManagedBeans  mit `mbean:ueberwachung:MBean`.
+[source,cypher,role=concept]
+----
+MATCH
+  (mbean:Type)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(managedResource:Type)
+WHERE
+  managedResource.fqn = "org.springframework.jmx.export.annotation.ManagedResource"
+SET
+  mbean:ueberwachung:MBean
+RETURN
+  mbean AS Mbean
+----
+
+=== Regeln
+
+[[ueberwachung:MBeanSuffix]]
+.Der Java-Klassenname der eigentlichen MBean wird mit dem Suffix „MBean“ versehen.
+[source,cypher,role=constraint,requiresConcepts="ueberwachung:MBean"]
+----
+MATCH
+  (mb:MBean)
+WHERE
+  NOT mb.name ENDS WITH "MBean"
+RETURN
+  mb AS MBeanOhneMBeanSuffix
+----
+
+[[ueberwachung:MBeanMitZugriffAufAWK]]
+.Der Anwendungskern (AWK) und die MBean werden von einer Spring-Factory erzeugt. Der Anwendungskern ruft Methoden der MBean auf (Push-Konzept). Das Auslesen der Informationen durch die MBean aus dem Anwendungskern (Pull-Konzept) ist zu vermeiden, da Performance-Probleme entstehen können.
+[source,cypher,role=constraint,requiresConcepts="ueberwachung:MBean,core:CoreType"]
+----
+MATCH
+  (mb:MBean)
+WHERE
+  (mb)-[:DEPENDS_ON]->(:CoreType)
+RETURN
+  mb AS MBeanMitZugriffAufAWK
+----
+
+[[ueberwachung:MBeanPackageStruktur]]
+.MBeans, welche Informationen über die gesamte Anwendung bereitstellen oder identisch für mehrere Komponenten implementiert sind, werden in folgendem Package abgelegt: <organisation>.<domäne>.<anwendungssystem>.common.jmx. MBeans, welche die Administration einzelner Anwendungskomponenten betreffen bzw. spezifisch hierfür implementiert wurden, werden im Layer „core“ in einem eigenen Package unterhalb der Anwendungskomponente abgelegt: <organisation>.<domäne>.<anwendungssystem/register>.core.<komponente>.jmx
+[source,cypher,role=constraint,requiresConcepts="ueberwachung:MBean"]
+----
+MATCH
+  (mb:MBean)
+WHERE
+  NOT ((mb)<-[:CONTAINS]-(:Package {name: "jmx"})<-[:CONTAINS]-(:Layer {name: "common"})
+      OR (mb)<-[:CONTAINS]-(:Package {name: "jmx"})<-[:CONTAINS]-(:Package)<-[:CONTAINS]-(:Layer {name: "core"}))
+RETURN
+  mb AS MBeanImFalschenPackage
+----

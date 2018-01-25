@@ -1,0 +1,27 @@
+[[datetime:Default]]
+[role=group,includesConstraints="datetime:AufrufVonNowOderCurrentTimeMillis"]
+
+== Datum & Zeit
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung von Datum & Zeit.
+
+=== Regeln
+
+[[datetime:AufrufVonNowOderCurrentTimeMillis]]
+.Aufrufe von `System.currentTimeMillis()` sowie der Varianten von `now()` auf Typen der Datums- und Zeittypen ohne Verwendung einer Clock bei Nutzung dieses Bausteins verboten.
+[source,cypher,role=constraint]
+----
+MATCH
+  (a:Artifact {name: "isy-datetime"}),
+  (t:Type)-[:DECLARES]->(m:Member),
+  (m)-[i:INVOKES]->(method:Method)<-[:DECLARES]-(type:Type)
+WHERE
+  (type.fqn = "java.lang.System" AND method.signature = "long currentTimeMillis()")
+  OR (type.fqn = "java.time.LocalTime" AND method.signature = "java.time.LocalTime now()")
+  OR (type.fqn = "java.time.LocalDateTime" AND method.signature = "java.time.LocalDateTime now()")
+  OR (type.fqn = "java.time.OffsetTime" AND method.signature = "java.time.OffsetTime now()")
+  OR (type.fqn = "java.time.OffsetDateTime" AND method.signature = "java.time.OffsetDateTime now()")
+  OR (type.fqn = "java.time.ZonedDateTime" AnD method.signature = "java.time.ZonedDateTime now()")
+RETURN
+  t.name AS Klasse, m.name AS METHODE, i.lineNumber AS AufrufVonNowOderCurrentTimeMillis
+----
