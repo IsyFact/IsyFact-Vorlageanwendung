@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import de.msg.terminfindung.gui.terminfindung.teilnehmen.TeilnehmenModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
@@ -81,6 +82,10 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         {
         	globalFlowController.getValidationController().processValidationMessages(validationMessages);
         }
+    }
+
+    public void teilnehmen(TeilnehmenModel model) {
+        model.setTeilnehmerName("foo");
     }
     
     private void fuegeDatumZuModelHinzu(Date datum, ErstellenModel model)

@@ -1,0 +1,61 @@
+[[core:Default]]
+[role=group,includesConcepts="core:CoreType,core:BusinessObjekt",includesConstraints="core:BeanNichtPerNameAuslesen,core:BusinessObjektMitBoSuffix"]
+
+== Anwendungskern
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung des Anwendungskerns.
+
+=== Konzepte
+
+[[core:CoreType]]
+.Markiert Klassen im Layer `core` mit `Core:CoreType`.
+[source,cypher,role=concept]
+----
+MATCH
+  (coreType:Type)<-[:CONTAINS*]-(:Layer {name: "core"})
+SET
+  coreType:Isy:Core:CoreType
+RETURN
+  coreType AS CoreType
+----
+
+[[core:BusinessObjekt]]
+.Markiert Klassen innerhalb des Packages `.core.<>.ausgabedaten` mit `Core:BusinessObjekt`.
+[source,cypher,role=concept]
+----
+MATCH
+  (ct:CoreType)<-[:CONTAINS]-(p:Package)
+WHERE
+  p.fqn ENDS WITH ".ausgabedaten"
+RETURN
+  ct as BusinessObjekt
+----
+
+=== Regeln
+
+[[core:BeanNichtPerNameAuslesen]]
+.Über den Anwendungskontext könnten Beans explizit per Namen ausgelesen werden. Dies ist mit einer Ausnahme verboten: Die Namen von Beans sollen nicht im Anwendungscode verwendet werden. Die Ausnahme gilt für den Zugriff von einem Anwendungskontext auf einen anderen (in Zusammenhang mit dem DispatcherServlet).
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:DECLARES]->(m:Method),
+  (m)-[i:INVOKES]->(getBean:Method),
+  (getBean)<-[:DECLARES]-(applicationContext:Type)
+WHERE
+  applicationContext.fqn = "org.springframework.context.ApplicationContext"
+  AND getBean.signature STARTS WITH "java.lang.Object getBean(java.lang.String"
+RETURN
+  t AS Klasse, m AS Methode, i.lineNumber AS Zeilennummer
+----
+
+[[core:BusinessObjektMitBoSuffix]]
+.Unter Business-Objekten werden nicht-persistente Objekte verstanden, die in Schnittstellen im Anwendungskern verwendet werden. Schema `<Entitaetsname>Bo`.
+[source,cypher,role=constraint,requiresConcept="core:BusinessObjekt"]
+----
+MATCH
+  (bo:BusinessObjekt)
+WHERE
+  NOT bo.name ENDS WITH "Bo"
+RETURN
+  bo as BusinessObjektOhneBoSuffix
+----

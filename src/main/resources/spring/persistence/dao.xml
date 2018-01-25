@@ -46,13 +46,13 @@
     </bean>
 
     <!-- Beans für DAOs -->
-    <bean id="terminfindungDao" class="de.msg.terminfindung.persistence.dao.jpa.JpaTerminfindungDao"
+    <bean id="terminfindungDao" class="de.msg.terminfindung.persistence.dao.impl.JpaTerminfindungDao"
           parent="abstractDao"/>
 
-    <bean id="teilnehmerDao" class="de.msg.terminfindung.persistence.dao.jpa.JpaTeilnehmerDao"
+    <bean id="teilnehmerDao" class="de.msg.terminfindung.persistence.dao.impl.JpaTeilnehmerDao"
           parent="abstractDao"/>
 
-    <bean id="teilnehmerZeitraumDao" class="de.msg.terminfindung.persistence.dao.jpa.JpaTeilnehmerZeitraumDao"
+    <bean id="teilnehmerZeitraumDao" class="de.msg.terminfindung.persistence.dao.impl.JpaTeilnehmerZeitraumDao"
           parent="abstractDao"/>
 
     <!-- Diese Bean sorgt dafür, dass JPA-Exceptions aus den DAOs in besser behandelbaren Spring-Exceptions

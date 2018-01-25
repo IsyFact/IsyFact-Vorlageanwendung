@@ -115,9 +115,27 @@
                             <reportProperties>
                                 <graphml.report.directory>${project.build.directory}/graphml</graphml.report.directory>
                             </reportProperties>
+                            <!--groups>
+                                <group>
+                                    spring-component:Default
+                                </group>
+                                <group>
+                                    spring-injection:Default
+                                </group>
+                                <group>
+                                    spring-transaction:Default
+                                </group>
+                            </groups-->
                         </configuration>
                     </execution>
                 </executions>
+                <!--dependencies>
+                    <dependency>
+                        <groupId>com.buschmais.jqassistant.plugin</groupId>
+                        <artifactId>jqassistant.plugin.spring</artifactId>
+                        <version>1.1.4-SNAPSHOT</version>
+                    </dependency>
+                </dependencies-->
             </plugin>
         </plugins>
     </build>
@@ -191,6 +209,15 @@
                     <artifactId>ucp</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-serviceapi-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-datetime</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <!-- GUI & AWK -->
@@ -293,6 +320,7 @@
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <profiles>

@@ -22,6 +22,8 @@ public class MyClass {
 }
 ----
 
+=== Konzepte
+
 [[logging:IsyLogger]]
 .Markiert den Logger vom Typ `de.bund.bva.isyfact.logging.IsyLogger` mit `Isy`.
 [source,cypher,role=concept]
@@ -56,6 +58,8 @@ SET
 RETURN
   logger as Logger
 ----
+
+=== Regeln
 
 [[logging:IsyLoggerMustBeUsed]]
 .Für das Logging darf ausschliesslich `IsyLogger` verwendet werden.

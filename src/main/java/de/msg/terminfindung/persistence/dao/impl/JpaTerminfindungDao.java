@@ -1,4 +1,4 @@
-package de.msg.terminfindung.persistence.dao.jpa;
+package de.msg.terminfindung.persistence.dao.impl;
 
 /*
  * #%L

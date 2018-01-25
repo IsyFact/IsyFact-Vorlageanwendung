@@ -27,6 +27,7 @@ import de.msg.terminfindung.core.verwaltung.Verwaltung;
 import de.msg.terminfindung.persistence.dao.TerminfindungDao;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
 import de.msg.terminfindung.persistence.entity.Zeitraum;
+import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 import java.util.UUID;
@@ -46,6 +47,14 @@ public class VerwaltungImpl implements Verwaltung {
     private final AwfAktualisiereTerminfindung awfAktualisiereTerminfindung;
 
     private final TerminfindungDao terminfindungDao;
+
+    private ApplicationContext applicationContext;
+
+    public void someMethod() {
+        Object bean = applicationContext.getBean("someBean");
+        Object otherbean = applicationContext.getBean("someOtherBean", Object.class);
+        applicationContext.getDisplayName();
+    }
     
     
     public VerwaltungImpl(TerminfindungDao terminfindungDao) {

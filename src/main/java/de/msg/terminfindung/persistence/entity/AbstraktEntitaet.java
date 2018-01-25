@@ -30,6 +30,7 @@ import java.io.Serializable;
  */
 @MappedSuperclass
 @Access(AccessType.FIELD)
+@NamedQuery(name = "test.foo", query = "select a from Terminfindung a where a.id = :id")
 public abstract class AbstraktEntitaet implements Serializable {
 	private static final long serialVersionUID = 1197581822091195412L;
 	@Id

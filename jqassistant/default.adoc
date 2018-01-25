@@ -6,7 +6,8 @@
 = IsyFact Architektur- und Design-Regeln
 
 [[default]]
-[role=group,includesGroups="package:Default,layer:Default,logging:Default,konfiguration:Default"]
+[role=group,includesGroups="package:Default,layer:Default,logging:Default,konfiguration:Default,persistence:Default,batch:Default,service:Default,core:Default,gui:Default"]
+
 == Einführung
 
 Dieses Dokument beschreibt Konzepte und Constraints der Anwendung.
@@ -18,6 +19,10 @@ Nach dem Öffnen der Datei sollte eine Layout angewendet werden, z.B. menu:Layou
 include::maven.adoc[]
 include::package.adoc[]
 include::layer.adoc[]
+include::core.adoc[]
+include::persistence.adoc[]
+include::gui.adoc[]
+include::batch.adoc[]
+include::service.adoc[]
 include::logging.adoc[]
 include::konfiguration.adoc[]
-

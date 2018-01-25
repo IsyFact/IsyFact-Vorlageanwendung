@@ -1,0 +1,52 @@
+[[batch:Default]]
+[role=group,includesConcepts="batch:AusfuehrungsBean",includesConstraints="batch:AusfuehrungsBeanDarfKeineTransaktionStarten,batch:BatchklassenMitPraefixBat"]
+
+== Batch
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung von Batches.
+
+=== Konzepte
+
+[[batch:AusfuehrungsBean]]
+.Markiert Klassen, die das Interface `de.bund.bva.pliscommon.batchrahmen.batch.rahmen.BatchAusfuehrungsBean` implementieren, mit `Batch:AusfuehrungsBean`.
+[source,cypher,role=concept]
+----
+MATCH
+  (batchAusfuehrungsBean:Type)-[:IMPLEMENTS]->(batchAusfuehrungsBeanType:Type)
+WHERE
+  batchAusfuehrungsBeanType.fqn = "de.bund.bva.pliscommon.batchrahmen.batch.rahmen.BatchAusfuehrungsBean"
+SET
+  batchAusfuehrungsBean:Isy:Batch:AusfuehrungsBean
+RETURN
+  batchAusfuehrungsBean AS BatchAusfuehrungsBean
+----
+
+=== Regeln
+
+[[batch:AusfuehrungsBeanDarfKeineTransaktionStarten]]
+.Eine Ausführungsbean darf keine Transaktionen starten oder beenden.
+[source,cypher,role=constraint,requiresConcept="batch:AusfuehrungsBean"]
+----
+MATCH
+  (batchBean:AusfuehrungsBean),
+  (batchBean)-[:DECLARES]->(methode:Method),
+  ()-[:ANNOTATED_BY]->()-[:OF_TYPE]->(annotationType:Type)
+WHERE
+  ((batchBean)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(annotationType)
+  OR (methode)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(annotationType))
+  AND annotationType.fqn = "org.springframework.transaction.annotation.Transactional"
+RETURN DISTINCT
+  batchBean.name AS BatchAusfuehrungsBeanMitTransactional
+----
+
+[[batch:BatchklassenMitPraefixBat]]
+.Analog zu den Anwendungsfällen werden Batchklassen mit dem Präfix Bat gekennzeichnet.
+[source,cypher,role=constraint,requiresConcept="batch:AusfuehrungsBean"]
+----
+MATCH
+  (t:Type)<-[:CONTAINS]-(:Layer {name: "batch"})
+WHERE
+  NOT t.name STARTS WITH "Bat"
+RETURN
+  t.name AS BatchOhneBatPraefix
+----

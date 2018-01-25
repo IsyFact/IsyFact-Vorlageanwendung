@@ -1,0 +1,138 @@
+[[persistence:Default]]
+[role=group,includesConcepts="persistence:DaoInterface,persistence:DaoImpl",includesConstraints="persistence:EntitiesLiegenInPackageEntity,persistence:EntitiesVerwendenKeineCompositeKeys,persistence:DaoInterfacesVonDaoAbgeleitet,persistence:DaoKlasseVonAbstractDaoAbgeleitet,persistence:NamedQueriesUeberAnnotationen,persistence:KeineBulkedQueries,persistence:GenerationTypeAuto"]]
+
+== Persistence
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung der Persistenz-Schicht.
+
+=== Konzepte
+
+[[persistence:DaoInterface]]
+.Markiert Interfaces im Package `<ROOT>.persistence.<komponente>.dao` mit `DaoInterface`.
+[source,cypher,role=concept]
+----
+MATCH
+  (i:Interface)<-[:CONTAINS]-(:Package {name: "dao"})<-[:CONTAINS*1..2]-(:Layer {name: "persistence"})
+SET
+  i:Isy:Persistence:DaoInterface
+RETURN
+  i AS DaoInterface
+----
+
+[[persistence:DaoImpl]]
+.Markiert Klassen im Package `<ROOT>.persistence.<komponente>.dao.impl` mit `DaoImpl`.
+[source,cypher,role=concept]
+----
+MATCH
+  (c:Class)<-[:CONTAINS]-(:Package {name: "impl"})<-[:CONTAINS]-(:Package {name: "dao"})<-[:CONTAINS*1..2]-(:Layer {name: "persistence"})
+SET
+  c:Isy:Persistence:DaoImpl
+RETURN
+  c AS DaoImpl
+----
+
+[[persistence:PersistenceType]]
+.Markiert alle Typen im Layer `persistence` mit `PersistenceType`.
+[source,cypher,role=concept]
+----
+MATCH
+  (persistenceType:Type)<-[:CONTAINS*]-(:Layer {name: "persistence"})
+SET
+  persistenceType:PersistenceType
+RETURN
+  persistenceType AS PersistenceType
+----
+
+=== Regeln
+
+[[persistence:EntitiesLiegenInPackageEntity]]
+.Entitäten werden in '<organisation>.<domäne>.<system>.persistence.<komponente>.entity' implementiert.
+[source,cypher,role=constraint,requiresConcepts="jpa2:Entity,layer-general:DefinedLayer"]
+----
+MATCH
+  (e:Jpa:Entity)
+WHERE
+  NOT (e)<-[:CONTAINS]-(:Package {name: "entity"})<-[:CONTAINS*1..2]-(:Layer {name: "persistence"})
+RETURN e AS EntityImFalschenPackage
+----
+
+[[persistence:EntitiesVerwendenKeineCompositeKeys]]
+.Der Primärschlüssel einer Entität besteht aus genau einem Attribut. Zusammengesetzte Schlüssel dürfen nicht verwendet werden.
+[source,cypher,role=constraint,requiresConcepts="jpa2:Entity"]
+----
+MATCH
+  (e:Jpa:Entity)
+WHERE
+  (e)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(:Type {fqn: "javax.persistence.IdClass"}) OR
+  (e)-[:DECLARES]->(:Field)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(:Type {fqn: "javax.persistence.EmbeddedId"})
+RETURN
+  e AS EntityMitCompositeKey
+----
+
+[[persistence:DaoInterfacesVonDaoAbgeleitet]]
+.Für ein konkretes DAO ist eine eigene Schnittstelle von der Basisschnittstelle Dao abzuleiten.
+[source,cypher,role=constraint,requiresConcepts="persistence:DaoInterface"]
+----
+MATCH
+  (daoif:DaoInterface)
+WHERE
+  NOT (daoif)-[:IMPLEMENTS*]->(:Type {fqn: "de.bund.bva.pliscommon.persistence.dao.Dao"})
+RETURN
+  daoif AS DaoInterfaceNichtVonDaoAbgeleitet
+----
+
+[[persistence:DaoKlasseVonAbstractDaoAbgeleitet]]
+.Die Implementierungsklasse des konkreten DAOs ist von AbstractDao abzuleiten.
+[source,cypher,role=constraint,requiresConcepts="persistence:DaoImpl"]
+----
+MATCH
+  (di:DaoImpl)
+WHERE
+  NOT (di)-[:EXTENDS*]->(:Type {fqn: "de.bund.bva.pliscommon.persistence.dao.AbstractDao"})
+RETURN
+  di as DaoImplNichtVonAbstractDaoAbgeleitet
+----
+
+[[persistence:NamedQueriesUeberAnnotationen]]
+.Die Konfiguration von Queries über Annotationen in Entitätsklassen ist verboten.
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:ANNOTATED_BY]->()-[:OF_TYPE]->(nq:Type)
+WHERE
+  nq.fqn = "javax.persistence.NamedQueries" OR
+  nq.fqn = "javax.persistence.NamedQuery"
+RETURN
+  t AS EntitaetMitNamedQuery
+----
+
+[[persistence:KeineBulkedQueries]]
+.JPA bietet über die Methode `query.executeUpdate()` die Möglichkeit, in JPQL formulierte DELETE- und UPDATE-Statements, sog. Bulk-Queries, auszuführen. Die Nutzung solcher Bulk-Queries ist verboten.
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:DECLARES]->(m:Method)-[i:INVOKES]->(executeUpdate:Method)<-[:DECLARES]-(query:Type)
+WHERE
+  query.fqn = "javax.persistence.Query" AND
+  executeUpdate.signature = "int executeUpdate()"
+RETURN
+  t.name AS Klasse, m.name AS Methode, i.lineNumber AS Zeile
+----
+
+[[persistence:GenerationTypeAuto]]
+.Der GenerationType der @GeneratedValue Annotation muss in jedem Fall AUTO sein.
+[source,cypher,role=constraint]
+----
+MATCH
+  (t:Type)-[:DECLARES]->(m:Member)-[:ANNOTATED_BY]->(generatedValue),
+  (generatedValue)-[:OF_TYPE]->(generatedValueType:Type),
+  (generatedValue)-[:HAS]->(strategyAttribute:Enum),
+  (strategyAttribute)-[:IS]->(generationType:Member)
+WHERE
+  generatedValueType.fqn = "javax.persistence.GeneratedValue" AND
+  strategyAttribute.name = "strategy" AND NOT
+  generationType.signature = "javax.persistence.GenerationType AUTO"
+RETURN
+  t.name AS Klasse ,m.name AS Member, generationType
+----
+

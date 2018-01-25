@@ -1,0 +1,117 @@
+[[gui:Default]]
+[role=group,includesConcepts="gui:ModelBean,gui:ControllerBean",includesConstraints="gui:ModelBeanSerializable,gui:ModelBeanVerwendetKeinePersistenObjekte,gui:ModelBeanVerwendetAwkTypen,gui:ModelBeanNameEnthaeltKomponente,gui:ControllerBeanNameEnthaeltKomponente,gui::ControllerBeanErbtVonAbstractGuiController"]
+
+== Anwendungskern
+
+Dieser Abschnitt beschreibt die Regeln zur Implementierung der Web-GUI.
+
+=== Konzepte
+
+[[gui:ModelBean]]
+.Markiert Klassen im Layer `gui`, deren Name auf `Model` endet, mit `gui:ModelBean`.
+[source,cypher,role=concept]
+----
+MATCH
+  (modelBean:Type)<-[:CONTAINS*]-(:Layer {name: "gui"})
+WHERE
+  modelBean.name ENDS WITH "Model"
+SET
+  modelBean:Isy:Gui:ModelBean
+RETURN
+  modelBean as ModelBean
+----
+
+[[gui:ControllerBean]]
+.Markiert Klassen im Layer `gui`, deren Name auf `Controller` endet, mit `gui:ControllerBean`.
+[source,cypher,role=concept]
+----
+MATCH
+  (controllerBean:Type)<-[:CONTAINS*]-(:Layer {name: "gui"})
+WHERE
+  controllerBean.name ENDS WITH "Controller"
+SET
+  controllerBean:Isy:gui:ControllerBean
+RETURN
+  controllerBean as ControllerBean
+----
+
+=== Regeln
+
+[[gui:ModelBeanSerializable]]
+.Da das Model Bean durch den Flow erzeugt wird und Flow Scope besitzt, wird es automatisch mit in die Session-Persistierung einbezogen. Dazu muss das Model das Interface Serializable implementieren.
+[source,cypher,role=constraint,requiresConcept="gui:ModelBean"]
+----
+MATCH
+  (modelBean:ModelBean)
+WHERE
+  NOT (modelBean)-[:IMPLEMENTS]->(:Type {fqn: "java.io.Serializable"})
+RETURN
+  modelBean AS ModelBeanImplementiertNichtSerializable
+----
+
+[[gui:ModelBeanVerwendetKeinePersistenObjekte]]
+.Das Model Bean ist nicht mit den JPA-Datenobjekten verbunden. Das Schreiben in das Model bewirkt also zunächst keine Änderung in der Datenbank.
+[source,cypher,role=constraint,requiresConcept="gui:ModelBean,persistence:PersistenceType"]
+----
+MATCH
+  (m:ModelBean)-[:DEPENDS_ON*]->(p:PersistenceType)
+RETURN
+  m AS ModelBeanMitPersistenzTyp
+----
+
+[[gui:ModelBeanVerwendetAwkTypen]]
+.In den Models der GUI-Komponenten werden eigene Datentypen und nicht die des Anwendungskerns verwendet.
+[source,cypher,role=constraint,requiresConcept="gui:ModelBean,core:CoreType"]
+----
+MATCH
+  (modelBean:ModelBean)-[:DECLARES]->(m:Member),
+  (coreType:CoreType)
+WHERE
+  m.signature CONTAINS coreType.fqn
+RETURN
+  modelBean AS ModelBean, m AS Methode
+----
+
+[[gui:ModelBeanNameEnthaeltKomponente]]
+.Model Bean-Klassen tragen den Namen der GUI-Komponente und enden auf Model (z.B. ErstellenModel).
+[source,cypher,role=constraint,requiresConcept="gui:ModelBean"]
+----
+MATCH
+  (model:ModelBean),
+  (p:Package)-[:CONTAINS]->(model)
+WITH
+  toLower(model.name) AS modelName, p.name AS packageName
+WHERE
+  NOT modelName CONTAINS "abstract"
+  AND packageName + "model" <> modelName
+RETURN
+  modelName AS ModelBeanName, packageName AS PackageName
+----
+
+[[gui:ControllerBeanNameEnthaeltKomponente]]
+.Controller Bean-Klassen tragen den Namen der GUI-Komponente und enden auf Controller (z.B. ErstellenController).
+[source,cypher,role=constraint,requiresConcept="gui:ControllerBean"]
+----
+MATCH
+  (controller:ControllerBean),
+  (p:Package)-[:CONTAINS]->(controller)
+WITH
+  toLower(controller.name) AS controllerName, p.name AS packageName
+WHERE
+  NOT controllerName CONTAINS "abstract"
+  AND packageName + "controller" <> controllerName
+RETURN
+  controllerName AS ControllerBeanName, packageName AS PackageName
+----
+
+[[gui::ControllerBeanErbtVonAbstractGuiController]]
+.Das Controller-Bean muss von AbstractGuiController erben.
+[source,cypher,role=constraint,requiresConcept="gui:ControllerBean"]
+----
+MATCH
+  (controllerBean:ControllerBean)
+WHERE
+  NOT (controllerBean)-[:EXTENDS*]->(:Type {fqn: "de.bund.bva.isyfact.common.web.global.AbstractGuiController"})
+RETURN
+  controllerBean AS ControllerErbtNichtVonAbstractGuiController
+----
