@@ -34,6 +34,7 @@
 	<!-- Erster View -->
 	<view-state id="erstellenViewState1" model="erstellenModel">
 		<transition on="continue" to="validiereStammdaten" validate="false"/>
+		<transition on="cancel" to="backToStart" validate="false"/>
 		<transition on="add" to="erstellenViewState1" validate="false">
 			<evaluate expression="erstellenController.fuegeDatumHinzu(erstellenModel)" />
 		</transition>
@@ -51,6 +52,7 @@
 	<view-state id="erstellenViewState2">
 		<transition on="back" to="erstellenViewState1" />
 		<transition on="create" to="validiereTermine" />
+		<transition on="cancel" to="backToStart" validate="false"/>
 		<transition on="loeschen" to="erstellenViewState2" validate="false">
 			<evaluate expression="erstellenController.loescheZeitraum(erstellenModel)" />
 		</transition>
@@ -65,6 +67,7 @@
 	</decision-state>
 
 	<view-state id="erstellenViewState3">
+		<transition on="cancel" to="backToStart" validate="false"/>
 	</view-state>
 
 </flow>

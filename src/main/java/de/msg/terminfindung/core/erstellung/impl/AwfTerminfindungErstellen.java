@@ -95,33 +95,6 @@ class AwfTerminfindungErstellen {
      * @param termine Die Liste der Termine
      */
     private void bereinigeZeitraeumeInTerminliste(List<Tag> termine) {
-        // Durchlaufe die übergebene Liste der Termine
-
-        /*Tag tag;
-        Zeitraum zeitraum;
-
-        // Durchlaufe für jeden Tag die Liste der Zeiträume
-
-        Iterator<Tag> iterTermin = termine.iterator();
-        while (iterTermin.hasNext()) {
-            tag = iterTermin.next();
-            boolean allEmpty = true;
-
-            Iterator<Zeitraum> iterZeitraum = tag.getZeitraeume().iterator();
-            while (iterZeitraum.hasNext()) {
-                zeitraum = iterZeitraum.next();
-                if (zeitraum.getZeitraum() == null) {
-                    iterZeitraum.remove();
-                } else {
-                    allEmpty = false;
-                }
-            }
-            if (allEmpty) {
-                iterTermin.remove();
-            }
-        }*/
-
-        // TODO auskommentierten Code entfernen
         termine.forEach(tag -> tag.getZeitraeume().removeIf(zeitraum -> zeitraum.getZeitraum() == null));
         termine.removeIf(tag -> tag.getZeitraeume().isEmpty());
     }

@@ -69,9 +69,10 @@
 							</div>
 						</div>
 						<hr />
+						<isy:button action="cancel" value="Abbrechen" id="cancelButton"/>
 						<isy:button action="back" value="Zurück" rendered="false" />
 						<isy:button action="continue" value="Weiter"
-							disabled="#{erstellenModel.tage.size() == 0}" id="weiterButton"/>
+									disabled="#{erstellenModel.tage.size() == 0}" id="weiterButton"/>
 					</div>
 				</f:facet>
 			</isy:panel>
