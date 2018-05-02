@@ -185,7 +185,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         else if (model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis()) == 0) {
             validationMessages.add(new ValidationMessage("DA",
                     "zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",
-                    "Zeitraum beginnt und Enden um die gleiche Uhrzeit."));
+                    "Zeitraum beginnt und endet um die gleiche Uhrzeit."));
         } else if (model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis()) > 0) {
             validationMessages.add(new ValidationMessage("DA",
                     "zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",

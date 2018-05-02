@@ -84,14 +84,14 @@ public class AwkWrapperImpl implements AwkWrapper {
 
 	@Override
 	public TerminfindungModel erstelleTerminfindung(String organisatorName, String veranstaltungName,
-			List<TagModel> tage) throws TerminfindungBusinessException {
+			List<TagModel> tagModels) throws TerminfindungBusinessException {
 
-		List<Tag> termine = new ArrayList<>();
-		for (TagModel tag : tage) {
-			termine.add(beanMapper.map(tag, Tag.class));
+		List<Tag> tage = new ArrayList<>();
+		for (TagModel tagModel : tagModels) {
+			tage.add(beanMapper.map(tagModel, Tag.class));
 		}
 
-		Terminfindung terminfindung = erstellung.erstelleTerminfindung(organisatorName, veranstaltungName, termine);
+		Terminfindung terminfindung = erstellung.erstelleTerminfindung(organisatorName, veranstaltungName, tage);
 
 		return map(terminfindung);
 	}

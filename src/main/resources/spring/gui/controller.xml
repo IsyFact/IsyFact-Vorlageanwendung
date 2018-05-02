@@ -65,6 +65,9 @@
     <bean id="adminController" class="de.msg.terminfindung.gui.administration.AdminController"
           parent="abstractController"/>
 
+    <bean id="userController" class="de.msg.terminfindung.gui.user.UserController"
+          parent="abstractController"/>
+
     <bean id="navigationMenuGenerierenStrategie"
           class="de.bund.bva.isyfact.common.web.jsf.components.navigationmenu.generieren.impl.NavigationMenuGenerierenAusKonfiguration">
         <property name="aufrufKontextVerwalter" ref="aufrufKontextVerwalter"/>

@@ -20,17 +20,20 @@
   -->
 
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="basisFlow">
 	
-    <!-- Erster View -->
-    <view-state id="startViewState">
-        <transition on="admin" to="adminViewState"/>
-        <transition on="user" to="userViewState"/>
-        <transition on="neueTerminfindung" to="erstellungViewState"/>
-    </view-state>
+	<var name="userModel" class="de.msg.terminfindung.gui.user.UserModel" />
+	
+	<!-- Initialisieren des Models -->
+	<on-start>
+		<evaluate expression="userController.initialisiereModel(userModel)" />
+	</on-start>
+	
+	<!-- Erster View -->
+	<view-state id="userViewState1" model="userModel">
+		<transition on="cancel" to="backToStart" validate="false"/>
+	</view-state>
 
-    <end-state id="adminViewState" view="flowRedirect:loginFlow" />
-    <end-state id="userViewState" view="flowRedirect:userFlow" />
 </flow>

@@ -40,17 +40,26 @@
 		<transition on="performLoginAction" to="loginViewStateSuccess" validate="true">
 			<evaluate expression="loginController.performLogin(loginModel, messageContext)" />
 		</transition>
+        <transition on="cancel" to="backToStart" validate="false"/>
 	</view-state>
 	
 	<!-- Bestätigung -->
 	<view-state id="loginViewStateSuccess" model="loginModel">
-		<transition on="ok" to="isUserOrAdmin"/>
+		<transition on="termineVerwalten" to="termineVerwaltenState"/>
+		<transition on="neueTerminfindung" to="neueTerminfindungState"/>
+        <transition on="cancel" to="backToStart" validate="false"/>
 	</view-state>
-	
-	<decision-state id="isUserOrAdmin">
+
+	<decision-state id="termineVerwaltenState">
 		<if test="loginController.getSicherheit().getBerechtigungsManager().hatRecht(adminRight)" then="adminView" else="userView"/>
 	</decision-state>
 
+	<decision-state id="neueTerminfindungState">
+		<if test="loginController.getSicherheit().getBerechtigungsManager().hatRecht(adminRight)" then="erstellungViewState" else="userView"/>
+	</decision-state>
+
 	<end-state id="adminView" view="flowRedirect:adminFlow"/>
-	<end-state id="userView" view="flowRedirect:startFlow"/>
+	<end-state id="erstellungViewState" view="flowRedirect:erstellenFlow" />
+    <end-state id="backToStart" view="flowRedirect:startFlow"/>
+
 </flow>

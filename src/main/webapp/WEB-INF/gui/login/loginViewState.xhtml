@@ -28,14 +28,14 @@
 		<isy:panelGroup>
 			<isy:panel>
 				<f:facet name="panelHeader">
-						Benutzeranmeldung
+						Administrator-Anmeldung
 					</f:facet>
 				<f:facet name="panelBody">
 					<div class="form-horizontal">
 						<div class="row row-df">
 							<div class="col-lg-4">
 								<isy:formInput reference="username" value="#{loginModel.username}"
-									label="Benutzername" required="true" id="usernameInput"/>
+									label="Administratorkennung" required="true" id="usernameInput"/>
                                 <isy:formInput reference="password" value="#{loginModel.password}"
                                                label="Passwort" required="true" id="passwordInput"
                                                type="password"/>
@@ -46,7 +46,9 @@
 								<div style="text-align:center">
 									<isy:button action="performLoginAction"
 										value="Anmelden" id="anmeldenButton"/>
-								</div>
+                                    <isy:button action="cancel" value="Abbrechen" id="cancelButton"/>
+
+                                </div>
 							</div>
 						</div>
 					</div>

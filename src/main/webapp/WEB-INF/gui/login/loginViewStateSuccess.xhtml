@@ -29,7 +29,7 @@
 		<isy:panelGroup>
 			<isy:panel>
 				<f:facet name="panelHeader">
-					Benutzeranmeldung
+					Administrator-Anmeldung
 				</f:facet>
 				<f:facet name="panelBody">
 				<f:attribute name="id" value="benutzeranmeldungPanelBody"/>
@@ -43,7 +43,11 @@
 					<div class="row row-df">
 						<div class="col-lg-4">
 							<div style="text-align: center">
-								<isy:button action="ok" value="OK" id="okButton"/>
+								<p>
+									<isy:button action="termineVerwalten" value="Vorhandene Termine verwalten" id="okButton"/>
+									<isy:button action="neueTerminfindung" value="Neue Terminfindung"/>
+									<isy:button action="cancel" value="Abbrechen" id="cancelButton"/>
+								</p>
 							</div>
 						</div>
 					</div>
