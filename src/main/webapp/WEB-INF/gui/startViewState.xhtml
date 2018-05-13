@@ -24,9 +24,10 @@
                 xmlns:sf="http://www.springframework.org/tags/faces"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:isy="http://java.sun.com/jsf/composite/isyfact"
+                xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/gui/common/layout/commonSite.xhtml">
 
-    <ui:define name="inhaltsbereich">
+     <ui:define name="inhaltsbereich">
 
         <isy:panelGroup>
             <isy:panel>
@@ -46,8 +47,8 @@
                         </div>
                         <hr/>
                         <p>
-                            <isy:button action="admin" value="Ich möchte als Administrator Veranstaltungen verwalten" />
-                            <isy:button action="user" value="Ich möchte an einer Veranstaltung teilnehmen"/>
+                            <isy:button action="user" value="Teilnehmen"/>
+                            <isy:button action="admin" value="Administrieren" />
                         </p>
                     </div>
                 </f:facet>

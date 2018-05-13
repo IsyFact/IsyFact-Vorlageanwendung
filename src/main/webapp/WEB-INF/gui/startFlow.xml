@@ -28,7 +28,6 @@
     <view-state id="startViewState">
         <transition on="admin" to="adminViewState"/>
         <transition on="user" to="userViewState"/>
-        <transition on="neueTerminfindung" to="erstellungViewState"/>
     </view-state>
 
     <end-state id="adminViewState" view="flowRedirect:loginFlow" />
