@@ -31,7 +31,7 @@
 
     <import resource="classpath:spring/isytask-noauth.xml"/>
     
-    <bean id="konfigurationUpdateTask" class="de.msg.terminfindung.task.KonfigurationUpdateTask">
+    <bean id="konfigurationUpdateTask" class="de.bund.bva.isyfact.task.task.KonfigurationUpdateTask">
         <constructor-arg ref="konfiguration"/>
         <constructor-arg ref="konfigurationUpdateTask-monitor"/>
     </bean>
