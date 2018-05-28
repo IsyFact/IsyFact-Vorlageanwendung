@@ -26,7 +26,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 import de.msg.terminfindung.common.konstanten.TestProfile;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;

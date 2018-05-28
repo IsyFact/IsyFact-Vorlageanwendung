@@ -25,7 +25,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
-import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 import org.dozer.CustomConverter;
 import org.dozer.MappingException;
 
@@ -42,7 +42,7 @@ public class ZeitraumDozerCustomConverter implements CustomConverter {
 		}
 
 		if (sourceFieldValue instanceof ZeitraumEntitaet) {
-			return Zeitraum.of((ZeitraumEntitaet) sourceFieldValue);
+			return ((ZeitraumEntitaet) sourceFieldValue).toZeitraum();
 		} else if (sourceFieldValue instanceof Zeitraum) {
 			Zeitraum source = (Zeitraum)sourceFieldValue;
 

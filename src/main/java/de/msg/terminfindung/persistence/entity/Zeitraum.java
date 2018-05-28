@@ -29,8 +29,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
-
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 
 /**
  * Entity implementation class for Entity: Zeitraum Stellt einen spezifischen Zeitraum fuer ein Datum (Tag) dar.
