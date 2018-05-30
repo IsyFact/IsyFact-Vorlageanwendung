@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
-import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.TestProfile;
 import de.msg.terminfindung.core.erstellung.Erstellung;

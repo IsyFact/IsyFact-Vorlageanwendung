@@ -30,7 +30,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 import de.msg.terminfindung.core.AbstraktCoreTest;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Zeitraum;

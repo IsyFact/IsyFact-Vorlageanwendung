@@ -37,7 +37,7 @@
         <class-b>java.time.LocalDate</class-b>
       </converter>
         <converter type="de.msg.terminfindung.gui.util.ZeitraumDozerCustomConverter">
-            <class-a>de.bund.bva.isyfact.datetime.persistence.ZeitraumEntitaet</class-a>
+            <class-a>de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet</class-a>
             <class-b>de.bund.bva.isyfact.datetime.core.Zeitraum</class-b>
         </converter>
     </custom-converters> 
