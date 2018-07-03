@@ -1,6 +1,6 @@
 package de.msg.terminfindung.service.teilnhame;
 
-import de.bund.bva.pliscommon.serviceapi.core.aufrufkontext.StelltLoggingKontextBereit;
+import de.bund.bva.pliscommon.serviceapi.core.aop.StelltLoggingKontextBereit;
 import de.bund.bva.pliscommon.serviceapi.service.httpinvoker.v1_0_0.AufrufKontextTo;
 import de.bund.bva.pliscommon.serviceapi.service.httpinvoker.v1_0_0.ClientAufrufKontextTo;
 
