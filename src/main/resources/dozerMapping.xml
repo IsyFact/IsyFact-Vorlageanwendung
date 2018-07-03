@@ -32,6 +32,14 @@
         <class-a>java.util.UUID</class-a>
         <class-b>java.lang.String</class-b>
       </converter>
+      <converter type="de.msg.terminfindung.gui.util.LocalDateDozerCustomConverter">
+        <class-a>java.time.LocalDate</class-a>
+        <class-b>java.time.LocalDate</class-b>
+      </converter>
+        <converter type="de.msg.terminfindung.gui.util.ZeitraumDozerCustomConverter">
+            <class-a>de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet</class-a>
+            <class-b>de.bund.bva.isyfact.datetime.core.Zeitraum</class-b>
+        </converter>
     </custom-converters> 
   </configuration>
 

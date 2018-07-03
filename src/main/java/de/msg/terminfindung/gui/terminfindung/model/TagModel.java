@@ -22,11 +22,12 @@ package de.msg.terminfindung.gui.terminfindung.model;
 
 
 import java.io.Serializable;
-import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
+import de.bund.bva.isyfact.datetime.format.OutFormat;
 
 /**
  * Die Klasse speichert die Daten eines Tags in der View Schicht. Ein Tag hat einen Namen, ein Datum und eine Liste von
@@ -39,17 +40,17 @@ public class TagModel implements Serializable, Comparable<TagModel> {
     private static final long serialVersionUID = -5975535556486949171L;
 
     private Long id;
-    private Date datum;
+    private LocalDate datum;
     private List<ZeitraumModel> zeitraeume = new ArrayList<>();
 
     /**
      * der Ausgewählte Zeitraum von
      */
-    private String vonZeitraum;
+    private LocalTime zeitraumVon;
     /**
      * der Ausgewählte Zeitraum bis
      */
-    private String bisZeitraum;
+    private LocalTime zeitraumBis;
 
     public TagModel() {
 
@@ -67,15 +68,15 @@ public class TagModel implements Serializable, Comparable<TagModel> {
         this.id = tag_nr;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
     public String getShortDate() {
-        return DateFormat.getDateInstance(DateFormat.SHORT, Locale.GERMANY).format(datum);
+        return OutFormat.DATUM.format(datum);
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 
@@ -97,19 +98,19 @@ public class TagModel implements Serializable, Comparable<TagModel> {
 
     }
 
-    public String getVonZeitraum() {
-        return vonZeitraum;
+    public LocalTime getZeitraumVon() {
+        return zeitraumVon;
     }
 
-    public void setVonZeitraum(String vonZeitraum) {
-        this.vonZeitraum = vonZeitraum;
+    public void setZeitraumVon(LocalTime zeitraumVon) {
+        this.zeitraumVon = zeitraumVon;
     }
 
-    public String getBisZeitraum() {
-        return bisZeitraum;
+    public LocalTime getZeitraumBis() {
+        return zeitraumBis;
     }
 
-    public void setBisZeitraum(String bisZeitraum) {
-        this.bisZeitraum = bisZeitraum;
+    public void setZeitraumBis(LocalTime zeitraumBis) {
+        this.zeitraumBis = zeitraumBis;
     }
 }

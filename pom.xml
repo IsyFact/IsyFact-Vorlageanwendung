@@ -4,7 +4,7 @@
 
     <groupId>de.msg</groupId>
     <artifactId>terminfindung</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
@@ -41,7 +41,7 @@
     <parent>
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isyfact-masterpom</artifactId>
-        <version>1.4.0</version>
+        <version>1.6.0-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -162,7 +162,7 @@
             <dependency>
                 <groupId>de.bund.bva.isyfact</groupId>
                 <artifactId>isyfact-bom</artifactId>
-                <version>1.3.5</version>
+                <version>1.6.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -219,6 +219,18 @@
             <artifactId>isy-datetime</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-datetime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-task</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.bund.bva.isyfact</groupId>
+            <artifactId>isy-style</artifactId>
+        </dependency>
 
         <!-- GUI & AWK -->
         <dependency>
@@ -258,6 +270,16 @@
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Persistenz -->
@@ -282,11 +304,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-validator-annotation-processor</artifactId>-->
-            <!--<version>4.1.0.Final</version>-->
-        <!--</dependency>-->
 
         <!-- Test -->
         <dependency>

@@ -20,6 +20,12 @@ package de.msg.terminfindung.integration.jmx;
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+import javax.management.MBeanServer;
+import javax.management.MBeanServerFactory;
+import javax.management.ObjectName;
+
 import de.msg.terminfindung.common.konstanten.TestProfile;
 import de.msg.terminfindung.gui.terminfindung.erstellen.ErstellenController;
 import de.msg.terminfindung.gui.terminfindung.erstellen.ErstellenModel;
@@ -29,12 +35,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
-import javax.management.ObjectName;
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -64,8 +64,22 @@ public class TestJmxUeberwachung {
         // Auswerten des Ergebnisses
         assertEquals("0", result);
 
-        // Einen Anwendungsfall ausführen
-        erstellenController.initialisiereModel(new ErstellenModel());
+        // Sicherstellen, dass der folgende Aufruf messbar Zeit benötigt.
+        ErstellenModel model = new ErstellenModel() {
+            @Override
+            public void setName(String name) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                super.setName(name);
+            }
+        };
+
+        // Einen Aufruf ausführen
+        erstellenController.initialisiereModel(model);
+
         result = mBeanServer.getAttribute(testObjectName, testAttributeName).toString();
         assertNotEquals("0", result);
     }

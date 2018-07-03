@@ -25,6 +25,7 @@
     <persistence-unit name="hibernatePersistence">
         <!-- Batchrahmen -->
         <mapping-file>resources/plis-batchrahmen/hibernate/hibernate-mapping.xml</mapping-file>
+
         <!-- Anwendung -->
         <class>de.msg.terminfindung.persistence.entity.Zeitraum</class>
         <class>de.msg.terminfindung.persistence.entity.Teilnehmer</class>
@@ -32,5 +33,8 @@
         <class>de.msg.terminfindung.persistence.entity.Organisator</class>
         <class>de.msg.terminfindung.persistence.entity.Tag</class>
         <class>de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum</class>
+        <class>de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet</class>
+
+        <class>de.bund.bva.isyfact.pliscommon.persistence.datetime.attributeconverter.ZonedDateTimeAttributeConverter</class>
     </persistence-unit>
 </persistence>

@@ -21,19 +21,16 @@ package de.msg.terminfindung.core.erstellung.impl;
  */
 
 
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
 import de.msg.terminfindung.persistence.dao.TerminfindungDao;
 import de.msg.terminfindung.persistence.entity.Organisator;
 import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
-import de.msg.terminfindung.persistence.entity.Zeitraum;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * Diese Klasse implementiert den Anwendungsfall "Terminfindung erstellen"
@@ -100,7 +97,7 @@ class AwfTerminfindungErstellen {
     private void bereinigeZeitraeumeInTerminliste(List<Tag> termine) {
         // Durchlaufe die übergebene Liste der Termine
 
-        Tag tag;
+        /*Tag tag;
         Zeitraum zeitraum;
 
         // Durchlaufe für jeden Tag die Liste der Zeiträume
@@ -113,7 +110,7 @@ class AwfTerminfindungErstellen {
             Iterator<Zeitraum> iterZeitraum = tag.getZeitraeume().iterator();
             while (iterZeitraum.hasNext()) {
                 zeitraum = iterZeitraum.next();
-                if (StringUtils.isBlank(zeitraum.getBeschreibung())) {
+                if (zeitraum.getZeitraum() == null) {
                     iterZeitraum.remove();
                 } else {
                     allEmpty = false;
@@ -122,6 +119,10 @@ class AwfTerminfindungErstellen {
             if (allEmpty) {
                 iterTermin.remove();
             }
-        }
+        }*/
+
+        // TODO auskommentierten Code entfernen
+        termine.forEach(tag -> tag.getZeitraeume().removeIf(zeitraum -> zeitraum.getZeitraum() == null));
+        termine.removeIf(tag -> tag.getZeitraeume().isEmpty());
     }
 }
