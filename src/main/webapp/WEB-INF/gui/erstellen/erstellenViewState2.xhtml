@@ -46,7 +46,7 @@
 								<h:dataTable value="#{tag.zeitraeume}" var="zeitraum"
 									class="tableZeiten">
 									<h:column>
-										<h:outputText value="#{zeitraum.beschreibung}" />
+										<h:outputText value="#{zeitraum.zeitraum}" />
 									</h:column>
 									<h:column>
 										<h:commandLink action="loeschen">
@@ -60,11 +60,11 @@
 								</h:dataTable>
 							</h:column>
 							<h:column>
-								<h:selectOneMenu id="vonZeit" value="#{tag.vonZeitraum}" converter="calCon">
+								<h:selectOneMenu id="vonZeit" value="#{tag.zeitraumVon}">
 									<f:selectItems value="#{erstellenModel.alleZeitraeume}" var="von"
 									itemValue="#{von}" itemLabel="#{von}"/>
 								</h:selectOneMenu>
-								<h:selectOneMenu id="bisZeit" value="#{tag.bisZeitraum}">
+								<h:selectOneMenu id="bisZeit" value="#{tag.zeitraumBis}">
 									<f:selectItems value="#{erstellenModel.alleZeitraeume}" var="bis"
 									itemValue="#{bis}" itemLabel="#{bis}"/>
 								</h:selectOneMenu>

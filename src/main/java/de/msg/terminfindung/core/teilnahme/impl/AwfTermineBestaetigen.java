@@ -21,12 +21,16 @@ package de.msg.terminfindung.core.teilnahme.impl;
  */
 
 
+import java.util.Map;
+
 import de.msg.terminfindung.persistence.dao.TeilnehmerDao;
 import de.msg.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
 import de.msg.terminfindung.persistence.dao.TerminfindungDao;
-import de.msg.terminfindung.persistence.entity.*;
-
-import java.util.Map;
+import de.msg.terminfindung.persistence.entity.Praeferenz;
+import de.msg.terminfindung.persistence.entity.Teilnehmer;
+import de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum;
+import de.msg.terminfindung.persistence.entity.Terminfindung;
+import de.msg.terminfindung.persistence.entity.Zeitraum;
 
 /**
  * Diese Klasse implementiert den Anwendungsfall "Termine bestaetigen".
@@ -52,22 +56,17 @@ class AwfTermineBestaetigen {
         // Erzeuge den Datensatz für den Teilnehmer
         terminfindung.getTeilnehmer().add(teilnehmer);
         teilnehmerDao.speichere(teilnehmer);
-        // terminfindungDao.updateTerminfindung(terminfindung);
 
         // Iteriere durch die übergebene Map und erzeuge fuer jedes Paar (Zeitraum/Preaferenzwerte) einen Datensatz
-        for (Zeitraum zeitraum : terminwahl.keySet()) {
-
+        terminwahl.forEach((zeitraum, praeferenz) -> {
             // Erzeuge die Praeferenzen (Teilnehmer Zeitraum)
-            TeilnehmerZeitraum tz = new TeilnehmerZeitraum(teilnehmer, zeitraum, terminwahl.get(zeitraum));
+            TeilnehmerZeitraum tz = new TeilnehmerZeitraum(teilnehmer, zeitraum, praeferenz);
 
             teilnehmerZeitraumDao.speichere(tz);
 
             // Verbinde die erzeugte Praeferenz mit dem Zeitraum, den sie betrifft
             zeitraum.getTeilnehmerZeitraeume().add(tz);
-            // zeitraumDao.updateZeitraum(zeitraum);
-        }
-
-        terminfindungDao.aktualisiere(terminfindung);
+        });
     }
 
 }

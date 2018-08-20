@@ -19,19 +19,33 @@
   #L%
   -->
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:task="http://www.springframework.org/schema/task"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                           http://www.springframework.org/schema/task
-                           http://www.springframework.org/schema/task/spring-task.xsd" profile="produktion">
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       profile="test-integration,produktion">
 
-    <task:scheduled-tasks scheduler="scheduler">
-        <task:scheduled ref="administration" method="pruefeSystem" fixed-delay="${admin.watchdog.interval}"
-                        initial-delay="5000"/>
-        <task:scheduled ref="konfiguration" method="checkAndUpdate" fixed-delay="${konfiguration.reload.interval}"
-                        initial-delay="5000"/>
-    </task:scheduled-tasks>
-    <task:scheduler id="scheduler" pool-size="${tasks.threadpool.size}"/>
+    <context:annotation-config/>
 
+    <import resource="classpath:spring/isytask-noauth.xml"/>
+    
+    <bean id="konfigurationUpdateTask" class="de.msg.terminfindung.task.KonfigurationUpdateTask">
+        <constructor-arg ref="konfiguration"/>
+        <constructor-arg ref="konfigurationUpdateTask-monitor"/>
+    </bean>
+
+    <bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
+
+    <bean id="watchdogTask" class="de.msg.terminfindung.task.WatchdogTask">
+        <constructor-arg ref="administration"/>
+        <constructor-arg ref="watchdogTask-monitor"/>
+    </bean>
+
+    <bean id="watchdogTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
+
+    <bean id="startStopTasks" class="de.msg.terminfindung.task.StartStopTasks">
+        <constructor-arg ref="taskScheduler"/>
+    </bean>
 </beans>

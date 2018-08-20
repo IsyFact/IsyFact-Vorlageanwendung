@@ -25,8 +25,11 @@
     <Terminfindung id="100" organisator_name="Klaus" veranstaltungname="Weihnachtsfeier 2016" />
     <Tag id="100" datum="2016-12-12" terminfindung_id="100" />
 
-    <Zeitraum id="100" beschreibung="9-11 Uhr" tag_id="100"/>
-    <Zeitraum id="200" beschreibung="über Mittag" tag_id="100"/>
+    <ZeitraumEntitaet id="100" anfang="0001-01-01T09:00Z[UTC]" ende="0001-01-01T10:00Z[UTC]" ohneDatum="true"/>
+    <ZeitraumEntitaet id="200" anfang="0001-01-01T17:00Z[UTC]" ende="0001-01-01T18:00Z[UTC]" ohneDatum="true"/>
+
+    <Zeitraum id="100" zeitraum_id="100" tag_id="100"/>
+    <Zeitraum id="200" zeitraum_id="200" tag_id="100"/>
 
     <TeilnehmerZeitraum id="100" teilnehmer_id="100" zeitraum_id="100" praeferenz="0" />
     <TeilnehmerZeitraum id="200" teilnehmer_id="100" zeitraum_id="200" praeferenz="1" />

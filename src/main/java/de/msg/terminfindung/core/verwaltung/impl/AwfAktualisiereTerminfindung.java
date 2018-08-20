@@ -42,6 +42,5 @@ public class AwfAktualisiereTerminfindung {
 		terminfindung.setVeranstaltungName(veranstaltungName);
 		terminfindung.getOrganisator().setName(organisatorName);
 		terminfindung.setUpdateDate(new Date());
-		terminfindungDao.aktualisiere(terminfindung);
 	}
 }

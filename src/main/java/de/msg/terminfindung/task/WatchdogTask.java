@@ -1,4 +1,4 @@
-package de.msg.terminfindung.persistence.dao.jpa;
+package de.msg.terminfindung.task;
 
 /*
  * #%L
@@ -9,9 +9,9 @@ package de.msg.terminfindung.persistence.dao.jpa;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,14 +20,25 @@ package de.msg.terminfindung.persistence.dao.jpa;
  * #L%
  */
 
-import de.bund.bva.pliscommon.persistence.dao.AbstractDao;
-import de.msg.terminfindung.persistence.dao.AbstraktDao;
-import de.msg.terminfindung.persistence.entity.AbstraktEntitaet;
+import de.bund.bva.isyfact.task.model.AbstractTask;
+import de.bund.bva.isyfact.task.model.TaskMonitor;
+import de.msg.terminfindung.gui.administration.TerminfindungWatchdog;
 
 /**
- * Abstrakte Basisklasse für JPA-basierte DAOs. Legt den Typ des Primärschlüssels auf {@link Long} fest.
- *
- * @author Stefan Dellmuth, msg systems ag
+ * Task zur Ansteurung des {@link TerminfindungWatchdog}.
  */
-public abstract class AbstraktJpaDao<T extends AbstraktEntitaet> extends AbstractDao<T, Long> implements AbstraktDao<T> {
+public class WatchdogTask extends AbstractTask {
+
+    private final TerminfindungWatchdog watchdog;
+
+    public WatchdogTask(TerminfindungWatchdog watchdog, TaskMonitor monitor) {
+        super(monitor);
+
+        this.watchdog = watchdog;
+    }
+
+    @Override
+    public void execute() {
+        watchdog.pruefeSystem();
+    }
 }

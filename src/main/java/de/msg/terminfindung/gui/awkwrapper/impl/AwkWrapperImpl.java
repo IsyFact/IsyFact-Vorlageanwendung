@@ -1,18 +1,30 @@
 package de.msg.terminfindung.gui.awkwrapper.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
 import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
 import de.msg.terminfindung.core.erstellung.Erstellung;
 import de.msg.terminfindung.core.teilnahme.Teilnahme;
 import de.msg.terminfindung.core.verwaltung.Verwaltung;
 import de.msg.terminfindung.gui.awkwrapper.AwkWrapper;
-import de.msg.terminfindung.gui.terminfindung.model.*;
-import de.msg.terminfindung.persistence.entity.*;
+import de.msg.terminfindung.gui.terminfindung.model.PraeferenzModel;
+import de.msg.terminfindung.gui.terminfindung.model.TagModel;
+import de.msg.terminfindung.gui.terminfindung.model.TeilnehmerModel;
+import de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel;
+import de.msg.terminfindung.gui.terminfindung.model.ZeitraumModel;
+import de.msg.terminfindung.persistence.entity.Praeferenz;
+import de.msg.terminfindung.persistence.entity.Tag;
+import de.msg.terminfindung.persistence.entity.Teilnehmer;
+import de.msg.terminfindung.persistence.entity.Terminfindung;
+import de.msg.terminfindung.persistence.entity.Zeitraum;
 import org.dozer.Mapper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
 
 /*
  * #%L
@@ -137,7 +149,7 @@ public class AwkWrapperImpl implements AwkWrapper {
 			if (zeitraum == null)
 				throw new TerminfindungBusinessException(FehlerSchluessel.MSG_PARAMETER_UNGUELTIG);
 
-			// Bilder den View-Präferenzwert auf den entsprechenden
+			// Bilde den View-Präferenzwert auf den entsprechenden
 			// Persistenz-Präferenzwert ab und speichere
 			Praeferenz praeferenz = map(viewTerminwahl.get(zeitraumModel));
 			terminwahl.put(zeitraum, praeferenz);
