@@ -75,6 +75,7 @@ public class AccessManagerDummy implements AccessManager<AufrufKontextImpl, Auth
 		// Diese Methode kopiert die Rollen in den Aufrufkontext
 		
 		aufrufkontext.setRolle(ergebnis.getRollenIds());
+		aufrufkontext.setRollenErmittelt(true);
 	}
 
 	@Override

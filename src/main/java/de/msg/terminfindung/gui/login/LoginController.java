@@ -9,9 +9,9 @@ package de.msg.terminfindung.gui.login;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,6 +20,9 @@ package de.msg.terminfindung.gui.login;
  * #L%
  */
 
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
+import org.springframework.stereotype.Controller;
 
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
@@ -32,79 +35,80 @@ import de.bund.bva.pliscommon.sicherheit.common.exception.AuthentifizierungTechn
 import de.msg.terminfindung.common.konstanten.EreignisSchluessel;
 import de.msg.terminfindung.gui.terminfindung.AbstractController;
 import de.msg.terminfindung.sicherheit.SerializableAufrufKontextImpl;
-import org.springframework.binding.message.MessageBuilder;
-import org.springframework.binding.message.MessageContext;
-import org.springframework.stereotype.Controller;
 
 /**
- * Controller des Login Flows
+ * Controller des Login Flows.
  *
  * @author msg systems ag, Maximilian Falter, Dirk Jäger
  */
 @Controller
 public class LoginController extends AbstractController<LoginModel> {
 
-	private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoginController.class);
-	
-	Sicherheit<AufrufKontextImpl> sicherheit;
-	AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter;
-	
-	/**
-	 * Initialisiert das Modell des Loeschen Flows
-	 *
-	 * @param model Das Modell
-	 */
-	public void initialisiereModel(LoginModel model) {
-	}
+    private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoginController.class);
 
-	/**
-	 * Führt den Login-Vorgang aus.
-	 * 
-	 * @param model	Das Modell
-	 * @param context Der Login-Kontext
-	 */
-	public boolean performLogin(LoginModel model, MessageContext context) {
+    private Sicherheit<AufrufKontextImpl> sicherheit;
 
-		LOG.infoFachdaten(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_STARTED, "Führe Login aus für Benutzer {}", model.getUsername());
-		
-		SerializableAufrufKontextImpl akontext= new SerializableAufrufKontextImpl();
-		
-		akontext.setDurchfuehrenderBenutzerKennung(model.getUsername());
-		akontext.setDurchfuehrenderBenutzerPasswort(model.getPassword());
-		
-		aufrufKontextVerwalter.setAufrufKontext(akontext);
+    private AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter;
 
-		try {
-			@SuppressWarnings("unused")
-			Berechtigungsmanager bmanager  = sicherheit.getBerechtigungsManagerUndAuthentifiziere(akontext);
+    /**
+     * Initialisiert das Modell des Loeschen Flows.
+     *
+     * @param model Das Modell
+     */
+    public void initialisiereModel(LoginModel model) {
+    }
 
-			LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_SUCCESS, "Authentifizierung war erfolgreich");
-			
-		}
-		catch (AuthentifizierungTechnicalException e) {
+    /**
+     * Führt den Login-Vorgang aus.
+     *
+     * @param model   Das Modell
+     * @param context Der Login-Kontext
+     */
+    public boolean performLogin(LoginModel model, MessageContext context) {
 
-			LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_FAILED, "Authentifizierung ist fehlgeschlagen", e);
-			
-			context.addMessage(new MessageBuilder().error().defaultText("Authentifizierung ist fehlgeschlagen").build());
-		    return false;
-		}
-		return true;
-	}
-	
-	public Sicherheit<AufrufKontextImpl> getSicherheit() {
-		return sicherheit;
-	}
+        LOG.infoFachdaten(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_STARTED,
+            "Führe Login aus für Benutzer {}", model.getUsername());
 
-	public void setSicherheit(Sicherheit<AufrufKontextImpl> sicherheit) {
-		this.sicherheit = sicherheit;
-	}
+        SerializableAufrufKontextImpl aufrufKontext = new SerializableAufrufKontextImpl();
 
-	public AufrufKontextVerwalter<SerializableAufrufKontextImpl> getAufrufKontextVerwalter() {
-		return aufrufKontextVerwalter;
-	}
+        aufrufKontext.setDurchfuehrenderBenutzerKennung(model.getUsername());
+        aufrufKontext.setDurchfuehrenderBenutzerPasswort(model.getPassword());
 
-	public void setAufrufKontextVerwalter(
-			AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter) {
-		this.aufrufKontextVerwalter = aufrufKontextVerwalter;
-	}	
+        aufrufKontextVerwalter.setAufrufKontext(aufrufKontext);
+
+        try {
+            @SuppressWarnings("unused")
+            Berechtigungsmanager berechtigungsmanager =
+                sicherheit.getBerechtigungsManagerUndAuthentifiziere(aufrufKontext);
+
+            LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_SUCCESS,
+                "Authentifizierung war erfolgreich");
+        } catch (AuthentifizierungTechnicalException e) {
+
+            LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_FAILED,
+                "Authentifizierung ist fehlgeschlagen", e);
+
+            context.addMessage(
+                new MessageBuilder().error().defaultText("Authentifizierung ist fehlgeschlagen").build());
+            return false;
+        }
+        return true;
+    }
+
+    public Sicherheit<AufrufKontextImpl> getSicherheit() {
+        return sicherheit;
+    }
+
+    public void setSicherheit(Sicherheit<AufrufKontextImpl> sicherheit) {
+        this.sicherheit = sicherheit;
+    }
+
+    public AufrufKontextVerwalter<SerializableAufrufKontextImpl> getAufrufKontextVerwalter() {
+        return aufrufKontextVerwalter;
+    }
+
+    public void setAufrufKontextVerwalter(
+        AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter) {
+        this.aufrufKontextVerwalter = aufrufKontextVerwalter;
+    }
 }

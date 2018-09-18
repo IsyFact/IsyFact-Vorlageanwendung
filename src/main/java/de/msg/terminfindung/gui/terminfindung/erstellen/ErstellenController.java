@@ -14,6 +14,7 @@ import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
+import de.msg.terminfindung.common.konstanten.FehlerSchluessel;
 import de.msg.terminfindung.gui.terminfindung.AbstractController;
 import de.msg.terminfindung.gui.terminfindung.model.TagModel;
 import de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel;
@@ -31,9 +32,9 @@ import org.springframework.stereotype.Controller;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -63,7 +64,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
             model.setName("Test-Veranstaltung");
             model.setOrgName("Test-Organisation");
         }
-    }  
+    }
 
     /**
      * Fügt einen Tag zur Liste der Tage hinzu.
@@ -74,18 +75,14 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
 
         List<ValidationMessage> validationMessages = new ArrayList<>();
 
-        if (istValideEingabe(model, validationMessages))
-        {
-        	fuegeDatumZuModelHinzu(model.getNewDate(), model);
-        }
-        else
-        {
-        	globalFlowController.getValidationController().processValidationMessages(validationMessages);
+        if (istValideEingabe(model, validationMessages)) {
+            fuegeDatumZuModelHinzu(model.getNewDate(), model);
+        } else {
+            globalFlowController.getValidationController().processValidationMessages(validationMessages);
         }
     }
-    
-    private void fuegeDatumZuModelHinzu(LocalDate datum, ErstellenModel model)
-    {
+
+    private void fuegeDatumZuModelHinzu(LocalDate datum, ErstellenModel model) {
         LOG.debug("Füge Tag hinzu.");
         TagModel tag = new TagModel();
         tag.setDatum(datum);
@@ -98,57 +95,45 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     private LocalTime leseZeitAusKonfiguration(String schluessel) {
         return LocalTime.parse(getKonfiguration().getAsString(schluessel), InFormat.ZEIT_0H);
     }
-    
-    private boolean istValideEingabe(ErstellenModel model, List<ValidationMessage> validationMessages)
-    {
-    	if (maxAnzahlTageUeberschritten(model)) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "newDate", "Datum",
-                    "Bereits max. Anzahl an Daten hinzugefügt"));
+
+    private boolean istValideEingabe(ErstellenModel model, List<ValidationMessage> validationMessages) {
+        if (maxAnzahlTageUeberschritten(model)) {
+            validationMessages.add(
+                new ValidationMessage("DA", "newDate", "Datum", "Bereits max. Anzahl an Daten hinzugefügt"));
+            return false;
+        } else if (keineEingabe(model)) {
+            validationMessages.add(new ValidationMessage("DA", "newDate", "Datum", "Benötigtes Feld"));
             return false;
         }
-        else if (keineEingabe(model)) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "newDate", "Datum", "Benötigtes Feld"));
-            return false;
-        }
-    	
-	 	LocalDate addedDate = model.getNewDate();
+
+        LocalDate addedDate = model.getNewDate();
         if (datumLiegtInVergangenheit(addedDate)) {
+            validationMessages.add(new ValidationMessage("DA", "newDate", "Datum",
+                "Das Datum darf nicht in der Vergangenheit liegen"));
+            return false;
+        } else if (datumBereitsVorhanden(model, addedDate)) {
             validationMessages
-                    .add(new ValidationMessage("DA", "newDate",
-                            "Datum",
-                            "Das Datum darf nicht in der Vergangenheit liegen"));
+                .add(new ValidationMessage("DA", "newDate", "Datum", "Datum bereits hinzugefügt"));
             return false;
         }
-        else if (datumBereitsVorhanden(model, addedDate)) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "newDate", "Datum",
-                    "Datum bereits hinzugefügt"));
-            return false;
-        }
-    	
-    	return true;
+
+        return true;
     }
-    
-    private boolean maxAnzahlTageUeberschritten(ErstellenModel model)
-    {
-    	return model.getTage().size() >= getKonfiguration().getAsInteger("termin.tag.max.number");
+
+    private boolean maxAnzahlTageUeberschritten(ErstellenModel model) {
+        return model.getTage().size() >= getKonfiguration().getAsInteger("termin.tag.max.number");
     }
-    
-    private boolean keineEingabe(ErstellenModel model)
-    {
-    	return model.getNewDate() == null || model.getNewDate().equals("");
+
+    private boolean keineEingabe(ErstellenModel model) {
+        return model.getNewDate() == null || model.getNewDate().equals("");
     }
-    
-    private boolean datumLiegtInVergangenheit(LocalDate date)
-    {
-    	return date.isBefore(DateTimeUtil.localDateNow());
+
+    private boolean datumLiegtInVergangenheit(LocalDate date) {
+        return date.isBefore(DateTimeUtil.localDateNow());
     }
-    
-    private boolean datumBereitsVorhanden(ErstellenModel model, LocalDate date)
-    {
-    	return model.getTage().stream().anyMatch(tagModel -> tagModel.getDatum().isEqual(date));
+
+    private boolean datumBereitsVorhanden(ErstellenModel model, LocalDate date) {
+        return model.getTage().stream().anyMatch(tagModel -> tagModel.getDatum().isEqual(date));
     }
 
     /**
@@ -169,34 +154,36 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
 
         List<ValidationMessage> validationMessages = new ArrayList<>();
 
-        boolean zeitraumExists = model.getSelectedTermin().getZeitraeume()
-                                                          .stream()
-                                                          .anyMatch(z -> z.getZeitraum()
-                                                                          .equals(Zeitraum.of(
-                                                                              model.getSelectedTermin().getZeitraumVon(),
-                                                                              model.getSelectedTermin().getZeitraumBis())));
+        boolean zeitraumExists = model.getSelectedTermin().getZeitraeume().stream().anyMatch(
+            z -> z.getZeitraum().equals(Zeitraum
+                .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis())));
 
         // maximale Anzahl von Tagen schon vorhanden?
-        if (model.getSelectedTermin().getZeitraeume().size() >= getKonfiguration().getAsInteger("termin.tag.zeitraum.max.number")) {
-            validationMessages.add(new ValidationMessage("DA",
-            		"zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",
-                    "Bereits max. Anzahl an Daten hinzugefügt"));
-        }
-        else if (model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis()) == 0) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",
-                    "Zeitraum beginnt und Enden um die gleiche Uhrzeit."));
-        } else if (model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis()) > 0) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",
-                    "Zeitraum startet nach seinem Ende."));
+        if (model.getSelectedTermin().getZeitraeume().size() >= getKonfiguration()
+            .getAsInteger("termin.tag.zeitraum.max.number")) {
+            validationMessages.add(
+                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                    "Zeitraum", "Bereits max. Anzahl an Daten hinzugefügt"));
+        } else if (
+            model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
+                == 0) {
+            validationMessages.add(
+                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                    "Zeitraum", "Zeitraum beginnt und Enden um die gleiche Uhrzeit."));
+        } else if (
+            model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
+                > 0) {
+            validationMessages.add(
+                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                    "Zeitraum", "Zeitraum startet nach seinem Ende."));
         } else if (zeitraumExists) {
-            validationMessages.add(new ValidationMessage("DA",
-                    "zeitraeume_" + model.getSelectedTermin().getShortDate(), "Zeitraum",
-                    "Zeitraum existiert bereits."));
+            validationMessages.add(
+                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                    "Zeitraum", "Zeitraum existiert bereits."));
         } else {
             ZeitraumModel zeitraum = new ZeitraumModel();
-            zeitraum.setZeitraum(Zeitraum.of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis()));
+            zeitraum.setZeitraum(Zeitraum
+                .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis()));
             model.getSelectedTermin().getZeitraeume().add(zeitraum);
             model.getSelectedTermin().setZeitraumVon(leseZeitAusKonfiguration("termin.start.vorgabe"));
             model.getSelectedTermin().setZeitraumBis(leseZeitAusKonfiguration("termin.ende.vorgabe"));
@@ -250,9 +237,8 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
 
         for (TagModel tag : model.getTage()) {
             if (tag.getZeitraeume().isEmpty()) {
-                validationMessages.add(new ValidationMessage("DA",
-                        "zeitraeume", "Datum",
-                        "Dem Datum " + tag.getShortDate() + " ist kein Zeitraum zugeordnet."));
+                validationMessages.add(new ValidationMessage("DA", "zeitraeume", "Datum",
+                    "Dem Datum " + tag.getShortDate() + " ist kein Zeitraum zugeordnet."));
             }
         }
 
@@ -275,11 +261,12 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         LOG.debug("Speichere Terminfindung.");
 
         try {
-            TerminfindungModel terminfindung = getAwk().erstelleTerminfindung(model.getOrgName(), model.getName(), model.getTage());
+            TerminfindungModel
+                terminfindung = getAwk().erstelleTerminfindung(model.getOrgName(), model.getName(), model.getTage());
             model.setTerminfindung(terminfindung);
             return true;
         } catch (TerminfindungBusinessException e) {
-            LOG.errorFachdaten(e.getAusnahmeId() , "Fehler beim Erstellen der Terminfindung", e);
+            LOG.errorFachdaten(e.getAusnahmeId(), "Fehler beim Erstellen der Terminfindung", e);
             return false;
         }
     }

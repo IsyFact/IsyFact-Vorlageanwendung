@@ -22,10 +22,10 @@ package de.msg.terminfindung.task;
 
 import de.bund.bva.isyfact.task.model.AbstractTask;
 import de.bund.bva.isyfact.task.model.TaskMonitor;
-import de.msg.terminfindung.gui.administration.TerminfindungWatchdog;
+import de.msg.terminfindung.core.admin.TerminfindungWatchdog;
 
 /**
- * Task zur Ansteurung des {@link TerminfindungWatchdog}.
+ * Task zur Ansteuerung des {@link TerminfindungWatchdog}.
  */
 public class WatchdogTask extends AbstractTask {
 
