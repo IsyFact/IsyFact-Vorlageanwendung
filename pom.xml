@@ -4,7 +4,7 @@
 
     <groupId>de.msg</groupId>
     <artifactId>terminfindung</artifactId>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>0.7.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
@@ -40,8 +40,8 @@
 
     <parent>
         <groupId>de.bund.bva.isyfact</groupId>
-        <artifactId>isyfact-masterpom</artifactId>
-        <version>1.6.0</version>
+        <artifactId>isyfact-standards</artifactId>
+        <version>1.7.0-SNAPSHOT</version>
     </parent>
 
     <build>
@@ -97,7 +97,7 @@
             <dependency>
                 <groupId>de.bund.bva.isyfact</groupId>
                 <artifactId>isyfact-bom</artifactId>
-                <version>1.6.0</version>
+                <version>1.7.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
