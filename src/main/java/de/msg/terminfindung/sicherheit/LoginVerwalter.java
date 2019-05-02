@@ -23,17 +23,17 @@ package de.msg.terminfindung.sicherheit;
 
 import java.io.Serializable;
 
-public class LoginVerwalter<T extends SerializableAufrufKontextImpl> implements Serializable {
+public class LoginVerwalter implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private T aufrufKontext;
+	private SerializableAufrufKontextImpl aufrufKontext = new SerializableAufrufKontextImpl();
 
-	public T getAufrufKontext() {
+	public SerializableAufrufKontextImpl getAufrufKontext() {
 		return aufrufKontext;
 	}
 
-	public void setAufrufKontext(T aufrufKontext) {
+	public void setAufrufKontext(SerializableAufrufKontextImpl aufrufKontext) {
 		this.aufrufKontext = aufrufKontext;
 	}
 	

@@ -1,4 +1,4 @@
-package de.msg.terminfindung.gui.administration;
+package de.msg.terminfindung.core.admin;
 
 /*
  * #%L

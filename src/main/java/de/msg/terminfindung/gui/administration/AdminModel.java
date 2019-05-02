@@ -27,7 +27,7 @@ import de.msg.terminfindung.gui.terminfindung.AbstractModel;
 import de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel;
 
 /**
- * Model für Administrationsseiten
+ * Model für Administrationsseiten.
  *
  * @author msg systems ag, Dirk Jäger
  */

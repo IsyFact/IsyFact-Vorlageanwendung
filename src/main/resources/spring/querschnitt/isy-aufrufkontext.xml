@@ -38,6 +38,5 @@
         <aop:scoped-proxy/>
         <property name="loginVerwalter" ref="loginVerwalter"/>
     </bean>
-
 </beans>
  	

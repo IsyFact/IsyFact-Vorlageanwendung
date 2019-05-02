@@ -31,8 +31,6 @@
     
     <import resource="classpath:resources/plis-web/spring/webflow.xml"/>
 
-    <bean class="de.msg.terminfindung.gui.WebFlowConfiguration"/>
-
     <bean id="accessDecisionManager"
           class="de.bund.bva.pliscommon.sicherheit.web.DelegatingAccessDecisionManager">
         <property name="sicherheit" ref="sicherheit"/>

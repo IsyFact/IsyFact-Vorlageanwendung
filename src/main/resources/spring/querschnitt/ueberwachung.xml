@@ -91,7 +91,7 @@
         </property>
     </bean>
 
-    <bean id="administration" class="de.msg.terminfindung.gui.administration.TerminfindungWatchdog">
+    <bean id="administration" class="de.msg.terminfindung.core.admin.TerminfindungWatchdog">
         <property name="watchdogMBean" ref="watchdogMonitor"/>
         <property name="konfiguration" ref="konfiguration"/>
         <property name="entityManager" ref="entityManagerFactoryBean"/>
