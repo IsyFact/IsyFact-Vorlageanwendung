@@ -1,6 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.bund.bva.isyfact</groupId>
+        <artifactId>isyfact-standards</artifactId>
+        <version>1.7.0</version>
+    </parent>
 
     <groupId>de.msg</groupId>
     <artifactId>terminfindung</artifactId>
@@ -9,9 +15,7 @@
 
     <name>Terminfindung</name>
     <description>Die Vorlageanwendung der Software-Factory 'IsyFact'</description>
-
     <url>https://github.com/IsyFact/IsyFact-Vorlageanwendung</url>
-
     <organization>
         <name>Bundesverwaltungsamt (BVA), msg systems ag</name>
         <url>http://www.isyfact.de</url>
@@ -38,60 +42,6 @@
         <url>https://github.com/IsyFact/IsyFact-Vorlageanwendung</url>
     </scm>
 
-    <parent>
-        <groupId>de.bund.bva.isyfact</groupId>
-        <artifactId>isyfact-standards</artifactId>
-        <version>1.7.0</version>
-    </parent>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>de.juplo</groupId>
-                <artifactId>hibernate4-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <goals>
-                    <goal>export</goal>
-                </goals>
-                <configuration>
-                    <hibernateProperties>src\test\resources\hibernate.hbm2ddl.properties</hibernateProperties>
-                    <target>SCRIPT</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-                <configuration>
-                    <skip>${maven.test.skip}</skip>
-                    <output>file</output>
-                    <append>true</append>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -103,7 +53,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- IsyFact -->
         <dependency>
@@ -166,8 +115,8 @@
             <artifactId>spring-core</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -263,6 +212,70 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>de.juplo</groupId>
+                <artifactId>hibernate4-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <goals>
+                    <goal>export</goal>
+                </goals>
+                <configuration>
+                    <hibernateProperties>src\test\resources\hibernate.hbm2ddl.properties</hibernateProperties>
+                    <target>SCRIPT</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.6.201602180812</version>
+                <configuration>
+                    <skip>${maven.test.skip}</skip>
+                    <output>file</output>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Sicherstellen, dass alle POMs Maven-Team-Standard konform sortiert sind. -->
+            <!-- Um eine POM korrekt zu sortieren, mvn tidy:pom ausführen. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tidy-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>check-pom-style</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>
