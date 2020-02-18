@@ -22,8 +22,8 @@ package de.msg.terminfindung.gui.util;
 
 import java.util.UUID;
 
-import org.dozer.CustomConverter;
-import org.dozer.MappingException;
+import com.github.dozermapper.core.CustomConverter;
+import com.github.dozermapper.core.MappingException;
 
 /**
  * Dozer Custom Converter zwischen {@link UUID} und {@link String}.

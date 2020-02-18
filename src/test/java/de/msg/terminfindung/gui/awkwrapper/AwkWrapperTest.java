@@ -31,6 +31,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+
+import com.github.dozermapper.core.Mapper;
+
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
 import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 import de.msg.terminfindung.common.exception.TerminfindungBusinessException;
@@ -50,18 +64,6 @@ import de.msg.terminfindung.persistence.entity.Tag;
 import de.msg.terminfindung.persistence.entity.Teilnehmer;
 import de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum;
 import de.msg.terminfindung.persistence.entity.Terminfindung;
-import org.dozer.Mapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

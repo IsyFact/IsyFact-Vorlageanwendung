@@ -35,6 +35,6 @@
         <class>de.msg.terminfindung.persistence.entity.TeilnehmerZeitraum</class>
         <class>de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet</class>
 
-        <class>de.bund.bva.isyfact.pliscommon.persistence.datetime.attributeconverter.ZonedDateTimeAttributeConverter</class>
+        <class>de.bund.bva.pliscommon.persistence.datetime.attributeconverter.ZonedDateTimeAttributeConverter</class>
     </persistence-unit>
 </persistence>

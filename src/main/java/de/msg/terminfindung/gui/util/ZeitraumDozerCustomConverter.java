@@ -24,10 +24,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+import com.github.dozermapper.core.CustomConverter;
+import com.github.dozermapper.core.MappingException;
+
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
 import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
-import org.dozer.CustomConverter;
-import org.dozer.MappingException;
 
 /**
  * Dozer Custom Converter für {@link Zeitraum} und {@link ZeitraumEntitaet}.
