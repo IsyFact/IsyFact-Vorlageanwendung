@@ -21,14 +21,14 @@ package de.bund.bva.isyfact.terminfindung.gui.komponenten;
  */
 
 
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Praeferenz;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Praeferenz;
 
 /**
  * Modellkomponente zum Verwalten der Auswahl eines Zeitraums in der GUI.

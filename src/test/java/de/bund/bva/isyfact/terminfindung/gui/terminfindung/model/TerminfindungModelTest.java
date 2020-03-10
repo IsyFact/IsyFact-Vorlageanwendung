@@ -20,12 +20,13 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.model;
  * #L%
  */
 
-import de.bund.bva.isyfact.terminfindung.gui.testdaten.GuiTestdaten;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
-import java.util.List;
+import de.bund.bva.isyfact.terminfindung.gui.testdaten.GuiTestdaten;
 
 import static org.junit.Assert.*;
 

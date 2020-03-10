@@ -20,6 +20,12 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen;
  * #L%
  */
 
+import java.util.List;
+
+import org.junit.Test;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
 import de.bund.bva.isyfact.common.web.global.GlobalFlowController;
 import de.bund.bva.isyfact.common.web.validation.ValidationController;
 import de.bund.bva.isyfact.common.web.validation.ValidationMessage;
@@ -30,11 +36,6 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
 import de.bund.bva.isyfact.terminfindung.gui.testdaten.GuiTestdaten;
-import org.junit.Test;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyString;

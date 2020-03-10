@@ -26,15 +26,15 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
-import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
-
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+
+import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 
 /**
  * Basisklasse für Unit-Tests des Anwendungskerns.Für die Tests wird nur der Anwendungskern der Anwendung aufgebaut. Die

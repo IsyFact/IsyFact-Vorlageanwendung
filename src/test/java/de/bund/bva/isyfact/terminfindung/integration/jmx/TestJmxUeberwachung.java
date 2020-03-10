@@ -22,13 +22,11 @@ package de.bund.bva.isyfact.terminfindung.integration.jmx;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
 import javax.management.ObjectName;
 
-import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen.ErstellenController;
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen.ErstellenModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +35,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen.ErstellenController;
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen.ErstellenModel;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

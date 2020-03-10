@@ -20,10 +20,11 @@ package de.bund.bva.isyfact.terminfindung.task;
  * #L%
  */
 
-import de.bund.bva.isyfact.task.TaskScheduler;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStoppedEvent;
 import org.springframework.context.event.EventListener;
+
+import de.bund.bva.isyfact.task.TaskScheduler;
 
 public class StartStopTasks {
 

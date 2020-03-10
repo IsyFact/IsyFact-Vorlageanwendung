@@ -21,8 +21,8 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
  */
 
 
-import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 
 /**
  * Implementierung fuer die TeilnehmerZeitraumDAO

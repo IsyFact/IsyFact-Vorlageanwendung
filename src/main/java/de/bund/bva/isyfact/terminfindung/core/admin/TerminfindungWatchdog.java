@@ -22,9 +22,10 @@ package de.bund.bva.isyfact.terminfindung.core.admin;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.beans.factory.InitializingBean;
+
 import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 import de.bund.bva.pliscommon.ueberwachung.admin.impl.WatchdogImpl;
-import org.springframework.beans.factory.InitializingBean;
 
 public class TerminfindungWatchdog extends WatchdogImpl implements InitializingBean {
 

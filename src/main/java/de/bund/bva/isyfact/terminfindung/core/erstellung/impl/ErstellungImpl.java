@@ -20,13 +20,13 @@ package de.bund.bva.isyfact.terminfindung.core.erstellung.impl;
  * #L%
  */
 
+import java.util.List;
+
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.core.erstellung.Erstellung;
 import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Tag;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
-
-import java.util.List;
 
 /**
  * Implementiert die Schnittstelle {@link Erstellung}. Die Implementierung der einzelnen fachlichen Methoden geschieht

@@ -21,16 +21,16 @@ package de.bund.bva.isyfact.terminfindung.gui.awkwrapper;
  */
 
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.PraeferenzModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TeilnehmerModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Interface des Anwendungskern-Wrappers (AWK-Wrapper). Der AWK-Wrapper kapselt den Anwendungskern und stellt Methoden

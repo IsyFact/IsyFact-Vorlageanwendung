@@ -21,9 +21,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung;
  */
 
 
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
-
 import java.io.Serializable;
+
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 
 /**
  * Basisklasse für alle View-Models. Die Klasse bündelt Modell-Elemente, die in mehreren Views verwendet werden.

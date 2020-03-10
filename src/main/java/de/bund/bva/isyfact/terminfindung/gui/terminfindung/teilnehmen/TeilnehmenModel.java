@@ -21,10 +21,10 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.teilnehmen;
  */
 
 
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
-import de.bund.bva.isyfact.terminfindung.gui.komponenten.ZeitraumAuswahlModelComponent;
-
 import java.io.Serializable;
+
+import de.bund.bva.isyfact.terminfindung.gui.komponenten.ZeitraumAuswahlModelComponent;
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 
 /**
  * Model fuer den Teilnehmen Flow

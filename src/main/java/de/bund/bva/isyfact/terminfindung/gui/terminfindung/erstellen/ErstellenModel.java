@@ -28,9 +28,9 @@ import java.util.List;
 
 import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
-import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
+import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 
 /**
  * Model des Erstellen Flows

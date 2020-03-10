@@ -30,14 +30,14 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
+import org.junit.Test;
+
 import de.bund.bva.isyfact.terminfindung.core.AbstraktCoreTest;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Tag;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
-import org.junit.Test;
+import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /**
  * Test für den Anwendungsfall "Terminfindung erstellen".

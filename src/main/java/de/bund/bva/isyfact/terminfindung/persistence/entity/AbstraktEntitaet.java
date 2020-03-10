@@ -20,8 +20,14 @@ package de.bund.bva.isyfact.terminfindung.persistence.entity;
  * #L%
  */
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
 /**
  * Basisklasse aller Entitäten der Anwendung. Alle Entitäten enthalten einen Primärschlüssel des gleichen Typs und mit

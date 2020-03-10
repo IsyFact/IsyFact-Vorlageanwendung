@@ -22,6 +22,7 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;

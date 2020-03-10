@@ -1,15 +1,16 @@
 package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.loeschen;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
-import org.springframework.stereotype.Controller;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
  * #%L

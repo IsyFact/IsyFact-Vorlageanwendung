@@ -20,9 +20,9 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
  * #L%
  */
 
+import de.bund.bva.isyfact.terminfindung.persistence.dao.AbstraktDao;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.AbstraktEntitaet;
 import de.bund.bva.pliscommon.persistence.dao.AbstractDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.AbstraktDao;
 
 /**
  * Abstrakte Basisklasse für JPA-basierte DAOs. Legt den Typ des Primärschlüssels auf {@link Long} fest.

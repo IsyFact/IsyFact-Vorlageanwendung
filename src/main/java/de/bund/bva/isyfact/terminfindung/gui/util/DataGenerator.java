@@ -29,9 +29,9 @@ import java.util.stream.IntStream;
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
 import de.bund.bva.isyfact.datetime.format.InFormat;
 import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
-import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
+import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 
 /**
  * Generierung von Testdaten für manuelle Tests.

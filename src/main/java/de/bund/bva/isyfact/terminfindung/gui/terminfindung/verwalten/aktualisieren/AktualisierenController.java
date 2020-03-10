@@ -20,14 +20,14 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.aktualisie
  * #L%
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.bund.bva.isyfact.common.web.validation.ValidationMessage;
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Controller für den Aktualisieren flow

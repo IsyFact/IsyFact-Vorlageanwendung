@@ -24,14 +24,14 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.abschliess
  * #L%
  */
 
+import org.springframework.stereotype.Controller;
+
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.gui.awkwrapper.AwkWrapper;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
-
-import org.springframework.stereotype.Controller;
 
 /**
  * Controller fuer den Abschliessen Flow

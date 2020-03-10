@@ -1,13 +1,9 @@
 package de.bund.bva.isyfact.terminfindung.persistence;
 
-import com.github.springtestdbunit.bean.DatabaseConfigBean;
-import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTeilnehmerDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTeilnehmerZeitraumDao;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTerminfindungDao;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.dbunit.ext.h2.H2DataTypeFactory;
 import org.h2.jdbcx.JdbcDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
@@ -23,9 +19,15 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
+import com.github.springtestdbunit.bean.DatabaseConfigBean;
+import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
+
+import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerDao;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTeilnehmerDao;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTeilnehmerZeitraumDao;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTerminfindungDao;
 
 /**
  * Konfiguriert Komponententests der Datenzugriffsschicht.

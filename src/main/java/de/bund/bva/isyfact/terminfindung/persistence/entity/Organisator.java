@@ -21,11 +21,12 @@ package de.bund.bva.isyfact.terminfindung.persistence.entity;
  */
 
 
+import java.io.Serializable;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 /**
  * Diese Entitaet stellt den Organisator einer Terminfindung dar.

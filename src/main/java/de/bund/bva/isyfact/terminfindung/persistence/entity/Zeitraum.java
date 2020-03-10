@@ -23,6 +23,7 @@ package de.bund.bva.isyfact.terminfindung.persistence.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

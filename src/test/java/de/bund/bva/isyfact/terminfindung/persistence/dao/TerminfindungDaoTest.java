@@ -21,17 +21,19 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao;
  */
 
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.ExpectedDatabase;
-import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Organisator;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.Assert.*;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 
-import java.util.List;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Organisator;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
+
+import static org.junit.Assert.*;
 
 public class TerminfindungDaoTest extends AbstraktDaoTest {
 

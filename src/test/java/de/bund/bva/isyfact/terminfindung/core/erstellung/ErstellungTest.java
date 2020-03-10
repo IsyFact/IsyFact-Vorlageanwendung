@@ -25,22 +25,21 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
-import de.bund.bva.isyfact.terminfindung.core.erstellung.impl.ErstellungImpl;
-import de.bund.bva.isyfact.terminfindung.core.AbstraktCoreTest;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Tag;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.stubbing.Answer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
+import de.bund.bva.isyfact.terminfindung.core.AbstraktCoreTest;
+import de.bund.bva.isyfact.terminfindung.core.erstellung.impl.ErstellungImpl;
+import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Tag;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
+
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 /**
  * Test für den Anwendungsfall "Terminfindung erstellen".

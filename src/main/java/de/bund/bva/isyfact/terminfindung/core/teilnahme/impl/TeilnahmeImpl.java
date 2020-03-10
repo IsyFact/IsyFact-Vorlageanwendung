@@ -21,6 +21,8 @@ package de.bund.bva.isyfact.terminfindung.core.teilnahme.impl;
  */
 
 
+import java.util.Map;
+
 import de.bund.bva.isyfact.terminfindung.core.teilnahme.Teilnahme;
 import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerDao;
 import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerZeitraumDao;
@@ -29,8 +31,6 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Praeferenz;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Teilnehmer;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
-
-import java.util.Map;
 
 /**
  * Implementierung der Anwendungskomponente "Teilnahme" zur Teilnahme an Terminfindungen

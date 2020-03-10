@@ -21,11 +21,8 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao;
  */
 
 
-import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
-
-import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
-import de.bund.bva.isyfact.terminfindung.persistence.TestPersistenceConfiguration;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.junit.After;
 import org.junit.runner.RunWith;
@@ -37,8 +34,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
+
+import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
+import de.bund.bva.isyfact.terminfindung.persistence.TestPersistenceConfiguration;
 
 /**
  * Basisklasse für Unit-Tests von DAOs. Jeder Test läuft in einer Transaktion ab. Für die Tests wird nur die

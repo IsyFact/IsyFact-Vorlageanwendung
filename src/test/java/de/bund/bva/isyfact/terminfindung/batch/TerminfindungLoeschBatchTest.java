@@ -1,15 +1,15 @@
 package de.bund.bva.isyfact.terminfindung.batch;
 
-import de.bund.bva.pliscommon.batchrahmen.batch.rahmen.BatchStartTyp;
-import de.bund.bva.pliscommon.batchrahmen.test.TestBatchLauchner;
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
+import de.bund.bva.pliscommon.batchrahmen.batch.rahmen.BatchStartTyp;
+import de.bund.bva.pliscommon.batchrahmen.test.TestBatchLauchner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * Testklasse für das Löschen von veralteten Terminfindungen via Batch.

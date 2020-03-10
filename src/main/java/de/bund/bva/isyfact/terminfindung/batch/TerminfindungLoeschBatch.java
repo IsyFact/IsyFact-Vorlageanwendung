@@ -8,8 +8,10 @@ import de.bund.bva.isyfact.datetime.util.DateTimeUtil;
 import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.bund.bva.isyfact.logging.LogKategorie;
+import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.common.konstanten.EreignisSchluessel;
 import de.bund.bva.isyfact.terminfindung.common.konstanten.KonfigurationSchluessel;
+import de.bund.bva.isyfact.terminfindung.core.datenpflege.Datenpflege;
 import de.bund.bva.pliscommon.batchrahmen.batch.exception.BatchAusfuehrungsException;
 import de.bund.bva.pliscommon.batchrahmen.batch.konfiguration.BatchKonfiguration;
 import de.bund.bva.pliscommon.batchrahmen.batch.protokoll.BatchErgebnisProtokoll;
@@ -22,8 +24,6 @@ import de.bund.bva.pliscommon.batchrahmen.batch.rahmen.BatchStartTyp;
 import de.bund.bva.pliscommon.batchrahmen.batch.rahmen.VerarbeitungsErgebnis;
 import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 import de.bund.bva.pliscommon.util.spring.MessageSourceHolder;
-import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
-import de.bund.bva.isyfact.terminfindung.core.datenpflege.Datenpflege;
 
 /**
  * Batch zum Löschen von Terminen, die eine gewisse Zeit zurückliegen. Die genaue Zeitspanne wird in der betrieblichen

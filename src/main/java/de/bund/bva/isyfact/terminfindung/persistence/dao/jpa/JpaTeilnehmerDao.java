@@ -21,14 +21,15 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
  */
 
 
-import de.bund.bva.isyfact.terminfindung.persistence.entity.Teilnehmer;
-import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
-import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerDao;
-
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.persistence.Query;
+
+import de.bund.bva.isyfact.terminfindung.persistence.dao.TeilnehmerDao;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.Teilnehmer;
+import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 
 /**
  * Implementierung fuer die TeilnehmerDAO

@@ -21,9 +21,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.abschliess
  */
 
 
-import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
-
 import java.io.Serializable;
+
+import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 
 /**
  * Model fuer den Abschließen-Flow

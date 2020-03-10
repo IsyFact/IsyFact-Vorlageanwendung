@@ -1,7 +1,5 @@
 package de.bund.bva.isyfact.terminfindung.batch;
 
-import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
 
 /**
  * Testet die Erstellung des Batch-Kontextes im Integrationstest. Dies ist Voraussetzung für das Gelingen der

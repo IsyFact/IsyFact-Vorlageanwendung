@@ -20,11 +20,11 @@ package de.bund.bva.isyfact.terminfindung.core.erstellung;
  * #L%
  */
 
+import java.util.List;
+
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Tag;
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
-
-import java.util.List;
 
 /**
  * Interface der Anwendungskomponente "Erstellung" zur Erstellung von Terminfindungen

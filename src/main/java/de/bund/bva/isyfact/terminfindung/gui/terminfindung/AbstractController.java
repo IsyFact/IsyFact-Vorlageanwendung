@@ -29,10 +29,10 @@ import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessE
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungTechnicalException;
 import de.bund.bva.isyfact.terminfindung.common.konstanten.EreignisSchluessel;
 import de.bund.bva.isyfact.terminfindung.common.konstanten.FehlerSchluessel;
-import de.bund.bva.pliscommon.konfiguration.common.ReloadableKonfiguration;
-        import de.bund.bva.isyfact.terminfindung.gui.awkwrapper.AwkWrapper;
+import de.bund.bva.isyfact.terminfindung.gui.awkwrapper.AwkWrapper;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 import de.bund.bva.isyfact.terminfindung.gui.util.TFNumberHolder;
+import de.bund.bva.pliscommon.konfiguration.common.ReloadableKonfiguration;
 
 
 /**

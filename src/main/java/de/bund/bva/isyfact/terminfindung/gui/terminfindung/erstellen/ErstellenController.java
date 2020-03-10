@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+
 import de.bund.bva.isyfact.common.web.validation.ValidationMessage;
 import de.bund.bva.isyfact.datetime.core.Zeitraum;
 import de.bund.bva.isyfact.datetime.format.InFormat;
@@ -15,13 +18,10 @@ import de.bund.bva.isyfact.logging.IsyLogger;
 import de.bund.bva.isyfact.logging.IsyLoggerFactory;
 import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessException;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
-import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TagModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel;
 import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Controller;
+import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 
 /*
  * #%L

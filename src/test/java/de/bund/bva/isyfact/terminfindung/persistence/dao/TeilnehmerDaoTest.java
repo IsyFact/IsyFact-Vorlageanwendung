@@ -21,12 +21,14 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao;
  */
 
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
+
 import de.bund.bva.isyfact.terminfindung.persistence.entity.Teilnehmer;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
