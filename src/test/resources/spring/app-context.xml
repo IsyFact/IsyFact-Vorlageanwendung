@@ -40,6 +40,6 @@
     <import resource="awk/dozer.xml"/>
 
     <context:annotation-config/>
-    <bean class="de.msg.terminfindung.persistence.TestPersistenceConfiguration"/>
+    <bean class="de.bund.bva.isyfact.terminfindung.persistence.TestPersistenceConfiguration"/>
 </beans>
     

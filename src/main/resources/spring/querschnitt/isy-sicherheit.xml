@@ -46,9 +46,9 @@
         </constructor-arg> </bean> -->
 
     <!-- Konfiguration der Dummy Implementierung des AccessManagers -->
-    <bean id="dummyAccessManager" class="de.msg.terminfindung.sicherheit.AccessManagerDummy"/>
+    <bean id="dummyAccessManager" class="de.bund.bva.isyfact.terminfindung.sicherheit.AccessManagerDummy"/>
 
-    <bean id="loginVerwalter" class="de.msg.terminfindung.sicherheit.LoginVerwalter"
+    <bean id="loginVerwalter" class="de.bund.bva.isyfact.terminfindung.sicherheit.LoginVerwalter"
           scope="session"/>
 
     <!-- <sec:user-service> -->

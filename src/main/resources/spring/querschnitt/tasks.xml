@@ -38,14 +38,14 @@
 
     <bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
 
-    <bean id="watchdogTask" class="de.msg.terminfindung.task.WatchdogTask">
+    <bean id="watchdogTask" class="de.bund.bva.isyfact.terminfindung.task.WatchdogTask">
         <constructor-arg ref="administration"/>
         <constructor-arg ref="watchdogTask-monitor"/>
     </bean>
 
     <bean id="watchdogTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
 
-    <bean id="startStopTasks" class="de.msg.terminfindung.task.StartStopTasks">
+    <bean id="startStopTasks" class="de.bund.bva.isyfact.terminfindung.task.StartStopTasks">
         <constructor-arg ref="taskScheduler"/>
     </bean>
 </beans>

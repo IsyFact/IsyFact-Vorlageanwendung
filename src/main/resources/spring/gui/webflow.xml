@@ -39,7 +39,7 @@
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 	    <property name="converters">
 	        <set>
-	            <bean class="de.msg.terminfindung.gui.util.StringToUuidConverter"/>
+	            <bean class="de.bund.bva.isyfact.terminfindung.gui.util.StringToUuidConverter"/>
 	        </set>
 	    </property>
 	</bean>

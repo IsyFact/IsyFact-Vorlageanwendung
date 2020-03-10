@@ -26,7 +26,7 @@
 	
 	<secured attributes="Administrieren"/>
 	
-	<var name="adminModel" class="de.msg.terminfindung.gui.administration.AdminModel" />
+	<var name="adminModel" class="de.bund.bva.isyfact.terminfindung.gui.administration.AdminModel" />
 	
 	<!-- Initialisieren des Models -->
 	<on-start>

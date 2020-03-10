@@ -33,7 +33,7 @@
     </bean>
 
     <!-- Ausführungs-Bean für den TerminfindungLoeschBatch -->
-    <bean id="terminfindungLoeschBatch" class="de.msg.terminfindung.batch.TerminfindungLoeschBatch">
+    <bean id="terminfindungLoeschBatch" class="de.bund.bva.isyfact.terminfindung.batch.TerminfindungLoeschBatch">
         <constructor-arg ref="datenpflege"/>
         <constructor-arg ref="konfiguration"/>
     </bean>

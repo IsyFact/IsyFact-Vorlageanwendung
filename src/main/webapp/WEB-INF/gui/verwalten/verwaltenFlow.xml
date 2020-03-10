@@ -24,7 +24,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="applikationseiteParentFlow">
 
-	<var name="verwaltenModel" class="de.msg.terminfindung.gui.terminfindung.verwalten.VerwaltenModel" />
+	<var name="verwaltenModel" class="de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.VerwaltenModel" />
     <var name="tfRef" class="java.lang.String"/>
 
 	<on-start>
