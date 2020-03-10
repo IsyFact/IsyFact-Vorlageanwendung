@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.integration.jmx;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,7 +43,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"/spring/app-context.xml", "/spring/gui/controller.xml"})
+@ContextConfiguration(locations = { "/spring/app-context.xml", "/spring/gui/controller.xml" })
 @ActiveProfiles(TestProfile.INTEGRATION_TEST)
 public class TestJmxUeberwachung {
 
@@ -86,4 +86,5 @@ public class TestJmxUeberwachung {
         result = mBeanServer.getAttribute(testObjectName, testAttributeName).toString();
         assertNotEquals("0", result);
     }
+
 }

@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.core.erstellung.impl;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,7 +50,7 @@ public class AwfTerminfindungErstellenTest extends AbstraktCoreTest {
     public void bereinigeZeitraeumeInTerminlisteTest() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         AwfTerminfindungErstellen awfTerminfindungErstellen = new AwfTerminfindungErstellen(null);
 
-        Method bereinigeZeitraeumeInTerminliste = AwfTerminfindungErstellen.class.getDeclaredMethod("bereinigeZeitraeumeInTerminliste", new Class[]{List.class});
+        Method bereinigeZeitraeumeInTerminliste = AwfTerminfindungErstellen.class.getDeclaredMethod("bereinigeZeitraeumeInTerminliste", new Class[]{ List.class });
         bereinigeZeitraeumeInTerminliste.setAccessible(true);
 
         List<Tag> termine = createDummyListTermine(); // erzeuge einen Testdatensatz
@@ -108,7 +108,7 @@ public class AwfTerminfindungErstellenTest extends AbstraktCoreTest {
                 ZoneId zone = ZoneId.of("UTC");
 
                 zeitraum.setZeitraum(new ZeitraumEntitaet(ZonedDateTime.of(datum, LocalTime.of(9, 0), zone),
-                    ZonedDateTime.of(datum, LocalTime.of(10, 0), zone), true));
+                        ZonedDateTime.of(datum, LocalTime.of(10, 0), zone), true));
                 tag.getZeitraeume().add(zeitraum);
             }
         }

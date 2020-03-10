@@ -99,7 +99,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     private boolean istValideEingabe(ErstellenModel model, List<ValidationMessage> validationMessages) {
         if (maxAnzahlTageUeberschritten(model)) {
             validationMessages.add(
-                new ValidationMessage("DA", "newDate", "Datum", "Bereits max. Anzahl an Daten hinzugefügt"));
+                    new ValidationMessage("DA", "newDate", "Datum", "Bereits max. Anzahl an Daten hinzugefügt"));
             return false;
         } else if (keineEingabe(model)) {
             validationMessages.add(new ValidationMessage("DA", "newDate", "Datum", "Benötigtes Feld"));
@@ -109,11 +109,11 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         LocalDate addedDate = model.getNewDate();
         if (datumLiegtInVergangenheit(addedDate)) {
             validationMessages.add(new ValidationMessage("DA", "newDate", "Datum",
-                "Das Datum darf nicht in der Vergangenheit liegen"));
+                    "Das Datum darf nicht in der Vergangenheit liegen"));
             return false;
         } else if (datumBereitsVorhanden(model, addedDate)) {
             validationMessages
-                .add(new ValidationMessage("DA", "newDate", "Datum", "Datum bereits hinzugefügt"));
+                    .add(new ValidationMessage("DA", "newDate", "Datum", "Datum bereits hinzugefügt"));
             return false;
         }
 
@@ -155,35 +155,35 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         List<ValidationMessage> validationMessages = new ArrayList<>();
 
         boolean zeitraumExists = model.getSelectedTermin().getZeitraeume().stream().anyMatch(
-            z -> z.getZeitraum().equals(Zeitraum
-                .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis())));
+                z -> z.getZeitraum().equals(Zeitraum
+                        .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis())));
 
         // maximale Anzahl von Tagen schon vorhanden?
         if (model.getSelectedTermin().getZeitraeume().size() >= getKonfiguration()
-            .getAsInteger("termin.tag.zeitraum.max.number")) {
+                .getAsInteger("termin.tag.zeitraum.max.number")) {
             validationMessages.add(
-                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
-                    "Zeitraum", "Bereits max. Anzahl an Daten hinzugefügt"));
+                    new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                            "Zeitraum", "Bereits max. Anzahl an Daten hinzugefügt"));
         } else if (
-            model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
-                == 0) {
+                model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
+                        == 0) {
             validationMessages.add(
-                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
-                    "Zeitraum", "Zeitraum beginnt und Enden um die gleiche Uhrzeit."));
+                    new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                            "Zeitraum", "Zeitraum beginnt und Enden um die gleiche Uhrzeit."));
         } else if (
-            model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
-                > 0) {
+                model.getSelectedTermin().getZeitraumVon().compareTo(model.getSelectedTermin().getZeitraumBis())
+                        > 0) {
             validationMessages.add(
-                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
-                    "Zeitraum", "Zeitraum startet nach seinem Ende."));
+                    new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                            "Zeitraum", "Zeitraum startet nach seinem Ende."));
         } else if (zeitraumExists) {
             validationMessages.add(
-                new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
-                    "Zeitraum", "Zeitraum existiert bereits."));
+                    new ValidationMessage("DA", "zeitraeume_" + model.getSelectedTermin().getShortDate(),
+                            "Zeitraum", "Zeitraum existiert bereits."));
         } else {
             ZeitraumModel zeitraum = new ZeitraumModel();
             zeitraum.setZeitraum(Zeitraum
-                .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis()));
+                    .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis()));
             model.getSelectedTermin().getZeitraeume().add(zeitraum);
             model.getSelectedTermin().setZeitraumVon(leseZeitAusKonfiguration("termin.start.vorgabe"));
             model.getSelectedTermin().setZeitraumBis(leseZeitAusKonfiguration("termin.ende.vorgabe"));
@@ -238,7 +238,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         for (TagModel tag : model.getTage()) {
             if (tag.getZeitraeume().isEmpty()) {
                 validationMessages.add(new ValidationMessage("DA", "zeitraeume", "Datum",
-                    "Dem Datum " + tag.getShortDate() + " ist kein Zeitraum zugeordnet."));
+                        "Dem Datum " + tag.getShortDate() + " ist kein Zeitraum zugeordnet."));
             }
         }
 
@@ -262,7 +262,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
 
         try {
             TerminfindungModel
-                terminfindung = getAwk().erstelleTerminfindung(model.getOrgName(), model.getName(), model.getTage());
+                    terminfindung = getAwk().erstelleTerminfindung(model.getOrgName(), model.getName(), model.getTage());
             model.setTerminfindung(terminfindung);
             return true;
         } catch (TerminfindungBusinessException e) {
@@ -270,4 +270,5 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
             return false;
         }
     }
+
 }

@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,7 +59,7 @@ public class TerminfindungDaoTest extends AbstraktDaoTest {
         assertEquals("Herbert", terminfindung.getOrganisator().getName());
         assertEquals("Spieleabend IsyFact", terminfindung.getVeranstaltungName());
     }
-    
+
     @Test
     @DatabaseSetup("testTerminfindungDaoSetup.xml")
     public void testSuchenMitRef() {
@@ -69,15 +69,14 @@ public class TerminfindungDaoTest extends AbstraktDaoTest {
         assertEquals("Klaus", terminfindung.getOrganisator().getName());
         assertEquals("Weihnachtsfeier 2016", terminfindung.getVeranstaltungName());
     }
-    
+
     @Test
     @DatabaseSetup("testTerminfindungDaoSetup.xml")
-    public void testFindeAlle()
-    {
-    	List<Terminfindung> alleTerminfindungen = terminfindungDao.findeAlle();
-    	
-    	assertNotNull(alleTerminfindungen);
-    	assertEquals(2, alleTerminfindungen.size());
+    public void testFindeAlle() {
+        List<Terminfindung> alleTerminfindungen = terminfindungDao.findeAlle();
+
+        assertNotNull(alleTerminfindungen);
+        assertEquals(2, alleTerminfindungen.size());
         assertEquals("Klaus", alleTerminfindungen.get(0).getOrganisator().getName());
         assertEquals("Weihnachtsfeier 2016", alleTerminfindungen.get(0).getVeranstaltungName());
         assertEquals("Herbert", alleTerminfindungen.get(1).getOrganisator().getName());
@@ -93,6 +92,5 @@ public class TerminfindungDaoTest extends AbstraktDaoTest {
 
         assertNull(terminfindungDao.sucheMitId(TERMINFINDUNG_ID));
     }
-
 
 }

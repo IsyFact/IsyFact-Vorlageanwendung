@@ -23,4 +23,5 @@ public class DatenpflegeImpl implements Datenpflege {
     public int loescheVergangeneTerminfindungen(LocalDate stichtag) throws TerminfindungBusinessException {
         return awfVergangeneTermineLoeschen.loescheVergangeneTerminfindungen(stichtag);
     }
+
 }

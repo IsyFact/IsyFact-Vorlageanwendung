@@ -18,7 +18,7 @@ import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
  * @author Stefan Dellmuth, msg systems ag
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring/app-context-batch.xml"})
+@ContextConfiguration(locations = { "/spring/app-context-batch.xml" })
 @ActiveProfiles(TestProfile.INTEGRATION_TEST)
 public class BatchContextIntegrationTest {
 
@@ -29,4 +29,5 @@ public class BatchContextIntegrationTest {
     public void kontextHochgefahren() {
         Assert.assertNotNull(applicationContext);
     }
+
 }

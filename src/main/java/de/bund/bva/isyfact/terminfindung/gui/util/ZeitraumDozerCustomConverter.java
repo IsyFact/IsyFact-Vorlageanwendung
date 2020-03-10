@@ -35,29 +35,30 @@ import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
  */
 public class ZeitraumDozerCustomConverter implements CustomConverter {
 
-	@Override
-	public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass,
-			Class<?> sourceClass) {
-		if (sourceFieldValue == null) {
-			return null;
-		}
+    @Override
+    public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass,
+                          Class<?> sourceClass) {
+        if (sourceFieldValue == null) {
+            return null;
+        }
 
-		if (sourceFieldValue instanceof ZeitraumEntitaet) {
-			return ((ZeitraumEntitaet) sourceFieldValue).toZeitraum();
-		} else if (sourceFieldValue instanceof Zeitraum) {
-			Zeitraum source = (Zeitraum)sourceFieldValue;
+        if (sourceFieldValue instanceof ZeitraumEntitaet) {
+            return ((ZeitraumEntitaet) sourceFieldValue).toZeitraum();
+        } else if (sourceFieldValue instanceof Zeitraum) {
+            Zeitraum source = (Zeitraum) sourceFieldValue;
 
-			if (source.isOhneDatum()) {
+            if (source.isOhneDatum()) {
                 ZonedDateTime anfang = ZonedDateTime.of(LocalDate.now(), source.getAnfangszeit(), ZoneId.of("UTC"));
                 ZonedDateTime ende = ZonedDateTime.of(LocalDate.now(), source.getEndzeit(), ZoneId.of("UTC"));
 
-				return new ZeitraumEntitaet(anfang, ende, true);
-			} else {
-				return new ZeitraumEntitaet(source.getAnfangsdatumzeit(), source.getEndedatumzeit(), false);
-			}
-		} else {
-			throw new MappingException("ZeitraumDozerCustomConverter used incorrectly. Arguments passed in were:"
-									   + existingDestinationFieldValue + " and " + sourceFieldValue);
-		}
-	}
+                return new ZeitraumEntitaet(anfang, ende, true);
+            } else {
+                return new ZeitraumEntitaet(source.getAnfangsdatumzeit(), source.getEndedatumzeit(), false);
+            }
+        } else {
+            throw new MappingException("ZeitraumDozerCustomConverter used incorrectly. Arguments passed in were:"
+                    + existingDestinationFieldValue + " and " + sourceFieldValue);
+        }
+    }
+
 }

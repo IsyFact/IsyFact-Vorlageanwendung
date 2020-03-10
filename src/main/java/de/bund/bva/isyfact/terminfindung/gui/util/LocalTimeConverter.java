@@ -52,4 +52,5 @@ public class LocalTimeConverter implements Converter {
             throw new ConverterException(o + " ist kein LocalTime");
         }
     }
+
 }

@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.core.verwaltung.impl;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,12 +42,12 @@ public class VerwaltungImpl implements Verwaltung {
     private final AwfTerminfindungAbschliessen awfTerminfindungAbschliessen;
 
     private final AwfTermineLoeschen awfTermineLoeschen;
-    
+
     private final AwfAktualisiereTerminfindung awfAktualisiereTerminfindung;
 
     private final TerminfindungDao terminfindungDao;
-    
-    
+
+
     public VerwaltungImpl(TerminfindungDao terminfindungDao) {
         awfTerminfindungAbschliessen = new AwfTerminfindungAbschliessen(terminfindungDao);
         awfTermineLoeschen = new AwfTermineLoeschen(terminfindungDao);
@@ -63,11 +63,11 @@ public class VerwaltungImpl implements Verwaltung {
         }
         return tf;
     }
-    
-	@Override
-	public List<Terminfindung> leseAlleTerminfindungen() {
-		return terminfindungDao.findeAlle();
-	}
+
+    @Override
+    public List<Terminfindung> leseAlleTerminfindungen() {
+        return terminfindungDao.findeAlle();
+    }
 
     @Override
     public void setzeVeranstaltungstermin(Terminfindung terminfindung, long zeitraumNr) throws TerminfindungBusinessException {
@@ -79,8 +79,9 @@ public class VerwaltungImpl implements Verwaltung {
         awfTermineLoeschen.loescheZeitraeume(terminfindung, zeitraumList);
     }
 
-	@Override
-	public void aktualisiereTerminfindung(Terminfindung terminfindung,  String organisatorName, String veranstaltungName) {
-		awfAktualisiereTerminfindung.aktualisiereTerminfindung(terminfindung, organisatorName, veranstaltungName);		
-	}
+    @Override
+    public void aktualisiereTerminfindung(Terminfindung terminfindung, String organisatorName, String veranstaltungName) {
+        awfAktualisiereTerminfindung.aktualisiereTerminfindung(terminfindung, organisatorName, veranstaltungName);
+    }
+
 }

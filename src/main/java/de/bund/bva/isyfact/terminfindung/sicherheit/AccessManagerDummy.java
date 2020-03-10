@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.sicherheit;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,71 +34,69 @@ import de.bund.bva.pliscommon.sicherheit.common.exception.AuthentifizierungTechn
 
 public class AccessManagerDummy implements AccessManager<AufrufKontextImpl, AuthentifizierungsErgebnisDummy> {
 
-	@Override
-	public AuthentifizierungsErgebnisDummy authentifiziere(
-			AufrufKontextImpl arg0) throws AuthentifizierungTechnicalException,
-			AuthentifizierungFehlgeschlagenException {
+    @Override
+    public AuthentifizierungsErgebnisDummy authentifiziere(
+            AufrufKontextImpl arg0) throws AuthentifizierungTechnicalException,
+            AuthentifizierungFehlgeschlagenException {
 
-		AuthentifizierungsErgebnisDummy ergebnis = null;
-		
-		String kennung = arg0.getDurchfuehrenderBenutzerKennung();
-		String passwort = arg0.getDurchfuehrenderBenutzerPasswort();
-		
-		// Das ist eine Dummy Implementierung, die gültigen Kombinationen von
-		// Benutzername und Passwort sind nachfolgend im Code hinterlegt
-		// TODO Erweitern um eine echte Berechtigungsprüfung z.B. gegen ein XML-Datei oder gegen ein LDAP
-		
-		if (("admin".equals(kennung) && "admin".equals(passwort))) {
-			
-			ergebnis = new AuthentifizierungsErgebnisDummy();
-			ergebnis.setAnmeldename(kennung);
-			ergebnis.setRollenIds(new String[]{"Administrator","Benutzer"});
-		}
-		else if (("user".equals(kennung) && "user".equals(passwort))) {
-			
-			ergebnis = new AuthentifizierungsErgebnisDummy();
-			ergebnis.setAnmeldename(kennung);
-			ergebnis.setRollenIds(new String[]{"Benutzer"});
-		} 
-		
-		return ergebnis;
-	}
+        AuthentifizierungsErgebnisDummy ergebnis = null;
 
-	@Override
-	public void befuelleAufrufkontext(AufrufKontextImpl aufrufkontext,
-			AuthentifizierungsErgebnisDummy ergebnis) {
+        String kennung = arg0.getDurchfuehrenderBenutzerKennung();
+        String passwort = arg0.getDurchfuehrenderBenutzerPasswort();
 
-		// befüllt den übergebenen Aufrufkontext mit den Ergebnissen 
-		// einer vorher stattgefundenen Authentifzierung, die in 
-		// einem entsprechenden Ergebnis-Objekt hinter legt sind.
-		// In dieser Dummy-Implementierung ist nur das Feld mit den Rollen-Array relevant.
-		// Diese Methode kopiert die Rollen in den Aufrufkontext
-		
-		aufrufkontext.setRolle(ergebnis.getRollenIds());
-		aufrufkontext.setRollenErmittelt(true);
-	}
+        // Das ist eine Dummy Implementierung, die gültigen Kombinationen von
+        // Benutzername und Passwort sind nachfolgend im Code hinterlegt
+        // TODO Erweitern um eine echte Berechtigungsprüfung z.B. gegen ein XML-Datei oder gegen ein LDAP
 
-	@Override
-	public Object erzeugeCacheSchluessel(AufrufKontextImpl aufrufkontext) {
-		return null;
-	}
+        if (("admin".equals(kennung) && "admin".equals(passwort))) {
 
-	@Override
-	public void logout(AuthentifizierungsErgebnisDummy aufrufkontext) {
-		// Nichts zu tun hier
-	}
+            ergebnis = new AuthentifizierungsErgebnisDummy();
+            ergebnis.setAnmeldename(kennung);
+            ergebnis.setRollenIds(new String[]{ "Administrator", "Benutzer" });
+        } else if (("user".equals(kennung) && "user".equals(passwort))) {
 
-	@Override
-	public boolean pingAccessManager() {
+            ergebnis = new AuthentifizierungsErgebnisDummy();
+            ergebnis.setAnmeldename(kennung);
+            ergebnis.setRollenIds(new String[]{ "Benutzer" });
+        }
 
-		return true; // Der Dummy Access Manager ist lokal und immer erreichbar.
-	}
+        return ergebnis;
+    }
 
-	@Override
-	public boolean pingAccessManagerByLoginLogout(AufrufKontextImpl aufrufkontext) {
+    @Override
+    public void befuelleAufrufkontext(AufrufKontextImpl aufrufkontext,
+                                      AuthentifizierungsErgebnisDummy ergebnis) {
 
-		return true; // Der Dummy Access Manager ist lokal und immer erreichbar.
-	}
+        // befüllt den übergebenen Aufrufkontext mit den Ergebnissen
+        // einer vorher stattgefundenen Authentifzierung, die in
+        // einem entsprechenden Ergebnis-Objekt hinter legt sind.
+        // In dieser Dummy-Implementierung ist nur das Feld mit den Rollen-Array relevant.
+        // Diese Methode kopiert die Rollen in den Aufrufkontext
 
+        aufrufkontext.setRolle(ergebnis.getRollenIds());
+        aufrufkontext.setRollenErmittelt(true);
+    }
+
+    @Override
+    public Object erzeugeCacheSchluessel(AufrufKontextImpl aufrufkontext) {
+        return null;
+    }
+
+    @Override
+    public void logout(AuthentifizierungsErgebnisDummy aufrufkontext) {
+        // Nichts zu tun hier
+    }
+
+    @Override
+    public boolean pingAccessManager() {
+
+        return true; // Der Dummy Access Manager ist lokal und immer erreichbar.
+    }
+
+    @Override
+    public boolean pingAccessManagerByLoginLogout(AufrufKontextImpl aufrufkontext) {
+
+        return true; // Der Dummy Access Manager ist lokal und immer erreichbar.
+    }
 
 }

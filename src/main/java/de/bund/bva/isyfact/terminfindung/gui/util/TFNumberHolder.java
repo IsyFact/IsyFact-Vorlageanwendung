@@ -35,9 +35,9 @@ import de.bund.bva.isyfact.logging.IsyLoggerFactory;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -55,27 +55,31 @@ import de.bund.bva.isyfact.logging.IsyLoggerFactory;
  * @author msg systems ag, Dirk Jäger
  */
 public class TFNumberHolder implements Serializable {
-	private static final long serialVersionUID = -8673855660241394242L;
 
-	private static final IsyLogger LOG = IsyLoggerFactory.getLogger(TFNumberHolder.class);
+    private static final long serialVersionUID = -8673855660241394242L;
 
-	/** Die gespeicherte Referenz der Terminfindung */
-	private UUID ref = null;
+    private static final IsyLogger LOG = IsyLoggerFactory.getLogger(TFNumberHolder.class);
 
-	public TFNumberHolder() {
-	}
+    /**
+     * Die gespeicherte Referenz der Terminfindung
+     */
+    private UUID ref = null;
 
-	public UUID getRef() {
-		return ref;
-	}
+    public TFNumberHolder() {
+    }
 
-	public void updateRefIfNotNull(UUID u) {
+    public UUID getRef() {
+        return ref;
+    }
 
-		if (u != null) {
-			LOG.debug("Update der TF-Referenz : " + u);
-			ref = u;
-		} else {
-			LOG.debug("Update angefordert für TF-Referenz ist null, behalte gespeicherten Wert {}", ref);
-		}
-	}
+    public void updateRefIfNotNull(UUID u) {
+
+        if (u != null) {
+            LOG.debug("Update der TF-Referenz : " + u);
+            ref = u;
+        } else {
+            LOG.debug("Update angefordert für TF-Referenz ist null, behalte gespeicherten Wert {}", ref);
+        }
+    }
+
 }

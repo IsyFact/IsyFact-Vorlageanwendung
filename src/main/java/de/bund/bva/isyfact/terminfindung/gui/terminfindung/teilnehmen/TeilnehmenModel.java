@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.teilnehmen;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,29 +33,34 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
  */
 public class TeilnehmenModel extends AbstractModel implements Serializable {
 
-	private static final long serialVersionUID = 8610872504330422543L;
+    private static final long serialVersionUID = 8610872504330422543L;
 
-	/** Speichert den Namen des Teilnehmers*/
-	private String teilnehmerName;
-	/** Speichert die Präferenzen des Teilnehmers für die einzelnen Zeiträume,
-	 * die zur Auswahl stehen. */
-	private ZeitraumAuswahlModelComponent zeitraumAuswahl = new ZeitraumAuswahlModelComponent();
+    /**
+     * Speichert den Namen des Teilnehmers
+     */
+    private String teilnehmerName;
+    /**
+     * Speichert die Präferenzen des Teilnehmers für die einzelnen Zeiträume,
+     * die zur Auswahl stehen.
+     */
+    private ZeitraumAuswahlModelComponent zeitraumAuswahl = new ZeitraumAuswahlModelComponent();
 
-	public String getTeilnehmerName() {
-		return teilnehmerName;
-	}
+    public String getTeilnehmerName() {
+        return teilnehmerName;
+    }
 
-	public void setTeilnehmerName(String teilnehmerName) {
-		this.teilnehmerName = teilnehmerName;
-	}
+    public void setTeilnehmerName(String teilnehmerName) {
+        this.teilnehmerName = teilnehmerName;
+    }
 
-	public ZeitraumAuswahlModelComponent getZeitraumAuswahl() {
-		return zeitraumAuswahl;
-	}
+    public ZeitraumAuswahlModelComponent getZeitraumAuswahl() {
+        return zeitraumAuswahl;
+    }
 
-	public void setZeitraumAuswahl(ZeitraumAuswahlModelComponent zeitraumAuswahl) {
-		this.zeitraumAuswahl = zeitraumAuswahl;
-	}
+    public void setZeitraumAuswahl(ZeitraumAuswahlModelComponent zeitraumAuswahl) {
+        this.zeitraumAuswahl = zeitraumAuswahl;
+    }
+
 }
 
 

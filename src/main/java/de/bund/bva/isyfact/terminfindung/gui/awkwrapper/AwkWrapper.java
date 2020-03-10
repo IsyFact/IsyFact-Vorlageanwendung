@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.awkwrapper;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,10 +50,10 @@ public interface AwkWrapper {
      * @throws TerminfindungBusinessException im Falle einer ungültigen bzw. nicht vorhandener Terminfindungreferenznummer
      */
     TerminfindungModel ladeTerminfindung(UUID terminfindungsRefNr) throws TerminfindungBusinessException;
-    
+
     /**
      * Laden aller Terminfindungen.
-     * 
+     *
      * @return Alle gespeicherten Terminfindungen.
      */
     List<TerminfindungModel> ladeAlleTerminfindungen();
@@ -107,14 +107,16 @@ public interface AwkWrapper {
      * @throws TerminfindungBusinessException
      */
     TerminfindungModel loescheZeitraeume(TerminfindungModel terminfindungModel, List<ZeitraumModel> viewZeitraumList) throws TerminfindungBusinessException;
-    
+
     /**
      * Aktualisiert den Organisatornamen und Veranstaltungsnamen der übergebenen Terminfindung
+     *
      * @param terminfindungModel
      * @param veranstaltungsName
      * @param organisatorName
      * @return Die aktualisierte Terminfindung
-     * @throws TerminfindungBusinessException 
+     * @throws TerminfindungBusinessException
      */
     TerminfindungModel aktualisiereTerminfindung(TerminfindungModel terminfindungModel, String veranstaltungsName, String organisatorName) throws TerminfindungBusinessException;
+
 }

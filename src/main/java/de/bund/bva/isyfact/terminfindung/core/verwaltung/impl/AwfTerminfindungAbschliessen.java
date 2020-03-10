@@ -92,4 +92,5 @@ class AwfTerminfindungAbschliessen {
         }
         return result;
     }
+
 }

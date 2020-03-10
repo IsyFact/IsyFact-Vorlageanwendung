@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.awkwrapper;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,7 +78,7 @@ import static org.mockito.Mockito.*;
  * @author Stefan Dellmuth, msg systems ag
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/test-awk-wrapper.xml"})
+@ContextConfiguration(locations = { "classpath:spring/test-awk-wrapper.xml" })
 @TestExecutionListeners(DependencyInjectionTestExecutionListener.class)
 @Profile(TestProfile.UNIT_TEST)
 public class AwkWrapperTest {
@@ -93,10 +93,10 @@ public class AwkWrapperTest {
     private Teilnahme teilnahme;
 
     private Terminfindung tf;
-    
+
     private static final LocalDate DATE1 = LocalDate.of(2100, 1, 1);
     private static final LocalDate DATE2 = LocalDate.of(2100, 1, 2);
-    
+
     private static final Zeitraum ZEITRAUM = Zeitraum.of(LocalTime.of(9, 0), LocalTime.of(10, 0));
 
     @Before
@@ -115,8 +115,8 @@ public class AwkWrapperTest {
         ZoneId zone = ZoneId.of("UTC");
 
         zeitraum.setZeitraum(new ZeitraumEntitaet(ZonedDateTime.of(datum, LocalTime.of(9, 0), zone),
-                                                  ZonedDateTime.of(datum, LocalTime.of(10, 0), zone),
-            true));
+                ZonedDateTime.of(datum, LocalTime.of(10, 0), zone),
+                true));
         tag.getZeitraeume().add(zeitraum);
         when(verwaltung.leseTerminfindung(any(UUID.class))).thenReturn(muster);
     }
@@ -140,14 +140,14 @@ public class AwkWrapperTest {
     @Test
     public void testBeanMapperViewZuPersistenz() throws TerminfindungBusinessException {
         when(erstellung.erstelleTerminfindung(anyString(), anyString(), anyListOf(Tag.class))).thenAnswer(
-            (Answer<Terminfindung>) invocation -> {
-                String organisator = invocation.getArgumentAt(0, String.class);
-                String veranstaltung = invocation.getArgumentAt(1, String.class);
-                List<Tag> termine = invocation.getArgumentAt(2, List.class);
-                tf = new Terminfindung(veranstaltung, new Organisator(organisator));
-                tf.setTermine(termine);
-                return tf;
-            });
+                (Answer<Terminfindung>) invocation -> {
+                    String organisator = invocation.getArgumentAt(0, String.class);
+                    String veranstaltung = invocation.getArgumentAt(1, String.class);
+                    List<Tag> termine = invocation.getArgumentAt(2, List.class);
+                    tf = new Terminfindung(veranstaltung, new Organisator(organisator));
+                    tf.setTermine(termine);
+                    return tf;
+                });
         when(verwaltung.leseTerminfindung(any(UUID.class))).thenAnswer(new Answer<Terminfindung>() {
             @Override
             public Terminfindung answer(InvocationOnMock invocation) throws Throwable {
@@ -168,7 +168,6 @@ public class AwkWrapperTest {
                         }
                     }
                 }
-
             }
             return null;
         }).when(teilnahme).bestaetigeTeilnahme(any(Terminfindung.class), any(Teilnehmer.class), anyMapOf(de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum.class, Praeferenz.class));
@@ -249,4 +248,5 @@ public class AwkWrapperTest {
             assertEquals("Teilnehmer1", teilnehmerZeitraum.getTeilnehmer().getName());
         }
     }
+
 }

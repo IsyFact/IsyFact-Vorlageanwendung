@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,24 +33,24 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 
 /**
  * Implementierung fuer die TeilnehmerDAO
- * @author msg systems ag, Maximilian Falter
  *
+ * @author msg systems ag, Maximilian Falter
  */
-public class JpaTeilnehmerDao extends AbstraktJpaDao<Teilnehmer> implements TeilnehmerDao{
+public class JpaTeilnehmerDao extends AbstraktJpaDao<Teilnehmer> implements TeilnehmerDao {
 
-	/**
-	 * Laedt praeferenzen zu einem Teilnehmer mit prepared statement
-	 */
-	@Override
-	public Collection<TeilnehmerZeitraum> ladePraeferenzZuTeilnehmer(
-			Teilnehmer teilnehmer) {
-		Query query = super.getEntityManager().createNamedQuery("leseTeilnehmerPraeferenzMitId");
-		query.setParameter("nr", teilnehmer.getId());
-		List<TeilnehmerZeitraum> tz = new ArrayList<>(query.getResultList().size());
-		for(Object o:query.getResultList()){
-			tz.add((TeilnehmerZeitraum) o);
-		}
-		return tz;
-	}
+    /**
+     * Laedt praeferenzen zu einem Teilnehmer mit prepared statement
+     */
+    @Override
+    public Collection<TeilnehmerZeitraum> ladePraeferenzZuTeilnehmer(
+            Teilnehmer teilnehmer) {
+        Query query = super.getEntityManager().createNamedQuery("leseTeilnehmerPraeferenzMitId");
+        query.setParameter("nr", teilnehmer.getId());
+        List<TeilnehmerZeitraum> tz = new ArrayList<>(query.getResultList().size());
+        for (Object o : query.getResultList()) {
+            tz.add((TeilnehmerZeitraum) o);
+        }
+        return tz;
+    }
 
 }

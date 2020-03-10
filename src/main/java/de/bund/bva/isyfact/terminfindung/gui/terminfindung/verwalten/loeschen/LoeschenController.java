@@ -34,50 +34,49 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
 
 /**
  * Controller fuer den Loeschen Flow
- * 
- * @author msg systems ag, Maximilian Falter 
+ *
+ * @author msg systems ag, Maximilian Falter
  */
 @Controller
 public class LoeschenController extends AbstractController<LoeschenModel> {
 
-	private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoeschenController.class);
+    private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoeschenController.class);
 
-	/**
-	 * Setzt die Datenstruktur für die Auswahl der zu löschenden Zeiträume zurück.
-	 * Diese Methode wird aus dem Flow aufgerufen, um sicherzustellen, dass die
-	 * Datenstruktur beim wiederholtem Aufruf des Views immer leer.
-	 *
-	 * @param model Das Model
-	 */
-	public void setzeAuswahlZurueck(LoeschenModel model) {
-		model.getCheckedByUser().clear();
-	}
+    /**
+     * Setzt die Datenstruktur für die Auswahl der zu löschenden Zeiträume zurück.
+     * Diese Methode wird aus dem Flow aufgerufen, um sicherzustellen, dass die
+     * Datenstruktur beim wiederholtem Aufruf des Views immer leer.
+     *
+     * @param model Das Model
+     */
+    public void setzeAuswahlZurueck(LoeschenModel model) {
+        model.getCheckedByUser().clear();
+    }
 
-	/**
-	 * Loescht die vom Benutzer in der GUI ausgewaehlten Zeitraeume.
-	 * 
-	 * @param model Das Modell
-	 */
-	public void loescheZeitraeume (LoeschenModel model) {
+    /**
+     * Loescht die vom Benutzer in der GUI ausgewaehlten Zeitraeume.
+     *
+     * @param model Das Modell
+     */
+    public void loescheZeitraeume(LoeschenModel model) {
 
-		List<ZeitraumModel> viewZeitraumList = new ArrayList<>();
-		for (Long zeitraum_nr : model.getCheckedByUser().keySet())  {
-			if (model.getCheckedByUser().get(zeitraum_nr)) {
-				LOG.trace("Is  checked : {}", zeitraum_nr);
-				viewZeitraumList.add(model.getTerminfindung().findeZeitraumById(zeitraum_nr));
-			}
-			else {
-				LOG.trace("Not checked : {}", zeitraum_nr);
-			}
-		}
+        List<ZeitraumModel> viewZeitraumList = new ArrayList<>();
+        for (Long zeitraum_nr : model.getCheckedByUser().keySet()) {
+            if (model.getCheckedByUser().get(zeitraum_nr)) {
+                LOG.trace("Is  checked : {}", zeitraum_nr);
+                viewZeitraumList.add(model.getTerminfindung().findeZeitraumById(zeitraum_nr));
+            } else {
+                LOG.trace("Not checked : {}", zeitraum_nr);
+            }
+        }
 
-		try {
-			TerminfindungModel terminfindung = super.getAwk().loescheZeitraeume(model.getTerminfindung(), viewZeitraumList);
-			model.setTerminfindung(terminfindung);
+        try {
+            TerminfindungModel terminfindung = super.getAwk().loescheZeitraeume(model.getTerminfindung(), viewZeitraumList);
+            model.setTerminfindung(terminfindung);
+        } catch (TerminfindungBusinessException e) {
 
-		} catch (TerminfindungBusinessException e) {
+            LOG.error(e.getAusnahmeId(), "Fehler beim Löschen der Terminfindung: ", e);
+        }
+    }
 
-			LOG.error(e.getAusnahmeId(), "Fehler beim Löschen der Terminfindung: ",e);
-		}
-	}
 }

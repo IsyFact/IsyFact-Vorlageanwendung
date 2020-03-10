@@ -146,5 +146,6 @@ public class TeilnehmenController extends AbstractController<TeilnehmenModel> {
             speichereTeilnehmer(model);
         }
     }
+
 }
 

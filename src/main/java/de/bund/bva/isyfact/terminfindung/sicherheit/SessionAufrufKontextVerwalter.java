@@ -28,73 +28,72 @@ import de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl;
 
 /**
  * @author jaegerd
- *
+ * <p>
  * Implementiert einen Aufrufkontext-Verwalter, der den Aufrufkontext zusätzlich in der Session speichert.
  * Der Aufrufkontext-Verwalter nutzt im Hintergrund ein Objekt der Klasse @link{LoginVerwalter}
  * Der @link{LoginVerwalter} muss in der Spring-Konfiguration im Session Scope liegen.
  * Die Implementierung funktioniert nur für Single-Server-Anwendungen bzw. für Anwendungen
  * in einem Cluster, bei denen ein Load-Balancer einen Benutzer immer auf den gleichen Server schickt
  * (Sticky Sessions).
- *
  */
-public class SessionAufrufKontextVerwalter extends AufrufKontextVerwalterImpl<SerializableAufrufKontextImpl>{
+public class SessionAufrufKontextVerwalter extends AufrufKontextVerwalterImpl<SerializableAufrufKontextImpl> {
 
-	private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoginController.class);
+    private static final IsyLogger LOG = IsyLoggerFactory.getLogger(LoginController.class);
 
-	/**
-	 * Der LoginVerwalter, der den Aufrufkontext in der Session zwischenspeichert.
-	 * Der AufrufKontextVerwalter selbst ist Thread-Scoped, es kann darum nicht
-	 * garantiert werden, dass bei einem Request ein AufrufKontext gespeichert ist.
-	 */
-	LoginVerwalter loginVerwalter;
+    /**
+     * Der LoginVerwalter, der den Aufrufkontext in der Session zwischenspeichert.
+     * Der AufrufKontextVerwalter selbst ist Thread-Scoped, es kann darum nicht
+     * garantiert werden, dass bei einem Request ein AufrufKontext gespeichert ist.
+     */
+    LoginVerwalter loginVerwalter;
 
-	/* (non-Javadoc)
-	 * @see de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl#getAufrufKontext()
-	 */
-	@Override
-	public SerializableAufrufKontextImpl getAufrufKontext() {
+    /* (non-Javadoc)
+     * @see de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl#getAufrufKontext()
+     */
+    @Override
+    public SerializableAufrufKontextImpl getAufrufKontext() {
 
-		// Überprüfe, ob einen Aufrufkontext gespeichert ist.
-		if (super.getAufrufKontext() == null) {
-			// Wenn keine Aufrufkontext gespeichert ist, lese ihn aus dem LoginVerwalter.
-			LOG.debug("Lese Aufrufkontext aus LoginVerwalter");
-			SerializableAufrufKontextImpl akontext = loginVerwalter.getAufrufKontext();
+        // Überprüfe, ob einen Aufrufkontext gespeichert ist.
+        if (super.getAufrufKontext() == null) {
+            // Wenn keine Aufrufkontext gespeichert ist, lese ihn aus dem LoginVerwalter.
+            LOG.debug("Lese Aufrufkontext aus LoginVerwalter");
+            SerializableAufrufKontextImpl akontext = loginVerwalter.getAufrufKontext();
 
-			// Ein paar Debug-Ausgaben
-			if (akontext != null) {
-				LOG.debugFachdaten("Aufrufkontext erfolgreich ermittelt für Benutzer: {}", akontext.getDurchfuehrenderBenutzerKennung());
-			} else {
-				LOG.debug("Kein Aufrufkontext im LoginVerwalter vorhangen (null value)");
-			}
-			super.setAufrufKontext(akontext);
-		}
-		return super.getAufrufKontext();
-	}
+            // Ein paar Debug-Ausgaben
+            if (akontext != null) {
+                LOG.debugFachdaten("Aufrufkontext erfolgreich ermittelt für Benutzer: {}", akontext.getDurchfuehrenderBenutzerKennung());
+            } else {
+                LOG.debug("Kein Aufrufkontext im LoginVerwalter vorhangen (null value)");
+            }
+            super.setAufrufKontext(akontext);
+        }
+        return super.getAufrufKontext();
+    }
 
-	/* (non-Javadoc)
-	 * @see de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl#setAufrufKontext(de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl)
-	 */
-	@Override
-	public void setAufrufKontext(SerializableAufrufKontextImpl akontext) {
+    /* (non-Javadoc)
+     * @see de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl#setAufrufKontext(de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl)
+     */
+    @Override
+    public void setAufrufKontext(SerializableAufrufKontextImpl akontext) {
 
-		// Jedesmal, wenn der Aufrufkontext neu gesetzt wird, setzt ihn auch in der Session.
-		loginVerwalter.setAufrufKontext(akontext);
+        // Jedesmal, wenn der Aufrufkontext neu gesetzt wird, setzt ihn auch in der Session.
+        loginVerwalter.setAufrufKontext(akontext);
 
-		// Ein paar Debug-Ausgaben
-		if (akontext != null) {
-			LOG.debugFachdaten("Speichere Aufrufkontext in LoginVerwalter für Benutzer: {}",  akontext.getDurchfuehrenderBenutzerKennung());
-		} else {
-			LOG.debug("Speichere Aufrufkontext {} in LoginVerwalter", akontext);
-		}
-		super.setAufrufKontext(akontext);
-	}
+        // Ein paar Debug-Ausgaben
+        if (akontext != null) {
+            LOG.debugFachdaten("Speichere Aufrufkontext in LoginVerwalter für Benutzer: {}", akontext.getDurchfuehrenderBenutzerKennung());
+        } else {
+            LOG.debug("Speichere Aufrufkontext {} in LoginVerwalter", akontext);
+        }
+        super.setAufrufKontext(akontext);
+    }
 
-	public LoginVerwalter getLoginVerwalter() {
-		return loginVerwalter;
-	}
+    public LoginVerwalter getLoginVerwalter() {
+        return loginVerwalter;
+    }
 
-	public void setLoginVerwalter(LoginVerwalter loginVerwalter) {
-		this.loginVerwalter = loginVerwalter;
-	}
+    public void setLoginVerwalter(LoginVerwalter loginVerwalter) {
+        this.loginVerwalter = loginVerwalter;
+    }
 
 }

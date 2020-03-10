@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.abschliess
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,18 +32,20 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
  */
 public class AbschliessenModel extends AbstractModel implements Serializable {
 
-	private static final long serialVersionUID = 8610872504330422543L;
+    private static final long serialVersionUID = 8610872504330422543L;
 
-	/**Speichert den Zeitraum, der in der Oberfläche vom Organisator
-	 * beim Abschließen der Terminfindung als Veranstaltungstermin bestimmt wurde. */
-	private int selectedZeitraumNr;
+    /**
+     * Speichert den Zeitraum, der in der Oberfläche vom Organisator
+     * beim Abschließen der Terminfindung als Veranstaltungstermin bestimmt wurde.
+     */
+    private int selectedZeitraumNr;
 
-	public int getSelectedZeitraumNr() {
-		return selectedZeitraumNr;
-	}
+    public int getSelectedZeitraumNr() {
+        return selectedZeitraumNr;
+    }
 
-	public void setSelectedZeitraumNr(int selectedZeitraumNr) {
-		this.selectedZeitraumNr = selectedZeitraumNr;
-	}
+    public void setSelectedZeitraumNr(int selectedZeitraumNr) {
+        this.selectedZeitraumNr = selectedZeitraumNr;
+    }
 
 }

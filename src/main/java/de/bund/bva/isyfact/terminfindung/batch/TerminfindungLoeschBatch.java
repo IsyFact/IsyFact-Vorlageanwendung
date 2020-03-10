@@ -69,7 +69,7 @@ public class TerminfindungLoeschBatch implements BatchAusfuehrungsBean {
         String startMeldung = MessageSourceHolder.getMessage("batch.loeschen.start", OutFormat.DATUM.format(loeschfrist));
         if (restart) {
             LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_BATCH_START_WIEDERHOLUNG, startMeldung);
-            protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("RESTART", MeldungTyp.INFO,"Batch wird im Restartmodus gestartet."));
+            protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("RESTART", MeldungTyp.INFO, "Batch wird im Restartmodus gestartet."));
         } else {
             LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_BATCH_START_NEU, startMeldung);
         }
@@ -100,7 +100,7 @@ public class TerminfindungLoeschBatch implements BatchAusfuehrungsBean {
     @Override
     public void checkpointGeschrieben(long satzNummer) throws BatchAusfuehrungsException {
         LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_BATCH_CHECKPOINT, "Löschbatch: Checkpoint geschrieben.");
-        protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("COMMIT", MeldungTyp.INFO,"Checkpunkt geschrieben."));
+        protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("COMMIT", MeldungTyp.INFO, "Checkpunkt geschrieben."));
     }
 
     @Override
@@ -111,7 +111,7 @@ public class TerminfindungLoeschBatch implements BatchAusfuehrungsBean {
     @Override
     public void rollbackDurchgefuehrt() {
         LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_BATCH_CHECKPOINT, "Löschbatch: Rollback durchgeführt.");
-        protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("ROLLBACK", MeldungTyp.WARNUNG,"Rollback durchgeführt."));
+        protokoll.ergaenzeMeldung(new VerarbeitungsMeldung("ROLLBACK", MeldungTyp.WARNUNG, "Rollback durchgeführt."));
     }
 
     @Override
@@ -144,4 +144,5 @@ public class TerminfindungLoeschBatch implements BatchAusfuehrungsBean {
         Long defaultWert = betrieblicheKonfiguration.getAsLong(parameterName);
         return konfiguration.getAsLong(parameterName, defaultWert);
     }
+
 }

@@ -67,7 +67,7 @@ public class LoginController extends AbstractController<LoginModel> {
     public boolean performLogin(LoginModel model, MessageContext context) {
 
         LOG.infoFachdaten(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_STARTED,
-            "Führe Login aus für Benutzer {}", model.getUsername());
+                "Führe Login aus für Benutzer {}", model.getUsername());
 
         SerializableAufrufKontextImpl aufrufKontext = new SerializableAufrufKontextImpl();
 
@@ -79,17 +79,17 @@ public class LoginController extends AbstractController<LoginModel> {
         try {
             @SuppressWarnings("unused")
             Berechtigungsmanager berechtigungsmanager =
-                sicherheit.getBerechtigungsManagerUndAuthentifiziere(aufrufKontext);
+                    sicherheit.getBerechtigungsManagerUndAuthentifiziere(aufrufKontext);
 
             LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_SUCCESS,
-                "Authentifizierung war erfolgreich");
+                    "Authentifizierung war erfolgreich");
         } catch (AuthentifizierungTechnicalException e) {
 
             LOG.info(LogKategorie.JOURNAL, EreignisSchluessel.MSG_LOGIN_FAILED,
-                "Authentifizierung ist fehlgeschlagen", e);
+                    "Authentifizierung ist fehlgeschlagen", e);
 
             context.addMessage(
-                new MessageBuilder().error().defaultText("Authentifizierung ist fehlgeschlagen").build());
+                    new MessageBuilder().error().defaultText("Authentifizierung ist fehlgeschlagen").build());
             return false;
         }
         return true;
@@ -108,7 +108,8 @@ public class LoginController extends AbstractController<LoginModel> {
     }
 
     public void setAufrufKontextVerwalter(
-        AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter) {
+            AufrufKontextVerwalter<SerializableAufrufKontextImpl> aufrufKontextVerwalter) {
         this.aufrufKontextVerwalter = aufrufKontextVerwalter;
     }
+
 }

@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.aktualisie
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,40 +31,40 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
 
 /**
  * Controller für den Aktualisieren flow
- * @author vadim
  *
+ * @author vadim
  */
 public class AktualisierenController extends AbstractController<AktualisierenModel> {
 
-	private static final IsyLogger LOG = IsyLoggerFactory.getLogger(AktualisierenController.class);
+    private static final IsyLogger LOG = IsyLoggerFactory.getLogger(AktualisierenController.class);
 
-	public boolean aktualisiereTerminfindung(AktualisierenModel model){
-		
-		List<ValidationMessage> validationMessages = new ArrayList<>();
-		
-		if (model.getTerminfindung().getVeranstaltungName().isEmpty()) {
+    public boolean aktualisiereTerminfindung(AktualisierenModel model) {
+
+        List<ValidationMessage> validationMessages = new ArrayList<>();
+
+        if (model.getTerminfindung().getVeranstaltungName().isEmpty()) {
             validationMessages.add(new ValidationMessage("DA",
                     "formular1", "Name der Veranstaltung",
                     "Name der Veranstaltung kann nicht leer sein."));
         }
-		if (model.getTerminfindung().getOrganisator().getName().isEmpty()) {
+        if (model.getTerminfindung().getOrganisator().getName().isEmpty()) {
             validationMessages.add(new ValidationMessage("DA",
                     "formular3", "Name des Organisators",
                     "Name des Organisators kann nicht leer sein"));
         }
-		
-		if(!validationMessages.isEmpty()){
-			this.globalFlowController.getValidationController().processValidationMessages(validationMessages);
-			return false;
-		}
-		else{
-			try {
-				super.getAwk().aktualisiereTerminfindung(model.getTerminfindung(), model.getTerminfindung().getVeranstaltungName(), 
-						model.getTerminfindung().getOrganisator().getName());
-			} catch (TerminfindungBusinessException e) {
-				LOG.error("Aktualisieren der Terminfindung fehlgeschlagen", e);				
-			}
-		}
-		return true;
-	}
+
+        if (!validationMessages.isEmpty()) {
+            this.globalFlowController.getValidationController().processValidationMessages(validationMessages);
+            return false;
+        } else {
+            try {
+                super.getAwk().aktualisiereTerminfindung(model.getTerminfindung(), model.getTerminfindung().getVeranstaltungName(),
+                        model.getTerminfindung().getOrganisator().getName());
+            } catch (TerminfindungBusinessException e) {
+                LOG.error("Aktualisieren der Terminfindung fehlgeschlagen", e);
+            }
+        }
+        return true;
+    }
+
 }

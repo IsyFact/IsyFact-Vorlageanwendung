@@ -54,9 +54,9 @@ public class TestPersistenceConfiguration {
 
     @Bean
     public DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection(DataSource dataSource,
-        DatabaseConfigBean databaseConfigBean) {
+                                                                            DatabaseConfigBean databaseConfigBean) {
         DatabaseDataSourceConnectionFactoryBean dbConnection =
-            new DatabaseDataSourceConnectionFactoryBean(dataSource);
+                new DatabaseDataSourceConnectionFactoryBean(dataSource);
         dbConnection.setDatabaseConfig(databaseConfigBean);
         return dbConnection;
     }

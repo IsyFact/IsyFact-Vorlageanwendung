@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.komponenten;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,43 +40,44 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Praeferenz;
  */
 public class ZeitraumAuswahlModelComponent implements Serializable {
 
-	private static final long serialVersionUID = 8610872504330422543L;
+    private static final long serialVersionUID = 8610872504330422543L;
 
-	private Map<Long,Boolean> checked = new HashMap<>();
-	private Map<Long,Integer> checkedRadio = new HashMap<>();
-	
-	/**
-	 * Initialisiert die Datenstruktur für die Checkboxen, mit denen der Benutzer in der GUI Zeiträume auswählt.
-	 * Aus der übergebenen Liste mit Tagen werden die Zeiträume ausgelesen und
-	 * für jeden Zeitraum wird ein Element in der Datenstruktur angelegt. 
-	 * 
-	 * @param tage Die Liste der Tage mit den darin enthaltenen Zeiträumen je Tag
-	 */
-	public void init(List<TagModel> tage) {
-			
-		for (TagModel tag : tage) {
-			for (ZeitraumModel zeitraum : tag.getZeitraeume()) {
-				this.getCheckedRadio().put(zeitraum.getId(), Praeferenz.NEIN.ordinal()); // initialisiere mit 0 = Nein
-			}
-		}
-	}
-	
-	/* Getter und Setter */
-	
-	public Map<Long,Boolean> getChecked() {
-		return checked;
-	}
+    private Map<Long, Boolean> checked = new HashMap<>();
+    private Map<Long, Integer> checkedRadio = new HashMap<>();
 
-	public void setChecked(Map<Long,Boolean> checked) {
-		this.checked = checked;
-	}
+    /**
+     * Initialisiert die Datenstruktur für die Checkboxen, mit denen der Benutzer in der GUI Zeiträume auswählt.
+     * Aus der übergebenen Liste mit Tagen werden die Zeiträume ausgelesen und
+     * für jeden Zeitraum wird ein Element in der Datenstruktur angelegt.
+     *
+     * @param tage Die Liste der Tage mit den darin enthaltenen Zeiträumen je Tag
+     */
+    public void init(List<TagModel> tage) {
 
-	public Map<Long,Integer> getCheckedRadio() {
-		return checkedRadio;
-	}
+        for (TagModel tag : tage) {
+            for (ZeitraumModel zeitraum : tag.getZeitraeume()) {
+                this.getCheckedRadio().put(zeitraum.getId(), Praeferenz.NEIN.ordinal()); // initialisiere mit 0 = Nein
+            }
+        }
+    }
 
-	public void setCheckedRadio(Map<Long,Integer> checkedRadio) {
-		this.checkedRadio = checkedRadio;
-	}
+    /* Getter und Setter */
+
+    public Map<Long, Boolean> getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Map<Long, Boolean> checked) {
+        this.checked = checked;
+    }
+
+    public Map<Long, Integer> getCheckedRadio() {
+        return checkedRadio;
+    }
+
+    public void setCheckedRadio(Map<Long, Integer> checkedRadio) {
+        this.checkedRadio = checkedRadio;
+    }
+
 }
 

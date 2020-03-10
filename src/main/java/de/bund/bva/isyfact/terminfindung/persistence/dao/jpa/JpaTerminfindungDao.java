@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.persistence.dao.jpa;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,24 +46,23 @@ public class JpaTerminfindungDao extends AbstraktJpaDao<Terminfindung> implement
         return q.getResultList();
     }
 
-	@Override
-	public List<Terminfindung> findeAlle() {
-		EntityManager em = getEntityManager();
+    @Override
+    public List<Terminfindung> findeAlle() {
+        EntityManager em = getEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Terminfindung> cq = cb.createQuery(Terminfindung.class);
         Root<Terminfindung> rootEntry = cq.from(Terminfindung.class);
         CriteriaQuery<Terminfindung> all = cq.select(rootEntry);
         TypedQuery<Terminfindung> allQuery = em.createQuery(all);
-        
+
         return allQuery.getResultList();
     }
 
-	@Override
-	public Terminfindung sucheMitReferenz(String ref) {
+    @Override
+    public Terminfindung sucheMitReferenz(String ref) {
         TypedQuery<Terminfindung> query = getEntityManager().createNamedQuery("terminfindung.ref", Terminfindung.class);
         query.setParameter("ref", ref);
         return query.getSingleResult();
-	}
+    }
 
-	
 }

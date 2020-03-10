@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.model;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,16 +71,16 @@ public class TerminfindungModel implements Serializable {
      * Der Name der Veranstaltung.
      */
     private String veranstaltungName = "";
-    
+
     /**
      * Erstellungsdatum der Terminfindung
-     */    
+     */
     private Date createDate;
-    
+
     /**
-     * Letztes Bearbeitungsdatum der Terminfinung (Schließt die Bearbeitung der Teilnehmerliste oder 
+     * Letztes Bearbeitungsdatum der Terminfinung (Schließt die Bearbeitung der Teilnehmerliste oder
      * des Mappings der Teilnehmer zu Zeiträumen nicht mit ein)
-     */    
+     */
     private Date updateDate;
 
     /**
@@ -137,7 +137,6 @@ public class TerminfindungModel implements Serializable {
             }
         }
         return zeitraeume;
-
     }
 
     /**
@@ -156,17 +155,17 @@ public class TerminfindungModel implements Serializable {
     }
 
 
-	/* Getter und Setter */
+    /* Getter und Setter */
 
     public UUID getIdRef() {
-		return idRef;
-	}
+        return idRef;
+    }
 
-	public void setIdRef(UUID idRef) {
-		this.idRef = idRef;
-	}
+    public void setIdRef(UUID idRef) {
+        this.idRef = idRef;
+    }
 
-	public ZeitraumModel getDefZeitraum() {
+    public ZeitraumModel getDefZeitraum() {
         return defZeitraum;
     }
 
@@ -207,22 +206,22 @@ public class TerminfindungModel implements Serializable {
     }
 
     public Date getCreateDate() {
-		return createDate;
-	}
+        return createDate;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public Date getUpdateDate() {
-		return updateDate;
-	}
+    public Date getUpdateDate() {
+        return updateDate;
+    }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
-	public String getTeilnehmerLabel() {
+    public String getTeilnehmerLabel() {
         List<String> teilnehmerNamen = new ArrayList<>();
         if (teilnehmer != null) {
             for (TeilnehmerModel t : teilnehmer) {
@@ -241,13 +240,14 @@ public class TerminfindungModel implements Serializable {
         }
         return StringUtils.join(teilnehmerNamen, ", ");
     }
-    
-    public TagModel getTagForZeitraum(ZeitraumModel zeitraum){
-    	for (TagModel tagModel : getTage()) {
-			if(tagModel.getZeitraeume().contains(zeitraum)){
-				return tagModel;
-			}
-		}
-    	return null;
+
+    public TagModel getTagForZeitraum(ZeitraumModel zeitraum) {
+        for (TagModel tagModel : getTage()) {
+            if (tagModel.getZeitraeume().contains(zeitraum)) {
+                return tagModel;
+            }
+        }
+        return null;
     }
+
 }

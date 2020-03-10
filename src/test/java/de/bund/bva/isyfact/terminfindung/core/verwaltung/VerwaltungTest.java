@@ -9,9 +9,9 @@ package de.bund.bva.isyfact.terminfindung.core.verwaltung;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -59,14 +59,14 @@ public class VerwaltungTest extends AbstraktCoreTest {
         Zeitraum zeitraum = new Zeitraum();
         zeitraum.setZeitraum(ABENDS);
         tag.getZeitraeume().add(zeitraum);
-        
+
         Terminfindung muster2 = new Terminfindung();
         tag = new Tag();
         muster2.getTermine().add(tag);
         zeitraum = new Zeitraum();
         zeitraum.setZeitraum(MORGENS);
         tag.getZeitraeume().add(zeitraum);
-        
+
         List<Terminfindung> alleTermine = new ArrayList<>();
         alleTermine.add(muster);
         alleTermine.add(muster2);
@@ -98,20 +98,20 @@ public class VerwaltungTest extends AbstraktCoreTest {
 
     /**
      * Test method for {@link VerwaltungImpl#leseAlleTerminfindungen()}.
-     *
      */
     @Test
     public void testLeseAlleTerminfindungen() {
-    	Verwaltung verwaltung = new VerwaltungImpl(terminfindungDao);
-    	
-    	List<Terminfindung> alleTerminfindungen = verwaltung.leseAlleTerminfindungen();
-    	
-    	assertNotNull(alleTerminfindungen);
+        Verwaltung verwaltung = new VerwaltungImpl(terminfindungDao);
+
+        List<Terminfindung> alleTerminfindungen = verwaltung.leseAlleTerminfindungen();
+
+        assertNotNull(alleTerminfindungen);
         assertEquals(2, alleTerminfindungen.size());
-        
+
         List<Zeitraum> zeitraeume = alleTerminfindungen.get(1).getTermine().get(0).getZeitraeume();
         assertNotNull(zeitraeume);
         assertEquals(1, zeitraeume.size());
         assertEquals(MORGENS, zeitraeume.get(0).getZeitraum());
     }
+
 }

@@ -30,19 +30,20 @@ import com.github.dozermapper.core.MappingException;
  */
 public class LocalDateDozerCustomConverter implements CustomConverter {
 
-	@Override
-	public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass,
-			Class<?> sourceClass) {
-		if (sourceFieldValue == null) {
-			return null;
-		}
+    @Override
+    public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass,
+                          Class<?> sourceClass) {
+        if (sourceFieldValue == null) {
+            return null;
+        }
 
-		if (sourceFieldValue instanceof LocalDate) {
-			LocalDate source = (LocalDate)sourceFieldValue;
-			return LocalDate.of(source.getYear(), source.getMonth(), source.getDayOfMonth());
-		} else {
-			throw new MappingException("LocalDateDozerCustomConverter used incorrectly. Arguments passed in were:"
-									   + existingDestinationFieldValue + " and " + sourceFieldValue);
-		}
-	}
+        if (sourceFieldValue instanceof LocalDate) {
+            LocalDate source = (LocalDate) sourceFieldValue;
+            return LocalDate.of(source.getYear(), source.getMonth(), source.getDayOfMonth());
+        } else {
+            throw new MappingException("LocalDateDozerCustomConverter used incorrectly. Arguments passed in were:"
+                    + existingDestinationFieldValue + " and " + sourceFieldValue);
+        }
+    }
+
 }
