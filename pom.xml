@@ -5,12 +5,12 @@
     <parent>
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isyfact-standards</artifactId>
-        <version>1.7.0</version>
+        <version>1.8.0</version>
     </parent>
 
     <groupId>de.msg</groupId>
     <artifactId>terminfindung</artifactId>
-    <version>0.7.2-SNAPSHOT</version>
+    <version>0.7.2</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
