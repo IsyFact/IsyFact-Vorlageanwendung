@@ -38,9 +38,9 @@
 
     <bean id="konfigurationUpdateTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
 
-    <bean id="watchdogTask" class="de.bund.bva.isyfact.terminfindung.task.WatchdogTask">
-        <constructor-arg ref="administration"/>
+    <bean id="watchdogTask" class="de.bund.bva.pliscommon.ueberwachung.task.AdministrationWatchdogTask">
         <constructor-arg ref="watchdogTask-monitor"/>
+        <property name="administrationWatchdog" ref="administration"/>
     </bean>
 
     <bean id="watchdogTask-monitor" class="de.bund.bva.isyfact.task.model.TaskMonitor"/>
