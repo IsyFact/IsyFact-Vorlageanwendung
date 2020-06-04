@@ -7,6 +7,7 @@
     * Korrigiert falschen Paketpfad für 'ZonedDateTimeAttributeConverter' in persistence.xml 
     * Änderung des Namespaces (Group-ID/Paketnamen) von "de.msg" zu "de.bund.bva.isyfact".
     * Annotiert @WebAppConfiguration in 'TestJmxUeberwachung', da neuer HilfeController in isy-web den ServletContext benötigt
+- `IFE-171`: Verwendung des AdministrationWatchdogTasks aus isy-ueberwachung
 
 # 0.7.2
 - `IFS-458`: Tidy-Plugin eingebunden, so dass immer ein Check ausgeführt wird. Alle pom.xml Dateien mit tidy:pom formatiert und getestet.
