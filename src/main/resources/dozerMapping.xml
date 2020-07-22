@@ -19,24 +19,24 @@
   #L%
   -->
 
-<mappings xmlns="http://dozer.sourceforge.net"
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping https://dozermapper.github.io/schema/bean-mapping.xsd">
 
   <configuration>
     <stop-on-errors>true</stop-on-errors>
     <date-format>MM/dd/yyyy HH:mm</date-format>
     <wildcard>true</wildcard>
     <custom-converters>
-      <converter type="de.msg.terminfindung.gui.util.UuidStringDozerCustomConverter">
+      <converter type="de.bund.bva.isyfact.terminfindung.gui.util.UuidStringDozerCustomConverter">
         <class-a>java.util.UUID</class-a>
         <class-b>java.lang.String</class-b>
       </converter>
-      <converter type="de.msg.terminfindung.gui.util.LocalDateDozerCustomConverter">
+      <converter type="de.bund.bva.isyfact.terminfindung.gui.util.LocalDateDozerCustomConverter">
         <class-a>java.time.LocalDate</class-a>
         <class-b>java.time.LocalDate</class-b>
       </converter>
-        <converter type="de.msg.terminfindung.gui.util.ZeitraumDozerCustomConverter">
+        <converter type="de.bund.bva.isyfact.terminfindung.gui.util.ZeitraumDozerCustomConverter">
             <class-a>de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet</class-a>
             <class-b>de.bund.bva.isyfact.datetime.core.Zeitraum</class-b>
         </converter>
@@ -44,8 +44,8 @@
   </configuration>
 
   <mapping>
-    <class-a>de.msg.terminfindung.persistence.entity.Terminfindung</class-a>
-    <class-b>de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel</class-b>
+    <class-a>de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung</class-a>
+    <class-b>de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel</class-b>
       <field>
         <a>termine</a>
         <b>tage</b>

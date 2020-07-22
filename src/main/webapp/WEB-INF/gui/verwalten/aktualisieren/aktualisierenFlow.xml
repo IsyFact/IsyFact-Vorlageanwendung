@@ -23,10 +23,10 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="applikationseiteParentFlow">
 
 	<var name="aktualisierenModel" 
-		class="de.msg.terminfindung.gui.terminfindung.verwalten.aktualisieren.AktualisierenModel"/>
+		class="de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.aktualisieren.AktualisierenModel"/>
 
 	<!-- Die Terminfindung wird aus dem Parent Flow übergeben -->
-	<input name="terminfindung" type="de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
+	<input name="terminfindung" type="de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
 	
 	<!-- Initialisiere das Modell-->	
 	<on-start>

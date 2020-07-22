@@ -24,7 +24,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="applikationseiteParentFlow">
 
-	<var name="teilnehmenModel" class="de.msg.terminfindung.gui.terminfindung.teilnehmen.TeilnehmenModel" />
+	<var name="teilnehmenModel" class="de.bund.bva.isyfact.terminfindung.gui.terminfindung.teilnehmen.TeilnehmenModel" />
 	<var name="tfRef" class="java.lang.String"/>
 
 	<view-state id="teilnehmenViewState">

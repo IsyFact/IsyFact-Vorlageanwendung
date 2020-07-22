@@ -1,17 +1,20 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.msg</groupId>
+    <parent>
+        <groupId>de.bund.bva.isyfact</groupId>
+        <artifactId>isyfact-standards</artifactId>
+        <version>1.8.1-SNAPSHOT</version>
+    </parent>
+
     <artifactId>terminfindung</artifactId>
-    <version>0.7.2-SNAPSHOT</version>
+    <version>0.9.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
     <description>Die Vorlageanwendung der Software-Factory 'IsyFact'</description>
-
     <url>https://github.com/IsyFact/IsyFact-Vorlageanwendung</url>
-
     <organization>
         <name>Bundesverwaltungsamt (BVA), msg systems ag</name>
         <url>http://www.isyfact.de</url>
@@ -38,72 +41,17 @@
         <url>https://github.com/IsyFact/IsyFact-Vorlageanwendung</url>
     </scm>
 
-    <parent>
-        <groupId>de.bund.bva.isyfact</groupId>
-        <artifactId>isyfact-standards</artifactId>
-        <version>1.8.0-SNAPSHOT</version>
-    </parent>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>de.juplo</groupId>
-                <artifactId>hibernate4-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <goals>
-                    <goal>export</goal>
-                </goals>
-                <configuration>
-                    <hibernateProperties>src\test\resources\hibernate.hbm2ddl.properties</hibernateProperties>
-                    <target>SCRIPT</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-                <configuration>
-                    <skip>${maven.test.skip}</skip>
-                    <output>file</output>
-                    <append>true</append>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jacoco-initialize</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>de.bund.bva.isyfact</groupId>
                 <artifactId>isyfact-bom</artifactId>
-                <version>1.8.0-SNAPSHOT</version>
+                <version>1.8.1-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- IsyFact -->
         <dependency>
@@ -166,8 +114,8 @@
             <artifactId>spring-core</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -188,18 +136,8 @@
             <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
         </dependency>
 
         <!-- Persistenz -->
@@ -220,10 +158,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-        </dependency>
 
         <!-- Test -->
         <dependency>
@@ -234,7 +168,7 @@
         <dependency>
             <groupId>com.github.springtestdbunit</groupId>
             <artifactId>spring-test-dbunit</artifactId>
-            <version>1.2.1</version>
+            <version>1.3.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -263,6 +197,54 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>de.juplo</groupId>
+                <artifactId>hibernate4-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <goals>
+                    <goal>export</goal>
+                </goals>
+                <configuration>
+                    <hibernateProperties>src\test\resources\hibernate.hbm2ddl.properties</hibernateProperties>
+                    <target>SCRIPT</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.6.201602180812</version>
+                <configuration>
+                    <skip>${maven.test.skip}</skip>
+                    <output>file</output>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

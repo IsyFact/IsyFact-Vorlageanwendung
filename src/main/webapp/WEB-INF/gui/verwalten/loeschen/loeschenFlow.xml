@@ -25,9 +25,9 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="applikationseiteParentFlow">
 
 	<var name="loeschenModel"
-		 class="de.msg.terminfindung.gui.terminfindung.verwalten.loeschen.LoeschenModel"/>
+		 class="de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.loeschen.LoeschenModel"/>
 
-	<input name="terminfindung" type="de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
+	<input name="terminfindung" type="de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
 
 	<!-- Initialisiere das Modell-->
 	<on-start>

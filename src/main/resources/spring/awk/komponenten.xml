@@ -23,21 +23,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-    <bean id="erstellung" class="de.msg.terminfindung.core.erstellung.impl.ErstellungImpl">
+    <bean id="erstellung" class="de.bund.bva.isyfact.terminfindung.core.erstellung.impl.ErstellungImpl">
         <constructor-arg ref="terminfindungDao"/>
     </bean>
 
-    <bean id="verwaltung" class="de.msg.terminfindung.core.verwaltung.impl.VerwaltungImpl">
+    <bean id="verwaltung" class="de.bund.bva.isyfact.terminfindung.core.verwaltung.impl.VerwaltungImpl">
         <constructor-arg ref="terminfindungDao"/>
     </bean>
 
-    <bean id="teilnahme" class="de.msg.terminfindung.core.teilnahme.impl.TeilnahmeImpl">
+    <bean id="teilnahme" class="de.bund.bva.isyfact.terminfindung.core.teilnahme.impl.TeilnahmeImpl">
         <constructor-arg ref="terminfindungDao"/>
         <constructor-arg ref="teilnehmerDao"/>
         <constructor-arg ref="teilnehmerZeitraumDao"/>
     </bean>
 
-    <bean id="datenpflege" class="de.msg.terminfindung.core.datenpflege.impl.DatenpflegeImpl">
+    <bean id="datenpflege" class="de.bund.bva.isyfact.terminfindung.core.datenpflege.impl.DatenpflegeImpl">
         <constructor-arg ref="terminfindungDao"/>
     </bean>
 
