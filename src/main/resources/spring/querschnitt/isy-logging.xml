@@ -47,7 +47,7 @@
     <aop:config>
         <!-- Pointcuts an den Komponentengrenzen -->
         <aop:advisor order="1000" advice-ref="componentLogInterceptor"
-                     pointcut="execution (public * de.msg.terminfindung.core.*.*.*(..))"/>
+                     pointcut="execution (public * de.bund.bva.isyfact.terminfindung.core.*.*.*(..))"/>
     </aop:config>
 
 </beans>

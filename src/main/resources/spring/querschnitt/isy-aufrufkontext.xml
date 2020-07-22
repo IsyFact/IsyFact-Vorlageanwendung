@@ -29,12 +29,12 @@
     <bean id="aufrufKontextFactory"
           class="de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextFactoryImpl">
         <property name="aufrufKontextKlasse"
-                  value="de.msg.terminfindung.sicherheit.SerializableAufrufKontextImpl"/>
+                  value="de.bund.bva.isyfact.terminfindung.sicherheit.SerializableAufrufKontextImpl"/>
     </bean>
 
     <!-- AufrufKontextVerwalter definieren (jeder Request hat einen eigenen Kontext (-Verwalter)) -->
     <bean id="aufrufKontextVerwalter" scope="thread"
-          class="de.msg.terminfindung.sicherheit.SessionAufrufKontextVerwalter">
+          class="de.bund.bva.isyfact.terminfindung.sicherheit.SessionAufrufKontextVerwalter">
         <aop:scoped-proxy/>
         <property name="loginVerwalter" ref="loginVerwalter"/>
     </bean>

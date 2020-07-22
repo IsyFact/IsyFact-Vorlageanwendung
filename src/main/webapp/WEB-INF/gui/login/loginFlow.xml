@@ -26,7 +26,7 @@
 	  parent="applikationseiteParentFlow">
 	
 	<!-- Model -->
-	<var name="loginModel" class="de.msg.terminfindung.gui.login.LoginModel" />
+	<var name="loginModel" class="de.bund.bva.isyfact.terminfindung.gui.login.LoginModel" />
 	
 	<var name="adminRight" class="java.lang.String"/>
 	

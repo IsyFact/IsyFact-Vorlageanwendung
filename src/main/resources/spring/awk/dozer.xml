@@ -39,7 +39,7 @@
 
 	<!--  Dozer Bean Mapper -->
 
-	<bean id="beanMapper" class="org.dozer.DozerBeanMapper">
+	<bean id="beanMapper" class="de.bund.bva.pliscommon.util.mapper.DozerBeanMapperFactoryBean">
   		<property name="mappingFiles">
     	<list>
       		<value>dozerMapping.xml</value>			   

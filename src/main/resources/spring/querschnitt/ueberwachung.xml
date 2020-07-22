@@ -40,17 +40,17 @@
         ====================================================================== -->
     <aop:config>
         <aop:advisor order="1000" advice-ref="erstellungMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.erstellen.ErstellenController)"/>
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.erstellen.ErstellenController)"/>
         <aop:advisor order="1000" advice-ref="verwaltenMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.verwalten.VerwaltenController)"/>
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.VerwaltenController)"/>
         <aop:advisor order="1000" advice-ref="teilnehmenMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.teilnehmen.TeilnehmenController)"/>
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.teilnehmen.TeilnehmenController)"/>
         <aop:advisor order="1000" advice-ref="abschliessenMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.verwalten.abschliessen.AbschliessenController)"/>
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.abschliessen.AbschliessenController)"/>
         <aop:advisor order="1000" advice-ref="loeschenMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.verwalten.loeschen.LoeschenController)"/>
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.loeschen.LoeschenController)"/>
         <aop:advisor order="1000" advice-ref="aktualisierenMonitor"
-                     pointcut="target(de.msg.terminfindung.gui.terminfindung.verwalten.aktualisieren.AktualisierenController)"/>        
+                     pointcut="target(de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.aktualisieren.AktualisierenController)"/>
     </aop:config>
     <!--======================================================================
         Diese Bean erzeugt einen MBean-Exporter.
@@ -91,7 +91,7 @@
         </property>
     </bean>
 
-    <bean id="administration" class="de.msg.terminfindung.core.admin.TerminfindungWatchdog">
+    <bean id="administration" class="de.bund.bva.isyfact.terminfindung.core.admin.TerminfindungWatchdog">
         <property name="watchdogMBean" ref="watchdogMonitor"/>
         <property name="konfiguration" ref="konfiguration"/>
         <property name="entityManager" ref="entityManagerFactoryBean"/>

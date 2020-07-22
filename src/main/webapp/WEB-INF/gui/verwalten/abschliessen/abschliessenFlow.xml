@@ -25,10 +25,10 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd" parent="applikationseiteParentFlow">
 
 	<var name="abschliessenModel" 
-		class="de.msg.terminfindung.gui.terminfindung.verwalten.abschliessen.AbschliessenModel"/>
+		class="de.bund.bva.isyfact.terminfindung.gui.terminfindung.verwalten.abschliessen.AbschliessenModel"/>
 
 	<!-- Die Terminfindung wird aus dem Parent Flow übergeben -->
-	<input name="terminfindung" type="de.msg.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
+	<input name="terminfindung" type="de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungModel"/>
 
 	<!-- Initialisiere das Modell-->	
 	<on-start>
