@@ -27,10 +27,10 @@ Oracle bietet Bibliotheken über einen Downloadbereich oder ein eigenes Maven Re
 
 ===== Zugriff über den Downloadbereich
 
-Über Oracles http://www.oracle.com/technetwork/database/features/jdbc/default-2280470.html[Downloadbereich] können Sie die Bibliotheken herunterladen und in Ihr lokales Maven-Repository installieren. Hierzu sind die folgenden Befehle nötig:
+Über Oracles https://www.oracle.com/database/technologies/jdbc-ucp-122-downloads.html[Downloadbereich] können Sie die Bibliotheken herunterladen und in Ihr lokales Maven-Repository installieren. Hierzu sind die folgenden Befehle nötig:
 
- mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=<version> -Dpackaging=jar -Dfile=<Datei> -DgeneratePom=true
- mvn install:install-file -DgroupId=com.oracle -DartifactId=ucp -Dversion=<version> -Dpackaging=jar -Dfile=<Datei> -DgeneratePom=true
+ mvn install:install-file -DgroupId=com.oracle.jdbc -DartifactId=ojdbc8 -Dversion=<version> -Dpackaging=jar -Dfile=<Datei> -DgeneratePom=true
+ mvn install:install-file -DgroupId=com.oracle.jdbc -DartifactId=ucp -Dversion=<version> -Dpackaging=jar -Dfile=<Datei> -DgeneratePom=true
 
 === Maven-Profile
 
