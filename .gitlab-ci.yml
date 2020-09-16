@@ -18,6 +18,7 @@ cache:
 .template: &vorlage
   tags:
    - zssi
+   - docker
   retry: 1
 
 
@@ -42,6 +43,7 @@ test:
    paths:
     - "target/surefire-reports/*"
     - "target/site/*"
+   expire_in: 1 day 
    reports:
     junit:
      - "target/surefire-reports/TEST-*.xml"
