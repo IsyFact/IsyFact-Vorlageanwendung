@@ -35,7 +35,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 /**
  * Diese Klasse implementiert den Anwendungsfall "Termine bestaetigen".
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 class AwfTermineBestaetigen {
 

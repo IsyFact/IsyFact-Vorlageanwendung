@@ -33,7 +33,7 @@ import de.bund.bva.isyfact.datetime.format.OutFormat;
  * Die Klasse speichert die Daten eines Tags in der View Schicht. Ein Tag hat einen Namen, ein Datum und eine Liste von
  * Zeiträumen an diesem Datum.
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public class TagModel implements Serializable, Comparable<TagModel> {
 

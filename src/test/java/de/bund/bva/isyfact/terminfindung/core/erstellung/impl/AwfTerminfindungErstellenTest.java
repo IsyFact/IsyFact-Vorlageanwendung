@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
 /**
  * Test für den Anwendungsfall "Terminfindung erstellen".
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class AwfTerminfindungErstellenTest extends AbstraktCoreTest {
 

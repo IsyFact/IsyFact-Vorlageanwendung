@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * Model der Login Flows.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class LoginModel extends AbstractModel implements Serializable {
 

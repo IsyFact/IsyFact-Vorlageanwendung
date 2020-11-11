@@ -23,7 +23,7 @@ package de.bund.bva.isyfact.terminfindung.common.konstanten;
 /**
  * Diese Klasse enthält Konstanten für Spring-Profile des Tests.
  *
- * @author msg systems ag, Stefan Dellmuth
+ * @author msg systems ag
  */
 public class TestProfile {
 

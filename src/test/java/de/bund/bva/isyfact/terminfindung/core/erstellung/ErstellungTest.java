@@ -44,7 +44,7 @@ import static org.mockito.Mockito.*;
 /**
  * Test für den Anwendungsfall "Terminfindung erstellen".
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class ErstellungTest extends AbstraktCoreTest {
 

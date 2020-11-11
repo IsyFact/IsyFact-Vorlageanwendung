@@ -41,7 +41,7 @@ import javax.persistence.TemporalType;
  * Entity implementation class for Entity: Terminfindung Haupt-Entitaet, von
  * hier aus kann zu den abhängigen Entitäten navigiert werden.
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @NamedQueries({
         @NamedQuery(name = "terminfindung.vor", query = "select tf from Terminfindung tf join tf.termine as t where tf.defZeitraum in elements(t.zeitraeume) and t.datum <= :datum"),

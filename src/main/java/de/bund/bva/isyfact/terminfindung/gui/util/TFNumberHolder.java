@@ -52,7 +52,7 @@ import de.bund.bva.isyfact.logging.IsyLoggerFactory;
  * hat der Controller, unabhängig vom Model, Zugriff. Ein einmal gespeicherter
  * Wert bleibt erhalten, bis er von einem neuen Wert überschrieben wird.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class TFNumberHolder implements Serializable {
 

@@ -40,7 +40,7 @@ import de.bund.bva.pliscommon.konfiguration.common.ReloadableKonfiguration;
  * Die Klasse hält die Referenz zum Anwendungskern.
  *
  * @param <T> Die Klasse des Models
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public abstract class AbstractController<T extends AbstractModel> {
 

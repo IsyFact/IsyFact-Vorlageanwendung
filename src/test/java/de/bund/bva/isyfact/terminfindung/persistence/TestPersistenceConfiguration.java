@@ -32,7 +32,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.dao.jpa.JpaTerminfindungDao
 /**
  * Konfiguriert Komponententests der Datenzugriffsschicht.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 @Configuration
 @EnableTransactionManagement

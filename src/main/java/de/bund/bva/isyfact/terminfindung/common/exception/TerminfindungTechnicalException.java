@@ -28,7 +28,7 @@ import de.bund.bva.pliscommon.util.exception.MessageSourceFehlertextProvider;
 /**
  * Klasse für technische Exceptions.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class TerminfindungTechnicalException extends PlisTechnicalException {
 

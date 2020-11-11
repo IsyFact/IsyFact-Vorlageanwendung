@@ -26,7 +26,7 @@ import java.io.Serializable;
 import de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextImpl;
 
 /**
- * @author jaegerd
+ * @author msg systems ag
  * <p>
  * Serialisierbare Ableitung von @link{AufrufKontextImpl}.
  * Zur Speicherung von Aufrufkontext in der Session des Benutzers.

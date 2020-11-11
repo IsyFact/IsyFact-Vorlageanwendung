@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 public class VerwaltungTest extends AbstraktCoreTest {
 

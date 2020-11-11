@@ -35,7 +35,7 @@ import javax.persistence.OrderBy;
 /**
  * Entity implementation class for Entity: Tag
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Entity
 public class Tag extends AbstraktEntitaet {

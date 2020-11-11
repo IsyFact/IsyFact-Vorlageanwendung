@@ -32,7 +32,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
 /**
  * Controller für den Aktualisieren flow
  *
- * @author vadim
+ * @author BVA
  */
 public class AktualisierenController extends AbstractController<AktualisierenModel> {
 

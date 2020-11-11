@@ -27,7 +27,7 @@ import de.bund.bva.pliscommon.persistence.dao.AbstractDao;
 /**
  * Abstrakte Basisklasse für JPA-basierte DAOs. Legt den Typ des Primärschlüssels auf {@link Long} fest.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 public abstract class AbstraktJpaDao<T extends AbstraktEntitaet> extends AbstractDao<T, Long> implements AbstraktDao<T> {
 

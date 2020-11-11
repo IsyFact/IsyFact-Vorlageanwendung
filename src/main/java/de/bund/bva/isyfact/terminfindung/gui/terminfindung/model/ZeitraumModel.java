@@ -30,7 +30,7 @@ import de.bund.bva.isyfact.datetime.core.Zeitraum;
 /**
  * Die Klasse speichert einen Zeitraum in der View-Schicht.
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public class ZeitraumModel implements Comparable<ZeitraumModel>, Serializable {
 

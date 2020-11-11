@@ -35,7 +35,7 @@ import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 /**
  * Model des Erstellen Flows
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 
 public class ErstellenModel extends AbstractModel implements Serializable {

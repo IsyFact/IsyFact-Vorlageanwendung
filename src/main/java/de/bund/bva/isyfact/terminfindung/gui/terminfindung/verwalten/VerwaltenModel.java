@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * * Model fuer den Verwalten-Flow
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 public class VerwaltenModel extends AbstractModel implements Serializable {
 

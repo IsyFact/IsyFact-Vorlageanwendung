@@ -29,7 +29,7 @@ import javax.persistence.OneToOne;
  * Stellt die Entität für die Präferenz eines Teilnehmers dar. Wird benötigt, da jeder Teilnehmer zu mehreren
  * Zeiträumen eine Präferenz hat und jeder Zeitraum von mehreren Teilnehmern präferiert werden kann.
  *
- * @author msg systems ag, Stefan Dellmuth
+ * @author msg systems ag
  */
 @Entity
 public class TeilnehmerZeitraum extends AbstraktEntitaet {

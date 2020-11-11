@@ -24,7 +24,7 @@ package de.bund.bva.isyfact.terminfindung.common.konstanten;
 /**
  * Diese Klasse enthält die Konstanten Fehlerschluessel
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 
 public abstract class FehlerSchluessel {

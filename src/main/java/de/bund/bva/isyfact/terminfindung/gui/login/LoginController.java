@@ -39,7 +39,7 @@ import de.bund.bva.pliscommon.sicherheit.common.exception.AuthentifizierungTechn
 /**
  * Controller des Login Flows.
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 @Controller
 public class LoginController extends AbstractController<LoginModel> {

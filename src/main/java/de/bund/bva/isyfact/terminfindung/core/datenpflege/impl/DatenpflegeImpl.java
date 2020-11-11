@@ -9,7 +9,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.dao.TerminfindungDao;
 /**
  * Implementierung der Anwendungskomponente "Datenpflege" zur Pflege des Datenbestands.
  *
- * @author msg systems ag, Stefan Dellmuth
+ * @author msg systems ag
  */
 public class DatenpflegeImpl implements Datenpflege {
 

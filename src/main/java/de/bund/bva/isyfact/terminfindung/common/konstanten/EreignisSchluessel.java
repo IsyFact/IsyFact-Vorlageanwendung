@@ -23,7 +23,7 @@ package de.bund.bva.isyfact.terminfindung.common.konstanten;
 /**
  * iese Klasse enthält die Konstanten Ereitgnissschluessel
  *
- * @author vadim
+ * @author BVA
  */
 public abstract class EreignisSchluessel {
 

@@ -32,7 +32,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungMo
 /**
  * Controller fuer den Verwalten Flow
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 @Controller
 public class VerwaltenController extends AbstractController<VerwaltenModel> {

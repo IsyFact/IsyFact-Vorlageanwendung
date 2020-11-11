@@ -34,7 +34,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 /**
  * Interface der Anwendungskomponente "Erstellung" zur Erstellung von Terminfindungen
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 
 public class VerwaltungImpl implements Verwaltung {

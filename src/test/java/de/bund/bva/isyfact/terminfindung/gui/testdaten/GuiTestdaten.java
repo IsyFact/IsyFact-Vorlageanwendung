@@ -38,7 +38,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
 /**
  * Erstellt Testdaten für GUI-Tests, d.h. Tests des AWK-Wrappers und der Controller.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 public class GuiTestdaten {
 

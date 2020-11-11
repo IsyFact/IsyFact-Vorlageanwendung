@@ -29,7 +29,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * Model fuer den Teilnehmen Flow
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public class TeilnehmenModel extends AbstractModel implements Serializable {
 

@@ -23,7 +23,7 @@ package de.bund.bva.isyfact.terminfindung.common;
 /**
  * Generiert IDs für Testdaten.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 public class IdGenerator {
 

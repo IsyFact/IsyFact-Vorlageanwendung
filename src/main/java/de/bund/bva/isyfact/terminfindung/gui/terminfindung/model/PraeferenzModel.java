@@ -24,7 +24,7 @@ package de.bund.bva.isyfact.terminfindung.gui.terminfindung.model;
 /**
  * View Objekt (enum) für Präferenzwerte.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public enum PraeferenzModel {
 

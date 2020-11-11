@@ -27,7 +27,7 @@ import org.junit.Test;
  * Testet den Aufzählungstyp {@link Praeferenz} und stellt sicher,
  * dass die Reihenfolge der Elemente nicht versehentlich geändert wird.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class PraeferenzTest {
 

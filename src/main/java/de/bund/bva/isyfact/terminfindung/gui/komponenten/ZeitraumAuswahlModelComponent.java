@@ -36,7 +36,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Praeferenz;
  * Diese Klasse stellt die Datenstruktur bereit, mit der die Checkboxen in JSF hinterlegt werden.
  * Sie wird in mehreren Flows wiederverwendet.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class ZeitraumAuswahlModelComponent implements Serializable {
 

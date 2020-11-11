@@ -23,7 +23,7 @@ package de.bund.bva.isyfact.terminfindung.common.konstanten;
 /**
  * Diese Klasse enthält Konstanten, die zum Lesen der Konfiguration benötigt werden.
  *
- * @author Stefan Dellmuth, msg systems
+ * @author msg systems ag
  */
 public abstract class KonfigurationSchluessel {
 

@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * Model fuer den Abschließen-Flow
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class AbschliessenModel extends AbstractModel implements Serializable {
 

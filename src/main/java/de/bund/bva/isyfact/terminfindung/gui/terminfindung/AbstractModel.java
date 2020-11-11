@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungMo
 /**
  * Basisklasse für alle View-Models. Die Klasse bündelt Modell-Elemente, die in mehreren Views verwendet werden.
  *
- * @author Dirk Jäger, msg systems ag
+ * @author msg systems ag
  */
 public abstract class AbstractModel implements Serializable {
 

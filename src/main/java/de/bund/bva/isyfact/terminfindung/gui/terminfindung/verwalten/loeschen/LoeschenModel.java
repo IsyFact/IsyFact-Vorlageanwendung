@@ -30,7 +30,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * Model fuer den Löschen Flow
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public class LoeschenModel extends AbstractModel implements Serializable {
 

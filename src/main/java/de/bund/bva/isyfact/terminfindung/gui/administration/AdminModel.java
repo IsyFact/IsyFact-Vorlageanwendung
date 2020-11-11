@@ -29,7 +29,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungMo
 /**
  * Model für Administrationsseiten.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class AdminModel extends AbstractModel implements Serializable {
 

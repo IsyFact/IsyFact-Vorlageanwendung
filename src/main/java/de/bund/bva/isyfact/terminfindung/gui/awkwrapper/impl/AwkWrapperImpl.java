@@ -51,7 +51,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 /**
  * Implementierung des Anwendungskern-Wrappers.
  *
- * @author Dirk Jäger
+ * @author msg systems ag
  */
 @Transactional(rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
 public class AwkWrapperImpl implements AwkWrapper {

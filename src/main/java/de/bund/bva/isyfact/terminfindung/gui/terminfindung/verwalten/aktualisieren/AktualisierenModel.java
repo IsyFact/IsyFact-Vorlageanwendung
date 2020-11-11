@@ -27,7 +27,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractModel;
 /**
  * Model für den Aktualisieren flow
  *
- * @author vadim
+ * @author BVA
  */
 public class AktualisierenModel extends AbstractModel implements Serializable {
 

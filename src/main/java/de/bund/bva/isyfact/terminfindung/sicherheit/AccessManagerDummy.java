@@ -29,7 +29,7 @@ import de.bund.bva.pliscommon.sicherheit.common.exception.AuthentifizierungTechn
 /**
  * Einfache Implementierung eines Access Managers gemäß isy-sicherheit.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 
 public class AccessManagerDummy implements AccessManager<AufrufKontextImpl, AuthentifizierungsErgebnisDummy> {

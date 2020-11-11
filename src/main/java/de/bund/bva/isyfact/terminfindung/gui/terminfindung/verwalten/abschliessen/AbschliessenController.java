@@ -36,7 +36,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.TerminfindungMo
 /**
  * Controller fuer den Abschliessen Flow
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Controller
 public class AbschliessenController extends AbstractController<AbschliessenModel> {
