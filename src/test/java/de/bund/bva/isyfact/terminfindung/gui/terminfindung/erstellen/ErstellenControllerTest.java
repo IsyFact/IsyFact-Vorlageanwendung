@@ -46,7 +46,7 @@ import static org.mockito.Mockito.*;
  * des Models und die korrekte Weitergabe der Daten an den AWK-Wrapper getestet. Dazu wird ein Mock des AWK-Wrappers
  * erstellt.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 public class ErstellenControllerTest {
 

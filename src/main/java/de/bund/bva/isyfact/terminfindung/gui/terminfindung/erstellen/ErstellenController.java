@@ -46,7 +46,7 @@ import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 /**
  * Controller für den Flow "Erstellen": Erstellung einer neuen Terminfindung
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 @Controller
 public class ErstellenController extends AbstractController<ErstellenModel> {

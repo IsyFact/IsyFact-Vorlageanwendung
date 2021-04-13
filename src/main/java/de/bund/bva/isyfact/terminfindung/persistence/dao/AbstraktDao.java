@@ -26,7 +26,7 @@ import de.bund.bva.pliscommon.persistence.dao.Dao;
 /**
  * Basis-Interface alle DAOs der Anwendung. Legt den Typ des Primärschlüssels auf {@link Long} fest.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 public interface AbstraktDao<T extends AbstraktEntitaet> extends Dao<T, Long> {
 

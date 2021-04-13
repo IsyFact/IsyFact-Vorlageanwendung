@@ -35,7 +35,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 /**
  * Diese Klasse implementiert den Anwendungsfall "Terminfindung erstellen"
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 
 class AwfTerminfindungErstellen {

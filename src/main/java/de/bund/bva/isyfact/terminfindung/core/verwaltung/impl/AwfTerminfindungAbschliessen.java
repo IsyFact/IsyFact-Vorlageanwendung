@@ -32,7 +32,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 /**
  * Diese Klasse stellt den Anwendungsfall "Terminfindung abschliessen" dar.
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 class AwfTerminfindungAbschliessen {
 

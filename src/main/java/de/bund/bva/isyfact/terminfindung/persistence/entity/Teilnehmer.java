@@ -26,7 +26,7 @@ import javax.persistence.Entity;
 /**
  * Entity implementation class for Entity: Teilnehmer
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Entity
 public class Teilnehmer extends AbstraktEntitaet {

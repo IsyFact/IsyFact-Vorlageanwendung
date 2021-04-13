@@ -35,7 +35,7 @@ import de.bund.bva.pliscommon.persistence.datetime.ZeitraumEntitaet;
 /**
  * Entity implementation class for Entity: Zeitraum Stellt einen spezifischen Zeitraum fuer ein Datum (Tag) dar.
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Entity
 public class Zeitraum extends AbstraktEntitaet {

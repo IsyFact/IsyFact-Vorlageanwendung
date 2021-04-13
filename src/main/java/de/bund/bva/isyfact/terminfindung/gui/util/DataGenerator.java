@@ -36,7 +36,7 @@ import de.bund.bva.pliscommon.konfiguration.common.Konfiguration;
 /**
  * Generierung von Testdaten für manuelle Tests.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 public class DataGenerator {
 

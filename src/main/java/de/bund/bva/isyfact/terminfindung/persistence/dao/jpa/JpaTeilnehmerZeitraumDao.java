@@ -27,7 +27,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 /**
  * Implementierung fuer die TeilnehmerZeitraumDAO
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 public class JpaTeilnehmerZeitraumDao extends AbstraktJpaDao<TeilnehmerZeitraum> implements TeilnehmerZeitraumDao {
 

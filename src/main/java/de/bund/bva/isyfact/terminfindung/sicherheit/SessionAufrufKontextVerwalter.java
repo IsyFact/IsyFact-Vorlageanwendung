@@ -27,7 +27,7 @@ import de.bund.bva.isyfact.terminfindung.gui.login.LoginController;
 import de.bund.bva.pliscommon.aufrufkontext.impl.AufrufKontextVerwalterImpl;
 
 /**
- * @author jaegerd
+ * @author msg systems ag
  * <p>
  * Implementiert einen Aufrufkontext-Verwalter, der den Aufrufkontext zusätzlich in der Session speichert.
  * Der Aufrufkontext-Verwalter nutzt im Hintergrund ein Objekt der Klasse @link{LoginVerwalter}

@@ -7,7 +7,7 @@ import de.bund.bva.isyfact.terminfindung.common.exception.TerminfindungBusinessE
 /**
  * Schnittstelle der Anwendungskomponente "Datenpflege" zur Pflege der Bestandsdaten.
  *
- * @author msg systems ag, Stefan Dellmuth
+ * @author msg systems ag
  */
 public interface Datenpflege {
 

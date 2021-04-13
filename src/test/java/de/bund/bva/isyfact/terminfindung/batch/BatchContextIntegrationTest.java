@@ -15,7 +15,7 @@ import de.bund.bva.isyfact.terminfindung.common.konstanten.TestProfile;
  * Testet die Erstellung des Batch-Kontextes im Integrationstest. Dies ist Voraussetzung für das Gelingen der
  * Batchtests.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/spring/app-context-batch.xml" })

@@ -32,7 +32,7 @@ import javax.persistence.Embeddable;
 /**
  * Diese Entitaet stellt den Organisator einer Terminfindung dar.
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 
 @Embeddable

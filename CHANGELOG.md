@@ -1,4 +1,5 @@
 # 0.9.0
+- `IFS-411`: Javadoc Kommentare angepasst, damit nur die Firma angezeigt wird
 - `IFE-171`: Verwendung des AdministrationWatchdogTasks aus isy-ueberwachung
     * Anhebung von isyfact-standards und isyfact-bom auf 1.8.1.
     

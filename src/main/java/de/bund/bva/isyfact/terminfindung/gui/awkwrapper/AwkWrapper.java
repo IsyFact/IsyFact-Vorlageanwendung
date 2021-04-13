@@ -38,7 +38,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
  * Objekte den Anwendungskerns übersetzt, und mit diesen Objekten werden dann die Methoden des Anwendungskerns
  * aufgerufen. Ziel ist die Entkopplung der Datenmodelle des Views und des Anwendungskerns.
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public interface AwkWrapper {
 

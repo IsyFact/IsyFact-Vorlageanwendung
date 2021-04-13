@@ -32,7 +32,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 /**
  * Diese Klasse implementiert den Anwendungsfall "Vergangene Termine löschen"
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 
 class AwfVergangeneTermineLoeschen {

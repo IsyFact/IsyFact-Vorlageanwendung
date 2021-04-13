@@ -29,7 +29,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.TeilnehmerZeitraum;
 /**
  * DAO fuer den Zugriff auf die Entity Teilnehmer
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 public interface TeilnehmerDao extends AbstraktDao<Teilnehmer> {
 

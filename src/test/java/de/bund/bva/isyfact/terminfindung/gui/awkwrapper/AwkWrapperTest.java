@@ -75,7 +75,7 @@ import static org.mockito.Mockito.*;
  * getestet. Dazu werden Mocks des Anwendungskern erstellt und die Daten, die den Anwendungskern erreichen, mit denen
  * verglichen, die von der GUI aus abgeschickt werden.
  *
- * @author Stefan Dellmuth, msg systems ag
+ * @author msg systems ag
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/test-awk-wrapper.xml" })

@@ -34,7 +34,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Die Klasse speichert eine Terminfindung in der View-Schicht.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 
 public class TerminfindungModel implements Serializable {

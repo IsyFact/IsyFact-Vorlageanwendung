@@ -26,7 +26,7 @@ import java.io.Serializable;
  * Die Klasse speichert die Daten eines Teilnehmers in der View-Schicht. Ein Teilnehmer hat eine eindeutige Id, einen
  * Namen und eine Liste von präferierten Zeiträumen (Präferenzen) bzgl. der zur Auswahl stehenden Termine.
  *
- * @author msg systems ag, Dirk Jäger
+ * @author msg systems ag
  */
 
 public class TeilnehmerModel implements Serializable {

@@ -40,7 +40,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
 /**
  * Controller für den Teilnahme Flow
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 @Controller
 public class TeilnehmenController extends AbstractController<TeilnehmenModel> {

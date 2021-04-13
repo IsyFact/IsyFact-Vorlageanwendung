@@ -31,7 +31,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Zeitraum;
 /**
  * Interface der Anwendungskomponente "Teilnahme" zur Teilnahme an Terminfindungen
  *
- * @author msg systems ag, Maximilian Falter, Dirk Jäger
+ * @author msg systems ag
  */
 public interface Teilnahme {
 

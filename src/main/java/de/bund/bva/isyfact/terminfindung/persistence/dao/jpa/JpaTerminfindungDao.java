@@ -35,7 +35,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 /**
  * Implementierung fuer die TerminfindungDAO
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 public class JpaTerminfindungDao extends AbstraktJpaDao<Terminfindung> implements TerminfindungDao {
 

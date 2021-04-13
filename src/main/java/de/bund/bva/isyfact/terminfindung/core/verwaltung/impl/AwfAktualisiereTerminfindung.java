@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 /**
  * Die Klasse implementiert den Anwendungsfall Aktualisiere Stammdaten einer Terminfindung
  *
- * @author vadim
+ * @author BVA
  */
 public class AwfAktualisiereTerminfindung {
 

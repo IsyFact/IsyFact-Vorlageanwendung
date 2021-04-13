@@ -35,7 +35,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.model.ZeitraumModel;
 /**
  * Controller fuer den Loeschen Flow
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Controller
 public class LoeschenController extends AbstractController<LoeschenModel> {

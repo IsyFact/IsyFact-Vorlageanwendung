@@ -29,7 +29,7 @@ import de.bund.bva.isyfact.terminfindung.persistence.entity.Terminfindung;
 /**
  * Interface der Anwendungskomponente "Erstellung" zur Erstellung von Terminfindungen
  *
- * @author bva Vadim Richter
+ * @author BVA
  */
 public interface Erstellung {
 

@@ -28,7 +28,7 @@ import de.bund.bva.isyfact.terminfindung.gui.terminfindung.AbstractController;
 /**
  * Controller des AdminFlows.
  *
- * @author msg systems ag, Maximilian Falter
+ * @author msg systems ag
  */
 @Controller
 public class AdminController extends AbstractController<AdminModel> {

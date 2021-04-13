@@ -29,7 +29,7 @@ import de.bund.bva.pliscommon.util.spring.MessageSourceHolder;
  * Batch zum Löschen von Terminen, die eine gewisse Zeit zurückliegen. Die genaue Zeitspanne wird in der betrieblichen
  * Konfiguration festgelegt.
  *
- * @author Stefan Dellmuth, msg systems
+ * @author msg systems ag
  */
 public class TerminfindungLoeschBatch implements BatchAusfuehrungsBean {
 
