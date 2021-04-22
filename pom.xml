@@ -5,11 +5,11 @@
     <parent>
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isyfact-standards</artifactId>
-        <version>1.8.1</version>
+        <version>1.8.3</version>
     </parent>
 
     <artifactId>terminfindung</artifactId>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
@@ -46,7 +46,7 @@
             <dependency>
                 <groupId>de.bund.bva.isyfact</groupId>
                 <artifactId>isyfact-bom</artifactId>
-                <version>1.8.1</version>
+                <version>1.8.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -185,6 +185,12 @@
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -195,6 +201,13 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- TODO: Remove if Spotbug issues are fixed -->
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <version>4.2.1</version>
         </dependency>
     </dependencies>
 
@@ -242,6 +255,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
