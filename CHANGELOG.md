@@ -1,8 +1,11 @@
-# 0.9.0
+# 0.9.1
 - `IFS-411`: Javadoc Kommentare angepasst, damit nur die Firma angezeigt wird
+- `IFS-650`: isyfact-standards Version 1.8.3
+
+# 0.9.0
 - `IFE-171`: Verwendung des AdministrationWatchdogTasks aus isy-ueberwachung
     * Anhebung von isyfact-standards und isyfact-bom auf 1.8.1.
-    
+
 # 0.8.0
 - `IFE-132`: Anhebung von isyfact-standards und isyfact-bom auf 1.8.0. 
     * Anpassung von dozer an den neuen Namespace. 

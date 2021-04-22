@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
@@ -124,6 +125,11 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
         return model.getTage().size() >= getKonfiguration().getAsInteger("termin.tag.max.number");
     }
 
+
+    @SuppressFBWarnings(
+            value = "EC_UNRELATED_TYPES",
+            justification = "Solved with IFS-1016"
+    )
     private boolean keineEingabe(ErstellenModel model) {
         return model.getNewDate() == null || model.getNewDate().equals("");
     }
