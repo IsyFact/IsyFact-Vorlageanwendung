@@ -1,3 +1,7 @@
+# 0.10.0
+- `IFS-650`: isyfact-standards Version auf 1.9.0 gesetzt.
+    * Isy Style 4.4.0 und Isy Web 4.10.0
+
 # 0.9.1
 - `IFS-411`: Javadoc Kommentare angepasst, damit nur die Firma angezeigt wird
 - `IFS-650`: isyfact-standards Version 1.8.3
