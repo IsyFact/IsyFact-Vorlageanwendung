@@ -5,11 +5,11 @@
     <parent>
         <groupId>de.bund.bva.isyfact</groupId>
         <artifactId>isyfact-standards</artifactId>
-        <version>1.9.0</version>
+        <version>1.10.0</version>
     </parent>
 
     <artifactId>terminfindung</artifactId>
-    <version>0.10.0</version>
+    <version>0.11.0</version>
     <packaging>war</packaging>
 
     <name>Terminfindung</name>
@@ -46,7 +46,7 @@
             <dependency>
                 <groupId>de.bund.bva.isyfact</groupId>
                 <artifactId>isyfact-bom</artifactId>
-                <version>1.9.0</version>
+                <version>1.10.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
