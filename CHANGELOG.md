@@ -1,3 +1,6 @@
+# 0.11.0
+- `IFS-1116`: isyfact-standards Version auf 1.10.0 gesetzt.
+
 # 0.10.0
 - `IFS-650`: isyfact-standards Version auf 1.9.0 gesetzt.
     * Isy Style 4.4.0 und Isy Web 4.10.0
