@@ -1,5 +1,6 @@
 # 0.11.0
 - `IFS-1116`: isyfact-standards Version auf 1.10.0 gesetzt.
+- `IF-1016`: Behebung von SpotBugs-Fehlern bei der Datumsvalidierung
 
 # 0.10.0
 - `IFS-650`: isyfact-standards Version auf 1.9.0 gesetzt.

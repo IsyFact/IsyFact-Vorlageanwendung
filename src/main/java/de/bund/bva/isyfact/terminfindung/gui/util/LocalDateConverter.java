@@ -37,6 +37,10 @@ public class LocalDateConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+
         try {
             return InFormat.parseToLocalDate(s);
         } catch (Exception e) {
@@ -46,6 +50,10 @@ public class LocalDateConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+        if (o == null) {
+            return null;
+        }
+
         if (o instanceof LocalDate) {
             return OutFormat.DATUM.format((LocalDate) o);
         } else {

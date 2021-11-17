@@ -202,13 +202,6 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- TODO: Remove if Spotbug issues are fixed -->
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>4.2.1</version>
-        </dependency>
     </dependencies>
 
     <build>
