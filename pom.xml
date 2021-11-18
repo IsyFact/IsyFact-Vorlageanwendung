@@ -140,7 +140,9 @@
             <artifactId>dozer-core</artifactId>
         </dependency>
 
-        <!-- Persistenz -->
+        <!-- Persistenz
+        =====
+        Persistence -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
