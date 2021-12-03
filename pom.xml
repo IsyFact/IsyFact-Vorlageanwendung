@@ -140,7 +140,9 @@
             <artifactId>dozer-core</artifactId>
         </dependency>
 
-        <!-- Persistenz -->
+        <!-- Persistenz
+        =====
+        Persistence -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -201,13 +203,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- TODO: Remove if Spotbug issues are fixed -->
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>4.2.1</version>
         </dependency>
     </dependencies>
 

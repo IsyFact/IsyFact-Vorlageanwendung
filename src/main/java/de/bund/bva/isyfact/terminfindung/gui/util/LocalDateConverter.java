@@ -2,7 +2,7 @@ package de.bund.bva.isyfact.terminfindung.gui.util;
 
 /*
  * #%L
- * Terminfindung
+ * Terminfindung (Appointments)
  * %%
  * Copyright (C) 2015 - 2016 Bundesverwaltungsamt (BVA), msg systems ag
  * %%
@@ -31,12 +31,16 @@ import de.bund.bva.isyfact.datetime.format.InFormat;
 import de.bund.bva.isyfact.datetime.format.OutFormat;
 
 /**
- * JSF Converter für {@link LocalDate}.
+ * JSF Converter for {@link LocalDate}.
  */
 public class LocalDateConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
+        if (s == null || s.isEmpty()) {
+            return null;
+        }
+
         try {
             return InFormat.parseToLocalDate(s);
         } catch (Exception e) {
@@ -46,6 +50,10 @@ public class LocalDateConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+        if (o == null) {
+            return null;
+        }
+
         if (o instanceof LocalDate) {
             return OutFormat.DATUM.format((LocalDate) o);
         } else {

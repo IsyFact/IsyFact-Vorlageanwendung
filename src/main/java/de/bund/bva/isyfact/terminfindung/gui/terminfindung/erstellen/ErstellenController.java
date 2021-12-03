@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 
@@ -26,7 +25,7 @@ import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
 
 /*
  * #%L
- * Terminfindung
+ * Terminfindung (Appointments)
  * %%
  * Copyright (C) 2015 - 2016 Bundesverwaltungsamt (BVA), msg systems ag
  * %%
@@ -45,7 +44,7 @@ import de.bund.bva.isyfact.terminfindung.gui.util.DataGenerator;
  */
 
 /**
- * Controller für den Flow "Erstellen": Erstellung einer neuen Terminfindung
+ * Controller for the flow "Erstellen": Creation of a new appointment
  *
  * @author msg systems ag
  */
@@ -68,9 +67,9 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Fügt einen Tag zur Liste der Tage hinzu.
+     * Adds a day to the list of days.
      *
-     * @param model Das Modell
+     * @param model the model
      */
     public void fuegeDatumHinzu(ErstellenModel model) {
 
@@ -126,12 +125,8 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
 
-    @SuppressFBWarnings(
-            value = "EC_UNRELATED_TYPES",
-            justification = "Solved with IFS-1016"
-    )
     private boolean keineEingabe(ErstellenModel model) {
-        return model.getNewDate() == null || model.getNewDate().equals("");
+        return model.getNewDate() == null;
     }
 
     private boolean datumLiegtInVergangenheit(LocalDate date) {
@@ -143,18 +138,18 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Loescht einen Tag aus der lokalen Liste der Tage (Daten)
+     * Deletes a day from the local list of days (data)
      *
-     * @param model Das Modell
+     * @param model the model
      */
     public void loescheDatum(ErstellenModel model) {
         model.getTage().remove(model.getSelectedTermin());
     }
 
     /**
-     * Fügt einen Zaitraum zu der lokalen Liste der Zeitraeume (Daten)
+     * Adds a time period to the local list of time periods (data).
      *
-     * @param model Das Modell
+     * @param model the model
      */
     public void fuegeZeitraumHinzu(ErstellenModel model) {
 
@@ -164,7 +159,7 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
                 z -> z.getZeitraum().equals(Zeitraum
                         .of(model.getSelectedTermin().getZeitraumVon(), model.getSelectedTermin().getZeitraumBis())));
 
-        // maximale Anzahl von Tagen schon vorhanden?
+        // maximum number of days already available?
         if (model.getSelectedTermin().getZeitraeume().size() >= getKonfiguration()
                 .getAsInteger("termin.tag.zeitraum.max.number")) {
             validationMessages.add(
@@ -201,9 +196,9 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Löscht einen Zeitraum aus der lokalen Liste der Zeitraeume (Daten)
+     * Deletes a time period from the local list of time periods (data))
      *
-     * @param model Das Modell
+     * @param model the model
      */
     public void loescheZeitraum(ErstellenModel model) {
         for (TagModel tag : model.getTage()) {
@@ -212,10 +207,10 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Validiert das Modell vor dem Speichern. Es wird geprüft, ob die Pflichtfelder gefüllt sind.
+     * Validates the model before saving. It is checked whether the mandatory fields are filled.
      *
-     * @param model Das Modell
-     * @return true wenn alle Pflichtfelder gefüllt sind, sonst false
+     * @param model the model
+     * @return true if all mandatory fields are filled, otherwise false
      */
     public boolean validiereStammdaten(ErstellenModel model) {
         List<ValidationMessage> validationMessages = new ArrayList<>();
@@ -235,8 +230,8 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Validiert das Modell vor dem Speichern. Es wird geprüft ob alle Tage mindestens einen Zeitraum beinhalten. Falls
-     * das Modell konsistent ist, wird es gespeichert.
+     * Validates the model before saving.
+     * It is checked whether all days contain at least one period. If the model is consistent, it is saved.
      */
     public boolean validiereTermine(ErstellenModel model) {
         List<ValidationMessage> validationMessages = new ArrayList<>();
@@ -257,10 +252,10 @@ public class ErstellenController extends AbstractController<ErstellenModel> {
     }
 
     /**
-     * Speichert die neu angelegte Terminfindung. Die Methode ruft dazu den Wrapper des Anwendungskerns mit den Daten
-     * auf, die im Modell vorliegen.
+     * Saves the newly created appointment determination.
+     * The method calls the wrapper of the application core with the data available in the model.
      *
-     * @param model Das Modell, dessen Inhalt gespeichert wird
+     * @param model The model whose content is stored
      */
     private boolean speichereModel(ErstellenModel model) {
 
